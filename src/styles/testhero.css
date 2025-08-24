@@ -1,0 +1,30 @@
+/* .container-test-hero {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+} */
+
+.img-test-hero {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%);
+  overflow: hidden;
+  will-change: clip-path;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+.img-test-hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* .test-info {
+  display: flex;
+  width: 50%;
+  height: 100%;
+} */

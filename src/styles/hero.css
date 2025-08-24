@@ -1,0 +1,38 @@
+.gallery {
+  width: 100%;
+  /* height: calc(100vh - 60px); */
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  background-color: white;
+}
+
+.img {
+  width: 500px;
+  height: 350px;
+  overflow: hidden;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: center center;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+
+.img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  will-change: transform;
+}
+
+/* .absolute {
+  will-change: opacity, transform;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+} */
+
+.final-img {
+  will-change: transform, opacity, width, height;
+}

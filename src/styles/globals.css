@@ -1,26 +1,61 @@
 @import "tailwindcss";
+@import "../components/Layout/PageTransition/styles.scss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@font-face {
+  font-family: 'MyFont';
+  src: url('/fonts/my-font/PPMori-SemiBold.woff2') format('woff2'),
+       url('/fonts/my-font/PPMori-SemiBold.woff') format('woff');
+  font-weight: medium;
+  font-style: medium;
+  font-display: swap;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html, body {
+  height: 100%;
+  width: 100%;
+  font-family: 'MyFont', sans-serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
 }
+
+/* .hero-text {
+  -webkit-text-stroke: 3px #81d381;
+} */
+
+.line {
+  transform: translateY(100%);
+  will-change: transform;
+}
+
+.line-line {
+  display: block;
+  overflow: hidden;
+  line-height: 0.80;
+  padding-bottom: 0.20em;
+}
+
+.line-line2 {
+  display: block;
+  overflow: visible;
+  line-height: 1.06;
+}
+
+
+.swiper-slide-prev {
+  opacity: 0 !important;
+  pointer-events: none;
+  transform: translateX(-100%) scale(0.8) !important;
+}
+
+
+
+
+
+
+

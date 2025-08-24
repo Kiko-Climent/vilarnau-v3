@@ -1,0 +1,90 @@
+.container-zoom {
+  height: 300vh;
+  position: relative;
+}
+
+.container-zoom .sticky-zoom {
+  position: sticky;
+  overflow: hidden;
+  top: 0;
+  height: 100vh;
+}
+
+.container-zoom .sticky-zoom .el-zoom {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container-zoom .sticky-zoom .el-zoom .image-container-zoom {
+  position: relative;
+  width: 25vw;
+  height: 25vh;
+}
+
+.container-zoom .sticky-zoom .el-zoom .image-container-zoom img {
+  object-fit: cover;
+}
+
+/* Position tweaks for specific elements */
+.container-zoom .sticky-zoom .el-zoom:nth-of-type(2) .image-container-zoom {
+  top: -30vh;
+  left: 5vw;
+  width: 35vw;
+  height: 30vh;
+}
+
+.container-zoom .sticky-zoom .el-zoom:nth-of-type(3) .image-container-zoom {
+  top: -10vh;
+  left: -25vw;
+  width: 20vw;
+  height: 45vh;
+}
+
+.container-zoom .sticky-zoom .el-zoom:nth-of-type(4) .image-container-zoom {
+  left: 27.5vw;
+  width: 25vw;
+  height: 25vh;
+}
+
+.container-zoom .sticky-zoom .el-zoom:nth-of-type(5) .image-container-zoom {
+  top: 27.5vh;
+  left: 5vw;
+  width: 20vw;
+  height: 25vh;
+}
+
+.container-zoom .sticky-zoom .el-zoom:nth-of-type(6) .image-container-zoom {
+  top: 27.5vh;
+  left: -22.5vw;
+  width: 30vw;
+  height: 25vh;
+}
+
+.container-zoom .sticky-zoom .el-zoom:nth-of-type(7) .image-container-zoom {
+  top: 22.5vh;
+  left: 25vw;
+  width: 15vw;
+  height: 15vh;
+}
+
+.image-container-zoom {
+  position: relative;
+  width: 25vw;
+  height: 25vh;
+}
+
+.zoom-text-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  color: white;
+  text-align: center;
+  pointer-events: none;
+}
