@@ -8,6 +8,7 @@ import StyleSlider4 from "@/components/Styles/index4";
 import StyleSlider5 from "@/components/Styles/index5";
 import StyleSlider6 from "@/components/Styles/index6";
 import StyleSlider7 from "@/components/Styles/index7";
+import StyleSlider8 from "@/components/Styles/index8";
 
 
 export default function Intro() {
@@ -15,13 +16,14 @@ export default function Intro() {
   return (
     <>
      {/* <div className=""> */}
-      <Composition3 />
+      {/* <Composition3 /> */}
       {/* <StyleSlider3 /> */}
       {/* <StyleSlider4 /> */}
       {/* <StyleSlider /> */}
       {/* <StyleSlider5 /> */}
       {/* <StyleSlider6 /> */}
       {/* <StyleSlider7 /> */}
+      <StyleSlider8 />
      {/* </div> */}
     </>
   );
