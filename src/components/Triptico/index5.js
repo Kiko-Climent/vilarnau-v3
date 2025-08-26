@@ -2,7 +2,7 @@ const Triptico5 = () => {
   return (
     <div className="w-screen h-screen overflow-hidden bg-white">
       {/* Imagen en esquina superior izquierda */}
-      <div className="absolute top-0 left-0 w-7/12 aspect-[4/3] pl-2 pt-2">
+      <div className="absolute top-0 left-0 w-10/12 md:w-7/12 h-[75%] aspect-[4/3] pl-2 pt-2">
         <img
           src="/images/img4.jpeg"
           className="w-full h-full object-cover"

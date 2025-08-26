@@ -74,10 +74,10 @@ export default function Test3() {
   return (
     <div
       ref={containerRef}
-      className="container-test-hero w-screen h-screen flex flex-row gap-2 px-2 py-2 bg-white"
+      className="container-test-hero w-screen h-screen flex flex-col md:flex-row gap-2 px-2 py-2 bg-white text-base"
     >
       {/* Lado izquierdo */}
-      <div className="img-test-hero flex w-1/2 overflow-hidden">
+      <div className="img-test-hero flex w-12/12 md:w-1/2 overflow-hidden">
         <img
           src="/images/img1.jpeg"
           alt=""
@@ -89,7 +89,7 @@ export default function Test3() {
       <div className="container-right-hero w-1/2 flex flex-col">
         
         {/* Imagen centrada */}
-        <div className="flex flex-1 items-center justify-center">
+        <div className="hidden md:flex flex-1 items-center justify-center">
           <div className="aspect-[3/4] w-1/2 img-test-herocenter">
             <img
               src="/images/img17.jpeg"
@@ -100,7 +100,7 @@ export default function Test3() {
         </div>
 
         {/* Info en el fondo */}
-        <div className="test-info flex justify-between w-full"
+        <div className="test-info flex flex-col md:flex-row justify-between w-full"
         ref={textRef}>
           <div className="flex flex-col -space-y-2">
             <h1 className="text-black ">salon vilarnau</h1>

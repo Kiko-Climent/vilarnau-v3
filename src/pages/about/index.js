@@ -13,6 +13,7 @@ import TextWrapper from "@/components/TextWrapper";
 import StickyPics from "@/components/StickyPics";
 import Test3 from "@/components/NewHero/text3";
 import Triptico5 from "@/components/Triptico/index5";
+import Composition3 from "@/components/Composition/index3";
 
 export default function About() {
   return(
@@ -21,7 +22,8 @@ export default function About() {
       <ZoomGallery />
       {/* <FlipSection2 FirstComponent={QuoteAndImage2} SecondComponent={QuoteAndImage3} /> */}
       <TextWrapper />
-      <StickyPics />
+      <Composition3 />
+      {/* <StickyPics /> */}
       <Footer />
       {/* <QuoteAndImage2 />
       <QuoteAndImage3 /> */}
