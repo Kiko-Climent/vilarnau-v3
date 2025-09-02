@@ -6,8 +6,8 @@ export default function Prices() {
   return(
     <div className="">
       {/* <ImageReveal /> */}
-      <Composition4 />
-      {/* <Composition3 /> */}
+      {/* <Composition4 /> */}
+      <Composition3 />
     </div>
   )
 }

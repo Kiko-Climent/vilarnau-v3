@@ -108,6 +108,8 @@ export default function GridRevealImage({
         scrollTrigger: {
           trigger: trigger === "self" ? wrap : document.querySelector(trigger),
           start,
+          once,
+          immediateRender: false,
         },
         onComplete: () => {
           if (once) hasAnimatedRef.current = true; // ✅ marca como animado solo esta instancia

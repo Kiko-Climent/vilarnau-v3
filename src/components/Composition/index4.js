@@ -1,7 +1,7 @@
 const Composition4 = () => {
   return (
     <div className="w-screen h-screen flex items-center justify-center overflow-hidden">
-      <div className="relative w-full h-full max-w-[1920px] max-h-[calc(100vh-1rem)] aspect-[16/10]">
+      <div className="relative w-full h-full max-w-[1920px] max-h-[calc(100vh-1rem)] aspect-[16/10] font-myfont2">
 
         {/* Imagen inferior centro */}
         <div
@@ -24,7 +24,7 @@ const Composition4 = () => {
 
         {/* Texto superior */}
         <div
-          className="absolute text-left pl-2 leading-none tracking-wider uppercase"
+          className="absolute text-left pl-2 leading-none tracking-wider uppercase "
           style={{
             top: "0%",
             width: "60%",

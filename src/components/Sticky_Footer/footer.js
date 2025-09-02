@@ -27,8 +27,8 @@ export default function Footer() {
         </div>
 
         {/* Salon Name */}
-        <div className="flex">
-          <h1 className="text-[15.5vw] tracking-tight blur-[0.7px] whitespace-nowrap">salon vilarnau</h1>
+        <div className="flex justify-center items-end ">
+          <h1 className="text-[13vw] text-center tracking-wider uppercase whitespace-nowrap font-myfont2">salon vilarnau</h1>
         </div>
       </div>
     </div>

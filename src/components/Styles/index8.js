@@ -153,7 +153,7 @@ export default function StyleSlider8() {
             <p>(030)5768910836</p>
             <p>hello@vilarnau.de</p>
           </div>
-          <div className="slider-counter">
+          <div className="slider-counter font-myfont2">
             <p ref={counterRef}>1 / 6</p>
           </div>
         </div>

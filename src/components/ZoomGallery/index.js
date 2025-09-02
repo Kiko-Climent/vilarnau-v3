@@ -1,7 +1,7 @@
 import Pic1 from "../../../public/images/img18.JPG"
 import Pic2 from "../../../public/images/img3.jpg"
-import Pic3 from "../../../public/images/img2.jpeg"
-import Pic4 from "../../../public/images/img8.jpg"
+import Pic3 from "../../../public/images/img8.jpg"
+import Pic4 from "../../../public/images/img2.jpeg"
 import Pic5 from "../../../public/images/img3.jpeg"
 import Pic6 from "../../../public/images/img5.jpg"
 import Pic7 from "../../../public/images/img6.JPG"
@@ -92,7 +92,7 @@ export default function ZoomGallery() {
         }
         {showText && (
           <TextAnimation>
-            <div className="zoom-text-overlay text-8xl blur-[0.7px] tracking-wide w-full">
+            <div className="zoom-text-overlay text-4xl md:text-8xl blur-[0.7px] tracking-wide w-full font-myfont2">
               {/* <p>we believe in creating a look that while keeping an insight on actual trends, better highlights your features and lifestyle</p> */}
               <p>elevating the craft of</p>
               <p>hairstyling since 2019</p>

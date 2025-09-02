@@ -1,3 +1,5 @@
+import GridRevealImage from "../Tools/GridRevealAnimation";
+
 const Composition3 = () => {
   return (
     <div className="w-screen h-full py-24 flex items-center justify-center overflow-hidden">
@@ -15,11 +17,11 @@ const Composition3 = () => {
             zIndex: 1,
           }}
         >
-          <img
+          <GridRevealImage
             src="/images/img15.jpeg"
             className="w-full h-full object-cover"
-            alt="img15"
-          />
+            alt="img15">
+          </GridRevealImage>
         </div>
 
         {/* Texto, pegado a la imagen por arriba */}
@@ -55,7 +57,7 @@ const Composition3 = () => {
             zIndex: 1,
           }}
         >
-          <img
+          <GridRevealImage
             src="/images/img10.jpg"
             className="w-full h-full object-cover"
             alt="img10"
@@ -73,7 +75,7 @@ const Composition3 = () => {
             zIndex: 1,
           }}
         >
-          <img
+          <GridRevealImage
             src="/images/img2.jpg"
             className="w-full h-full object-cover"
             alt="img2"
