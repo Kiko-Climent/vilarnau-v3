@@ -1,9 +1,11 @@
 "use client";
 import { useEffect, useRef } from "react";
+import { useRouter } from "next/router";
 import gsap from "gsap";
 
 export default function NewHero3() {
   const gridRef = useRef(null);
+  const router = useRouter();
 
   useEffect(() => {
     // Importamos CustomEase DINÁMICAMENTE en el cliente
@@ -13,7 +15,10 @@ export default function NewHero3() {
       gsap.registerPlugin(CustomEase);
       CustomEase.create("hop", "0.9, 0, 0.1, 1");
 
-      const gridImages = gsap.utils.toArray(gridRef.current.querySelectorAll(".img-newhero"));
+      if (!gridRef.current) return;
+          const gridImages = gsap.utils.toArray(
+          gridRef.current.querySelectorAll(".img-newhero")
+        );
       // const heroImage = gridRef.current.querySelector(".img.hero-img");
       const heroImage = gridRef.current.querySelector(".img-newhero.hero-img");
       const images = gridImages.filter((img) => img !== heroImage);
@@ -97,11 +102,14 @@ export default function NewHero3() {
         clipPath: "polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%)", // totalmente cerrado
         duration: 0.6,
         ease: "power2.inOut",
+        onComplete: () => {
+          router.push('/home');
+        }
       });
     };
 
     runAnimation();
-  }, []);
+  }, [router]);
 
   return (
     <div className="image-grid" ref={gridRef}>

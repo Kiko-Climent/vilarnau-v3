@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
-import GridRevealImage from "../Tools/GridRevealAnimation";// ajusta la ruta
+import GridRevealImage from "../Tools/GridRevealAnimation";
 
 const animateIn = async (target, onComplete) => {
   const module = await import("gsap/SplitText");
@@ -30,33 +30,39 @@ const animateIn = async (target, onComplete) => {
 export default function Test4() {
   const containerRef = useRef(null);
   const textRef = useRef(null);
+  const hasAnimatedText = useRef(false); // ✅ ahora está dentro del componente
+
+  const handleComplete = () => {
+    if (!hasAnimatedText.current) {
+      hasAnimatedText.current = true;
+      animateIn(textRef.current);
+    }
+  };
 
   useEffect(() => {
-    // aquí solo nos ocupamos del texto; las imágenes se animan solas al hacer scroll
     gsap.set(textRef.current, { opacity: 0 });
   }, []);
 
   return (
     <div
       ref={containerRef}
-      className="container-test-hero w-screen h-screen flex flex-col md:flex-row gap-2  bg-white text-base"
+      className="container-test-hero w-screen h-screen flex flex-col md:flex-row gap-2 bg-white text-base px-2 md:px-0 py-2 md:py-0"
     >
       {/* Lado izquierdo */}
-      <div className="flex w-12/12 md:w-1/2 overflow-hidden">
+      <div className="flex w-full md:w-1/2 h-full overflow-hidden">
         <GridRevealImage
           src="/images/img1.jpeg"
           className="w-full h-full"
           rows={5}
           cols={5}
-          order="diagonal"      // prueba: "random", "row", "column" o tu array custom
+          order="diagonal"
           start="top 85%"
-          onComplete={() => animateIn(textRef.current)}
+          onComplete={handleComplete}
         />
       </div>
 
       {/* Lado derecho */}
-      <div className="container-right-hero w-1/2 flex flex-col">
-        {/* Imagen centrada */}
+      <div className="container-right-hero w-full md:w-1/2 flex flex-col">
         <div className="hidden md:flex flex-1 items-center justify-center">
           <div className="aspect-[3/4] w-1/2">
             <GridRevealImage
@@ -66,18 +72,17 @@ export default function Test4() {
               cols={5}
               order="diagonal"
               start="top 85%"
-              // sin onComplete aquí, o pon otro callback si quieres encadenar algo más
+              onComplete={handleComplete}
             />
           </div>
         </div>
 
-        {/* Info en el fondo */}
         <div
           className="test-info flex flex-col md:flex-row justify-between w-full"
           ref={textRef}
         >
           <div className="flex flex-col -space-y-2">
-            <h1 className="text-black ">salon vilarnau</h1>
+            <h1 className="text-black">salon vilarnau</h1>
             <p>manteufelstr.55</p>
             <p>10999 · kreuzberg</p>
           </div>
@@ -96,3 +101,4 @@ export default function Test4() {
     </div>
   );
 }
+

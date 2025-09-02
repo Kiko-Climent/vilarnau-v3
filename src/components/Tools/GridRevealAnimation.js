@@ -27,12 +27,10 @@ const buildClipPaths = (rows, cols, type, overlap = 0.1) => {
   return paths;
 };
 
-// Crea grupos de índices en el orden deseado
 const makeOrder = (rows, cols, mode = "diagonal") => {
   const total = rows * cols;
   const indices = Array.from({ length: total }, (_, i) => i);
 
-  // Si pasan grupos custom como array (p.ej. [[0],[1,5],...]) respétalos
   if (Array.isArray(mode)) return mode;
 
   if (mode === "row") {
@@ -49,10 +47,10 @@ const makeOrder = (rows, cols, mode = "diagonal") => {
 
   if (mode === "random") {
     const shuffled = [...indices].sort(() => Math.random() - 0.5);
-    return shuffled.map((i) => [i]); // uno a uno
+    return shuffled.map((i) => [i]);
   }
 
-  // diagonal por defecto (r + c = constante)
+  // diagonal por defecto
   const groups = Array.from({ length: rows + cols - 1 }, () => []);
   indices.forEach((i) => {
     const r = Math.floor(i / cols);
@@ -63,26 +61,29 @@ const makeOrder = (rows, cols, mode = "diagonal") => {
 };
 
 export default function GridRevealImage({
-  src,                       // string o StaticImport (import imgX from ...)
+  src,
   rows = 5,
   cols = 5,
   className = "",
   style,
-  trigger = "self",          // "self" o un selector (p.ej. ".mi-seccion")
-  order = "diagonal",        // "diagonal" | "row" | "column" | "random" | [[índices]...]
+  trigger = "self",
+  order = "diagonal",
   duration = 0.5,
   stagger = 0.08,
   ease = "power2.out",
   overlap = 0.1,
-  groupOffset = 0.125,       // separación temporal entre grupos
-  start = "top 80%",         // ScrollTrigger start
-  once = true,               // animar una sola vez
-  onComplete,                // callback al terminar el reveal
+  groupOffset = 0.125,
+  start = "top 80%",
+  once = true,
+  onComplete,
 }) {
   const wrapRef = useRef(null);
   const tlRef = useRef(null);
+  const hasAnimatedRef = useRef(false); // 🔹 flag por instancia
 
   useEffect(() => {
+    if (once && hasAnimatedRef.current) return;
+
     let mounted = true;
 
     (async () => {
@@ -107,9 +108,11 @@ export default function GridRevealImage({
         scrollTrigger: {
           trigger: trigger === "self" ? wrap : document.querySelector(trigger),
           start,
-          once,
         },
-        onComplete,
+        onComplete: () => {
+          if (once) hasAnimatedRef.current = true; // ✅ marca como animado solo esta instancia
+          onComplete?.();
+        },
       });
 
       groups.forEach((group, groupIndex) => {
@@ -120,10 +123,7 @@ export default function GridRevealImage({
         tl.to(
           elements,
           {
-            clipPath: (i, el) => {
-              const idx = Number(el.dataset.index);
-              return visible[idx];
-            },
+            clipPath: (i, el) => visible[Number(el.dataset.index)],
             duration,
             ease,
             stagger,
@@ -138,7 +138,7 @@ export default function GridRevealImage({
     return () => {
       mounted = false;
       if (tlRef.current) {
-        tlRef.current.kill(); // mata timeline + su ScrollTrigger
+        tlRef.current.kill();
         tlRef.current = null;
       }
       if (wrapRef.current) {

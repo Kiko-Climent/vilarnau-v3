@@ -1,31 +1,31 @@
 "use client";
 
-import About from "@/components/About";
-import AppointmentsSection from "@/components/Appointments";
-import Hero from "@/components/Hero";
-import PageTransition from "@/components/Layout/PageTransition";
-import Other1 from "@/components/Other";
-import QuoteAndImage from "@/components/QuoteAndImage";
+
+// import PageTransition from "@/components/Layout/PageTransition";
+import { ReactLenis } from "lenis/react";
+import FlipSection from "@/components/FlipSections";
+import ZoomGallery from "@/components/ZoomGallery";
 import Footer from "@/components/Sticky_Footer/footer";
-import Triptico2 from "@/components/Triptico/index2";
-import Triptico3 from "@/components/Triptico/index3";
-import { ReactLenis } from "lenis/react"
+import TextWrapper from "@/components/TextWrapper";
+import Triptico5 from "@/components/Triptico/index5";
+import Composition3 from "@/components/Composition/index3";
+import Test4 from "@/components/NewHero/test4";
+import Test3 from "@/components/NewHero/text3";
+import Composition4 from "@/components/Composition/index4";
 
 export default function Home() {
   return(
-    <div className="h-[100vh-68px]">
-      <PageTransition>
+    <div className="w-screen min-h-screen relative">
+      {/* <PageTransition> */}
         <ReactLenis root>
-          <Hero />
-          {/* <Triptico2 /> */}
-          {/* <QuoteAndImage /> */}
-          <Triptico3 />
-          <Other1 />
-          <About />
-          <AppointmentsSection />
-          <Footer />
+          <FlipSection FirstComponent={Test4} SecondComponent={Triptico5} />
+          <ZoomGallery />
+          <TextWrapper />
+          <Composition3 />
+          <Composition4 />
+          <Footer />        
         </ReactLenis>
-      </PageTransition>
+      {/* </PageTransition> */}
     </div>
     
   )

@@ -1,6 +1,6 @@
 const Composition3 = () => {
   return (
-    <div className="w-screen h-screen flex items-center justify-center overflow-hidden">
+    <div className="w-screen h-full py-24 flex items-center justify-center overflow-hidden">
       <div className="relative w-full h-full max-w-[1920px] max-h-[calc(100vh-1rem)] aspect-[16/10]">
 
         {/* Imagen inferior centro */}

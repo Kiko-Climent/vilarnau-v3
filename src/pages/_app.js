@@ -6,8 +6,6 @@ import "@/styles/zoomgallery.css";
 import "@/styles/textwrapper.css";
 import "@/styles/stickypics.css";
 import "@/styles/newhero.css";
-// import "@/styles/styleslider.css";
-// import "@/styles/stylesliderswipper.css";
 import "@/styles/styleslidernew.css";
 import { useNavbar } from "@/components/Layout/Context/NavbarProvider";
 import { NavbarProvider } from "@/components/Layout/Context/NavbarProvider";

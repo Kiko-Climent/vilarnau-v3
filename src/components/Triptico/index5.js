@@ -1,12 +1,17 @@
+import GridRevealImage from "../Tools/GridRevealAnimation";
+
 const Triptico5 = () => {
   return (
     <div className="w-screen h-screen overflow-hidden bg-white">
       {/* Imagen en esquina superior izquierda */}
       <div className="absolute top-0 right-0 w-10/12 md:w-7/12 h-[75%] aspect-[4/3]">
-        <img
+        <GridRevealImage
           src="/images/img4.jpeg"
-          className="w-full h-full object-cover"
-          alt="Decorative"
+          className="w-full h-full"
+          rows={5}
+          cols={5}
+          order="diagonal"      // prueba: "random", "row", "column" o tu array custom
+          start="top 85%"
         />
       </div>
 
