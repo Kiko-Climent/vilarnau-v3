@@ -92,7 +92,7 @@ export default function ZoomGallery() {
         }
         {showText && (
           <TextAnimation>
-            <div className="zoom-text-overlay text-5xl font-medium blur-[0.7px] tracking-tighter">
+            <div className="zoom-text-overlay text-8xl blur-[0.7px] tracking-wide w-full">
               {/* <p>we believe in creating a look that while keeping an insight on actual trends, better highlights your features and lifestyle</p> */}
               <p>elevating the craft of</p>
               <p>hairstyling since 2019</p>

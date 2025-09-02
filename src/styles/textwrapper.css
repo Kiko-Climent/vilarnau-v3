@@ -6,7 +6,7 @@ section {
 }
 
 .p-spot {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 500;
   line-height: 1;
 }
@@ -47,7 +47,7 @@ section {
 .spotlight-bg-img img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
   /* transform-origin: center center; */
   transform: scale(1.5);
@@ -56,19 +56,19 @@ section {
 
 .spotlight-text {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 80%;
-  max-width: 700px;
-  text-align: center;
+  bottom: 0%;
+  right: 0%;
+  /* transform: translate(-50%, -50%); */
+  width: 100%;
+  max-width: 300px;
+  text-align: right;
   z-index: 2; /* aseguramos que esté por encima */
 }
 
 .p-spot-img {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 500;
   color: black;
-  line-height: 1;
+  line-height: 1.05;
   background-color: white;
 }

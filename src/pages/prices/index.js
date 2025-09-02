@@ -1,9 +1,13 @@
+import Composition3 from "@/components/Composition/index3";
+import Composition4 from "@/components/Composition/index4";
+import ImageReveal from "@/components/Tests";
+
 export default function Prices() {
   return(
-    <div className="text-black text-5xl flex justify-center items-center w-screen h-screen">
-      <h1 className="flex">
-      hello this is vilarnau(Prices)
-      </h1>
+    <div className="">
+      {/* <ImageReveal /> */}
+      <Composition4 />
+      {/* <Composition3 /> */}
     </div>
   )
 }

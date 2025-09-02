@@ -14,11 +14,12 @@ import StickyPics from "@/components/StickyPics";
 import Test3 from "@/components/NewHero/text3";
 import Triptico5 from "@/components/Triptico/index5";
 import Composition3 from "@/components/Composition/index3";
+import Test4 from "@/components/NewHero/test4";
 
 export default function About() {
   return(
     <div className="w-screen min-h-screen relative">
-      <FlipSection FirstComponent={Test3} SecondComponent={Triptico5} />
+      <FlipSection FirstComponent={Test4} SecondComponent={Triptico5} />
       <ZoomGallery />
       {/* <FlipSection2 FirstComponent={QuoteAndImage2} SecondComponent={QuoteAndImage3} /> */}
       <TextWrapper />

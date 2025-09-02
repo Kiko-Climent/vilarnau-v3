@@ -3,8 +3,10 @@
 
 @font-face {
   font-family: 'MyFont';
-  src: url('/fonts/my-font/PPMori-SemiBold.woff2') format('woff2'),
-       url('/fonts/my-font/PPMori-SemiBold.woff') format('woff');
+  src: url('/fonts/my-font/bootzy-tm-regular.woff2') format('woff2'), 
+       url('/fonts/my-font/bootzy-tm-regular.woff') format('woff');
+       /* url('/fonts/my-font/bootzy-tm-regular.woff2') format('woff2'), 
+       url('/fonts/my-font/bootzy-tm-regular.woff') format('woff'); */
   font-weight: medium;
   font-style: medium;
   font-display: swap;
@@ -36,8 +38,8 @@ body {
 .line-line {
   display: block;
   overflow: hidden;
-  line-height: 0.80;
-  padding-bottom: 0.20em;
+  /* line-height: 0.80; */
+  /* padding-bottom: 0.20em; */
 }
 
 .line-line2 {
