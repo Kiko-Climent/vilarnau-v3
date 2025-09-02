@@ -1,3 +1,6 @@
+import TextAnimation from "../Tools";
+import GridRevealImage from "../Tools/GridRevealAnimation";
+
 const Composition4 = () => {
   return (
     <div className="w-screen h-screen flex items-center justify-center overflow-hidden">
@@ -15,7 +18,7 @@ const Composition4 = () => {
             zIndex: 1,
           }}
         >
-          <img
+          <GridRevealImage
             src="/images/img9.jpg"
             className="w-full h-full object-cover"
             alt="img15"
@@ -23,14 +26,14 @@ const Composition4 = () => {
         </div>
 
         {/* Texto superior */}
+        <TextAnimation>
         <div
-          className="absolute text-left pl-2 leading-none tracking-wider uppercase "
+          className="absolute text-left pl-2 leading-none tracking-wider uppercase text-[clamp(0.95rem,2vw,1.6rem)]"
           style={{
             top: "0%",
             width: "60%",
             right: "0%",
             zIndex: 2,
-            fontSize: "1.7rem", // ✅ responsive
           }}
         >
           <p>
@@ -43,6 +46,7 @@ const Composition4 = () => {
           feeling seen, understood, and phenomenal.
           </p>
         </div>
+        </TextAnimation>
 
         {/* Imagen superior centro */}
         <div
@@ -56,7 +60,7 @@ const Composition4 = () => {
             zIndex: 1,
           }}
         >
-          <img
+          <GridRevealImage
             src="/images/img21.jpg"
             className="w-full h-full object-cover"
             alt="img10"
@@ -70,7 +74,7 @@ const Composition4 = () => {
             bottom: "-1%",
             left: "0%",
             zIndex: 2,
-            fontSize: "1.7rem", // ✅ responsive
+            fontSize: "1.6rem", // ✅ responsive
           }}
         >
           <p>Open in the heart <br></br>of Berlin-Kreuzberg<br></br>since 2018. <br></br>Come say hello.</p>
@@ -91,7 +95,7 @@ const Composition4 = () => {
 
         {/* Imagen inferior derecha */}
         <div
-          className="absolute pr-2"
+          className="absolute pr-6"
           style={{
             bottom: "0%",
             right: "0%",
@@ -100,7 +104,7 @@ const Composition4 = () => {
             zIndex: 1,
           }}
         >
-          <img
+          <GridRevealImage
             src="/images/img17.jpeg"
             className="w-full h-full object-cover"
             alt="img2"

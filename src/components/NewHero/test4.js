@@ -9,7 +9,9 @@ const animateIn = async (target, onComplete) => {
   const SplitText = module.default;
   gsap.registerPlugin(SplitText);
 
+  // Hacemos visible el contenedor justo antes de animar
   gsap.set(target, { opacity: 1 });
+
   const split = new SplitText(target, { type: "chars" });
 
   gsap.fromTo(
@@ -30,7 +32,7 @@ const animateIn = async (target, onComplete) => {
 export default function Test4() {
   const containerRef = useRef(null);
   const textRef = useRef(null);
-  const hasAnimatedText = useRef(false); // ✅ ahora está dentro del componente
+  const hasAnimatedText = useRef(false);
 
   const handleComplete = () => {
     if (!hasAnimatedText.current) {
@@ -39,6 +41,7 @@ export default function Test4() {
     }
   };
 
+  // 🔹 Inicialmente ocultamos el texto
   useEffect(() => {
     gsap.set(textRef.current, { opacity: 0 });
   }, []);
@@ -77,8 +80,9 @@ export default function Test4() {
           </div>
         </div>
 
+        {/* 🔹 Aplicamos opacity-0 por defecto para eliminar chispazo */}
         <div
-          className="test-info flex flex-col md:flex-row justify-between w-full"
+          className="test-info flex flex-col md:flex-row justify-between w-full opacity-0"
           ref={textRef}
         >
           <div className="flex flex-col -space-y-2">
@@ -101,4 +105,3 @@ export default function Test4() {
     </div>
   );
 }
-

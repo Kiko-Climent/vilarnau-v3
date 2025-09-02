@@ -145,7 +145,6 @@ export default function StyleSlider8() {
           </div>
         </div>
       </div>
-
       <div className='slider-content'>
         <div className='contact-content'>  
           <div className='header-content'>

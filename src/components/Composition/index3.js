@@ -1,22 +1,15 @@
+import TextAnimation from "../Tools";
 import GridRevealImage from "../Tools/GridRevealAnimation";
 
 const Composition3 = () => {
   return (
-    <div className="w-screen h-full py-24 flex items-center justify-center overflow-hidden">
+    <div className="w-screen h-screen md:h-full py-24 flex items-center justify-center overflow-hidden">
       <div className="relative w-full h-full max-w-[1920px] max-h-[calc(100vh-1rem)] aspect-[16/10]">
 
         {/* Imagen inferior centro */}
-        <div
-          className="absolute pr-2"
-          style={{
-            bottom: "0%",
-            left: "32%",
-            width: "31%",
-            height: "58.5%",
-            transform: "translateX(-50%)",
-            zIndex: 1,
-          }}
-        >
+        <div className="absolute pr-2 bottom-0 left-[25%] w-[38%] h-[58.5%] -translate-x-1/2 z-[1]
+            md:left-[32%] md:w-[31%] md:h-[58.5%] // tablets/desktop">
+
           <GridRevealImage
             src="/images/img15.jpeg"
             className="w-full h-full object-cover"
@@ -25,15 +18,9 @@ const Composition3 = () => {
         </div>
 
         {/* Texto, pegado a la imagen por arriba */}
-        <div
-          className="absolute text-[clamp(0.9rem,1.2vw,1.3rem)] text-left leading-none"
-          style={{
-            bottom: "58.5%", // exactamente el alto de la imagen inferior
-            left: "32%",
-            width: "31%",
-            transform: "translateX(-50%)",
-            zIndex: 2, // siempre encima de la imagen
-          }}
+        <TextAnimation>
+        <div className="absolute bottom-[58.5%] left-[24.5%] md:left-[32%] w-[38%] md:w-[31%] -translate-x-1/2 z-[2]
+            text-[clamp(0.9rem,1.2vw,1.3rem)] text-left leading-none"
         >
           <p className="p-1">
             vilarnau opens <br />
@@ -45,18 +32,10 @@ const Composition3 = () => {
           </p>
         </div>
 
+        </TextAnimation>
+
         {/* Imagen superior centro */}
-        <div
-          className="absolute"
-          style={{
-            top: "0%",
-            left: "50%",
-            width: "36.5%",
-            height: "62%",
-            transform: "translateX(-7%)",
-            zIndex: 1,
-          }}
-        >
+        <div className="absolute top-0 left-[48%] md:left-1/2 w-[49%] md:w-[36.5%] h-[61.5%] md:h-[62%] -translate-x-[7%] z-[1]">
           <GridRevealImage
             src="/images/img10.jpg"
             className="w-full h-full object-cover"
@@ -64,17 +43,9 @@ const Composition3 = () => {
           />
         </div>
 
+
         {/* Imagen inferior derecha */}
-        <div
-          className="absolute pr-2"
-          style={{
-            bottom: "0%",
-            right: "0%",
-            width: "31.5%",
-            height: "37.3%",
-            zIndex: 1,
-          }}
-        >
+        <div className="absolute bottom-0 right-[4.3%] md:right-0 w-[51%] md:w-[31.5%] h-[37.3%] pr-2 md:pr-6 z-[1]">
           <GridRevealImage
             src="/images/img2.jpg"
             className="w-full h-full object-cover"

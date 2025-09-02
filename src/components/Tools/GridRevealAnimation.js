@@ -79,7 +79,7 @@ export default function GridRevealImage({
 }) {
   const wrapRef = useRef(null);
   const tlRef = useRef(null);
-  const hasAnimatedRef = useRef(false); // 🔹 flag por instancia
+  const hasAnimatedRef = useRef(false);
 
   useEffect(() => {
     if (once && hasAnimatedRef.current) return;
@@ -97,7 +97,7 @@ export default function GridRevealImage({
       const hidden = buildClipPaths(rows, cols, "hidden", overlap);
       const visible = buildClipPaths(rows, cols, "visible", overlap);
 
-      // Estado inicial oculto
+      // Inicialmente oculta cada máscara
       masks.forEach((mask, idx) =>
         gsap.set(mask, { clipPath: hidden[idx], willChange: "clip-path" })
       );
@@ -112,11 +112,15 @@ export default function GridRevealImage({
           immediateRender: false,
         },
         onComplete: () => {
-          if (once) hasAnimatedRef.current = true; // ✅ marca como animado solo esta instancia
+          if (once) hasAnimatedRef.current = true;
           onComplete?.();
         },
       });
 
+      // 🔹 Hacer visible el contenedor antes de animar las máscaras
+      tl.set(wrap, { opacity: 1, duration: 0 });
+
+      // Animación de las máscaras
       groups.forEach((group, groupIndex) => {
         const elements = group
           .map((idx) => wrap.querySelector(`.mask${idx}`))
@@ -147,13 +151,30 @@ export default function GridRevealImage({
         gsap.killTweensOf(wrapRef.current.querySelectorAll(".mask"));
       }
     };
-  }, [rows, cols, trigger, order, duration, stagger, ease, overlap, groupOffset, start, once, onComplete]);
+  }, [
+    rows,
+    cols,
+    trigger,
+    order,
+    duration,
+    stagger,
+    ease,
+    overlap,
+    groupOffset,
+    start,
+    once,
+    onComplete,
+  ]);
 
   const resolvedSrc = getSrc(src);
   const total = rows * cols;
 
   return (
-    <div ref={wrapRef} className={`relative overflow-hidden ${className}`} style={style}>
+    <div
+      ref={wrapRef}
+      className={`relative overflow-hidden opacity-0 ${className}`} // 🔹 opacity-0 inicial
+      style={style}
+    >
       {Array.from({ length: total }).map((_, j) => (
         <div
           key={j}

@@ -93,7 +93,7 @@
 
 @media (max-width: 900px) {
   .container-zoom .sticky-zoom .el-zoom:nth-of-type(2) .image-container-zoom {
-    top: -30vh;
+    top: -28.5vh;
     left: 5vw;
     width: 35vw;
     height: 30vh;
@@ -113,22 +113,22 @@
   }
   
   .container-zoom .sticky-zoom .el-zoom:nth-of-type(5) .image-container-zoom {
-    top: 27.5vh;
+    top: 26vh;
     left: 5vw;
     width: 23vw;
     height: 25vh;
   }
   
   .container-zoom .sticky-zoom .el-zoom:nth-of-type(6) .image-container-zoom {
-    top: 27.5vh;
+    top: 26vh;
     left: -23.5vw;
     width: 30vw;
     height: 25vh;
   }
   
   .container-zoom .sticky-zoom .el-zoom:nth-of-type(7) .image-container-zoom {
-    top: 22.5vh;
-    left: 30vw;
+    top: 21vh;
+    left: 29.5vw;
     width: 22vw;
     height: 15vh;
   }

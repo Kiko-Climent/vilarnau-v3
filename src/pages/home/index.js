@@ -13,14 +13,16 @@ import Test4 from "@/components/NewHero/test4";
 import Test3 from "@/components/NewHero/text3";
 import Composition4 from "@/components/Composition/index4";
 
+
 export default function Home() {
+  
   return(
     <div className="w-screen min-h-screen relative">
       {/* <PageTransition> */}
         <ReactLenis root>
           <FlipSection FirstComponent={Test4} SecondComponent={Triptico5} />
           <ZoomGallery />
-          <TextWrapper />
+          {/* <TextWrapper /> */}
           <Composition3 />
           <Composition4 />
           <Footer />        
