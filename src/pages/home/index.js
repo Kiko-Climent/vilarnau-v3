@@ -12,6 +12,7 @@ import Composition3 from "@/components/Composition/index3";
 import Test4 from "@/components/NewHero/test4";
 import Test3 from "@/components/NewHero/text3";
 import Composition4 from "@/components/Composition/index4";
+import Composition4Wrapper from "@/components/CompositionWrapper";
 
 
 export default function Home() {
@@ -24,7 +25,8 @@ export default function Home() {
           <ZoomGallery />
           {/* <TextWrapper /> */}
           <Composition3 />
-          <Composition4 />
+          {/* <Composition4 /> */}
+          <Composition4Wrapper />
           <Footer />        
         </ReactLenis>
       {/* </PageTransition> */}
