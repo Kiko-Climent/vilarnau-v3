@@ -28,7 +28,7 @@ const Composition4 = () => {
         {/* Texto superior */}
         <TextAnimation>
         <div
-          className="absolute text-left pl-2 leading-none tracking-wider uppercase text-[clamp(0.95rem,2vw,1.6rem)]"
+          className="absolute text-left pl-2 leading-none tracking-wider uppercase text-[clamp(0.95rem,2vw,1.45rem)]"
           style={{
             top: "0%",
             width: "60%",
@@ -69,7 +69,7 @@ const Composition4 = () => {
 
         {/* Texto inferior */}
         <div
-          className="absolute text-left pl-2 uppercase leading-none tracking-wider"
+          className="absolute text-left pl-2 uppercase text-[clamp(0.95rem,2vw,1.45rem)] leading-none tracking-wider"
           style={{
             bottom: "-1%",
             left: "0%",

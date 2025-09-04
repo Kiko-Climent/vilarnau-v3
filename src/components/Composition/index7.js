@@ -1,14 +1,14 @@
 import TextAnimation from "../Tools";
 import GridRevealImage from "../Tools/GridRevealAnimation";
 
-const Composition4MobileFlex = () => {
+const Composition4MobileFlex2 = () => {
   return (
-    <div className="w-screen h-screen flex flex-col px-2 py-2 gap-2 uppercase font-myfont2 tracking-wide">
+    <div className="w-screen h-screen flex flex-col px-2 gap-2 uppercase text-[clamp(1rem,7vw,4rem)] font-myfont2 tracking-wide">
       {/* Texto superior */}
       <TextAnimation>
       <div className="w-full flex-col text-justify leading-none">
         <p className="flex">
-          Welcome to Salon Vilarnau.<br />
+          Welcome to Salon Vilarnau.<br /><br></br>
           Our philosophy is to deeply understand your wishes, so that we can create
           individual cuts that accentuate your features and style.
         </p>
@@ -20,11 +20,11 @@ const Composition4MobileFlex = () => {
       </TextAnimation>
 
       {/* Composición en dos columnas */}
-      <div className="flex flex-1 gap-3">
+      <div className="flex gap-2">
         {/* Columna izquierda (40%) */}
         <div className="flex flex-col w-2/5 gap-2">
           {/* Row 1 (40%) */}
-          <div className="flex-1 relative">
+          <div className="relative aspect-[3/4]">
             <GridRevealImage
               src="/images/img17.jpeg"
               className="w-full h-full object-contain"
@@ -33,7 +33,7 @@ const Composition4MobileFlex = () => {
           </div>
 
           {/* Row 2 (60%) */}
-          <div className="flex-[0.3] flex flex-col justify-between">
+          <div className="flex flex-col">
             <div className="flex flex-col leading-none">
               <p>Open in the heart of Berlin-Kreuzberg since 2018.</p>
               <p>Come and say hello</p>
@@ -43,10 +43,10 @@ const Composition4MobileFlex = () => {
         </div>
 
         {/* Columna derecha (60%) */}
-        <div className="w-3/5 relative">
+        <div className="w-3/5 relative aspect-[3/4]">
           <GridRevealImage
             src="/images/img9.jpg"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-contain"
             alt="img2"
           />
         </div>
@@ -55,4 +55,4 @@ const Composition4MobileFlex = () => {
   );
 };
 
-export default Composition4MobileFlex;
+export default Composition4MobileFlex2;

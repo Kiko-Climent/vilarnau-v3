@@ -2,10 +2,10 @@
 
 import { useState, useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
-import Composition4 from "../Composition/index4";
-import Composition4MobileFlex2 from "../Composition/index7";
+import AlmodovarQuote2 from "./index2";
+import AlmodovarQuote2Mobile from "./index3";
 
-const Composition4Wrapper = () => {
+const AlmodovarQuoteWrapper = () => {
   const [mounted, setMounted] = useState(false);
   const isDesktop = useMediaQuery({ minWidth: 1024 });
 
@@ -18,7 +18,7 @@ const Composition4Wrapper = () => {
     return null;
   }
 
-  return isDesktop ? <Composition4 /> : <Composition4MobileFlex2 />;
+  return isDesktop ? <AlmodovarQuote2 /> : <AlmodovarQuote2Mobile />;
 }
 
-export default Composition4Wrapper;
+export default AlmodovarQuoteWrapper;

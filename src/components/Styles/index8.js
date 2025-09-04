@@ -137,7 +137,7 @@ export default function StyleSlider8() {
   }, []);
 
   return (
-    <div className='container-styles-2'>
+    <div className='container-styles-2 font-myfont2 text-xl tracking-wider'>
       <div className="slider" ref={sliderRef}>
         <div className="slider-images" ref={sliderImagesRef}>
           <div className="img-slider-new">
@@ -147,12 +147,12 @@ export default function StyleSlider8() {
       </div>
       <div className='slider-content'>
         <div className='contact-content'>  
-          <div className='header-content'>
+          <div className='header-content leading-none'>
             <p>salon vilarnau | styles</p>
             <p>(030)5768910836</p>
             <p>hello@vilarnau.de</p>
           </div>
-          <div className="slider-counter font-myfont2">
+          <div className="slider-counter">
             <p ref={counterRef}>1 / 6</p>
           </div>
         </div>

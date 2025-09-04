@@ -14,13 +14,13 @@ const TextWrapper = () => {
   useEffect(() => {
     let lenis;
     let scrollTriggerInstance;
-
+  
     const init = async () => {
       const ScrollTrigger = (await import("gsap/ScrollTrigger")).default;
       const Lenis = (await import("lenis")).default;
-
+  
       gsap.registerPlugin(ScrollTrigger);
-
+  
       lenis = new Lenis();
       const raf = (time) => {
         lenis.raf(time);
@@ -28,20 +28,49 @@ const TextWrapper = () => {
       };
       requestAnimationFrame(raf);
       lenis.on("scroll", ScrollTrigger.update);
-
+  
       scrollTriggerInstance = ScrollTrigger.create({
         trigger: sectionRef.current,
         start: "top top",
-        end: `+=${window.innerHeight * 2}`,
+        end: `+=${window.innerHeight * 1.2}`, // scroll más corto
         pin: true,
-        scrub: 1,
+        scrub: 0.8,
         onUpdate: (self) => {
           const progress = self.progress;
-
-          if (progress <= 0.4) {
-            const animationProgress = progress / 0.4;
+  
+          // ⚡ Nueva lógica para la imagen
+          const fullViewportProgress = 0.3; // escala full screen
+          const leftAnchorProgress = 0.5;   // se ancla a la izquierda
+  
+          if (progress <= fullViewportProgress) {
+            const animProgress = progress / fullViewportProgress;
+  
+            gsap.set(imageWrapperRef.current, {
+              scale: animProgress,
+              x: 0,
+              y: 0,
+            });
+          } else if (progress <= leftAnchorProgress) {
+            const animProgress = (progress - fullViewportProgress) / (leftAnchorProgress - fullViewportProgress);
+  
+            gsap.set(imageWrapperRef.current, {
+              scale: 1,
+              x: -animProgress * 100, // ajusta según cuánto quieres moverla
+              y: 0,
+            });
+          } else {
+            gsap.set(imageWrapperRef.current, {
+              scale: 1,
+              x: -100, // posición final a la izquierda
+              y: 0,
+            });
+          }
+  
+          // Movimiento de los textos
+          if (progress <= 0.3) {
+            const animationProgress = progress / 0.3;
             const moveDistance = window.innerWidth * 0.6;
-
+  
             gsap.set(leftTextRef.current, {
               x: -animationProgress * moveDistance,
               opacity: 1,
@@ -50,37 +79,28 @@ const TextWrapper = () => {
               x: animationProgress * moveDistance,
               opacity: 1,
             });
-
-            gsap.set(imageWrapperRef.current, {
-              scale: animationProgress,
-            });
-            gsap.set(imageRef.current, {
-              scale: 1.5 - animationProgress * 0.5,
-            });
-          } else {
-            gsap.set(imageWrapperRef.current, { scale: 1 });
-            gsap.set(imageRef.current, { scale: 1 });
           }
-
-          // Controlar aparición/desaparición del texto en 0.65 con ref para evitar renders innecesarios
-          if (progress > 0.65 && !showFinalTextRef.current) {
+  
+          // Texto final
+          if (progress > 0.45 && !showFinalTextRef.current) {
             showFinalTextRef.current = true;
             setShowFinalText(true);
-          } else if (progress <= 0.65 && showFinalTextRef.current) {
+          } else if (progress <= 0.45 && showFinalTextRef.current) {
             showFinalTextRef.current = false;
             setShowFinalText(false);
           }
         },
       });
     };
-
+  
     init();
-
+  
     return () => {
       if (scrollTriggerInstance) scrollTriggerInstance.kill();
       if (lenis) lenis.destroy();
     };
   }, []);
+  
 
   return (
     <section ref={sectionRef} className="spotlight">

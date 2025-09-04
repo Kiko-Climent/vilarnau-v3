@@ -16,19 +16,27 @@ export default function Footer() {
           {/* Inquires */}
           <div className="flex flex-col text-sm md:text-base -space-y-2">
             <h3>inquires</h3>
-            <h3>hello@vilarnau.com</h3>
+            <a href="mailto:hello@vilarnau.com" className="flex">
+              hello@vilarnau.com
+            </a>
           </div>
 
           {/* Appointments */}
           <div className="flex flex-col text-sm md:text-base -space-y-2 items-end">
             <h3>appointments</h3>
-            <h3>(030) 61202363</h3>
+            <a href="tel:+493061202363" className="flex">
+              (030) 61202363
+            </a>
           </div>
         </div>
 
         {/* Salon Name */}
-        <div className="flex justify-center items-end ">
+        <div className="hidden md:flex justify-center">
           <h1 className="text-[13vw] text-center tracking-wider uppercase whitespace-nowrap font-myfont2">salon vilarnau</h1>
+        </div>
+        <div className="flex flex-col md:hidden justify-center items-center -space-y-11">
+          <h1 className="flex text-[15vw] text-center tracking-wider uppercase whitespace-nowrap font-myfont2">salon</h1>
+          <h1 className="flex text-[15vw] text-center tracking-wider uppercase whitespace-nowrap font-myfont2">vilarnau</h1>
         </div>
       </div>
     </div>

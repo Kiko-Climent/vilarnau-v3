@@ -33,6 +33,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: top;
   will-change: transform, opacity, clip-path; /* 👈 hint al navegador */
   transform: translateZ(0); /* fuerza render en la GPU */
   backface-visibility: hidden;
@@ -48,10 +49,7 @@
 }
 
 /* info de contacto arriba */
-.slider-content > div:first-child {
-  font-size: 1rem;
-  line-height: 1.3;
-}
+
 
 .contact-content {
   display: flex;

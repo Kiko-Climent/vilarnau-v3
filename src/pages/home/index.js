@@ -13,6 +13,9 @@ import Test4 from "@/components/NewHero/test4";
 import Test3 from "@/components/NewHero/text3";
 import Composition4 from "@/components/Composition/index4";
 import Composition4Wrapper from "@/components/CompositionWrapper";
+import Team from "@/components/Team";
+import AlmodovarQuote2 from "@/components/AlmodovarQuote/index2";
+import AlmodovarQuoteWrapper from "@/components/AlmodovarQuote/AlmodovarQuoteWrapper";
 
 
 export default function Home() {
@@ -23,10 +26,12 @@ export default function Home() {
         <ReactLenis root>
           <FlipSection FirstComponent={Test4} SecondComponent={Triptico5} />
           <ZoomGallery />
-          {/* <TextWrapper /> */}
           <Composition3 />
-          {/* <Composition4 /> */}
+          <Team />
           <Composition4Wrapper />
+          {/* <TextWrapper /> */}
+          {/* <AlmodovarQuote2 /> */}
+          <AlmodovarQuoteWrapper />
           <Footer />        
         </ReactLenis>
       {/* </PageTransition> */}

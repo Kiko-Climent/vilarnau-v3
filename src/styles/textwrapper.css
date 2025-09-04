@@ -57,7 +57,7 @@ section {
 .spotlight-text {
   position: absolute;
   bottom: 0%;
-  right: 0%;
+  right: 1.5%;
   /* transform: translate(-50%, -50%); */
   width: 100%;
   max-width: 300px;
