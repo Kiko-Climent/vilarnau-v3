@@ -49,7 +49,7 @@ export default function Test4() {
   return (
     <div
       ref={containerRef}
-      className="container-test-hero w-screen h-screen flex flex-col md:flex-row gap-2 bg-white text-base px-2 md:px-0 py-2 md:py-0"
+      className="container-test-hero w-screen h-screen flex flex-col md:flex-row gap-2 bg-white text-base md:text-lg tracking-wider px-2 md:px-0 py-2 md:py-0 font-myfont2"
     >
       {/* Lado izquierdo */}
       <div className="flex w-full md:w-1/2 h-full overflow-hidden">
@@ -82,20 +82,20 @@ export default function Test4() {
 
         {/* 🔹 Aplicamos opacity-0 por defecto para eliminar chispazo */}
         <div
-          className="test-info flex flex-col md:flex-row justify-between w-full opacity-0"
+          className="test-info flex flex-col md:flex-row justify-between w-full opacity-0 pr-0 md:pr-5"
           ref={textRef}
         >
-          <div className="flex flex-col -space-y-2">
+          <div className="flex flex-col -space-y-2 md:-space-y-3">
             <h1 className="text-black">salon vilarnau</h1>
             <p>manteufelstr.55</p>
             <p>10999 · kreuzberg</p>
           </div>
-          <div className="flex flex-col -space-y-2">
+          <div className="flex flex-col -space-y-2 md:-space-y-3">
             <p>info — appointments /</p>
             <p>hello@vilarnau.com</p>
             <p>(030) 61987269</p>
           </div>
-          <div className="flex flex-col -space-y-2">
+          <div className="flex flex-col -space-y-2 md:-space-y-3">
             <p>oppening times /</p>
             <p>tue — fri from 12 to 20</p>
             <p>saturdays from 13 to 19</p>

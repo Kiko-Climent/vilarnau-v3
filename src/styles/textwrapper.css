@@ -1,8 +1,9 @@
 section {
   position: relative;
   width: 100vw;
-  height: 100svh;
+  height: 100vh;
   overflow: hidden;
+  background-color: white;
 }
 
 .p-spot {
@@ -17,10 +18,10 @@ section {
   top: 50%;
   transform: translateY(-50%);
   display: flex;
-  gap: 0.5rem;
-  /* flex-direction: column;
+  /* gap: 0.5rem; */
+  flex-direction: column;
   justify-content: center;
-  align-items: center; */
+  align-items: center;
 }
 
 .spotlight-intro-text {
@@ -42,33 +43,94 @@ section {
   overflow: hidden;
   transform: scale(0);
   will-change: transform;
+  z-index: 1;
 }
 
 .spotlight-bg-img img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
-  /* transform-origin: center center; */
-  transform: scale(1.5);
+  transform-origin: center center;
+  /* transform: scale(1.5); */
   will-change: transform;
 }
 
 .spotlight-text {
   position: absolute;
+  background-color: white;
   bottom: 0%;
-  right: 1.5%;
-  /* transform: translate(-50%, -50%); */
+  right: 0%;
+  transform: translate(-50%, -50%);
   width: 100%;
   max-width: 300px;
-  text-align: right;
-  z-index: 2; /* aseguramos que esté por encima */
+  text-align: center;
+  z-index: 2;
+}
+
+.spotlight-text2 {
+  display: flex;
+  text-align: end;
+  justify-content: end;
+  align-items: end;
+  height: 100%;
+  width: 100%;
+  padding-right: 1rem;
+
 }
 
 .p-spot-img {
-  font-size: 1.2rem;
-  font-weight: 500;
+  /* font-weight: 500; */
   color: black;
-  line-height: 1.05;
-  background-color: white;
+  /* background-color: white; */
 }
+
+.spotlight-final-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 35vw;
+  height: 80vh;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  opacity: 0;
+  z-index: 2;
+  clip-path: inset(0% 0% 100% 0%); /* solo textwrapper4 */
+  will-change: opacity;
+}
+
+.spotlight-final-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 900px) {
+  .spotlight-final-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 75vw;   /* o lo que quieras ocupar */
+    height: 65vh;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    opacity: 0;
+    will-change: opacity;
+  }
+
+
+  .spotlight-text2 {
+    display: flex;
+    text-align: end;
+    justify-content: end;
+    align-items: end;
+    height: 100%;
+    width: 100%;
+    padding-right: 0.5rem;
+  
+  }
+  
+}
+
+
+

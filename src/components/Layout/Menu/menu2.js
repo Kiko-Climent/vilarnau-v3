@@ -16,7 +16,7 @@ const Menu2 = () => {
           <div className="flex"><Link href="/about">about</Link></div>
         </div>
         <div className="flex flex-col md:flex-row items-end gap-0 md:gap-6 -space-y-1">
-          <a href="mailto:hello@vilarnau.com" className="flex">
+          <a href="mailto:hello@vilarnau.com" className="flex pb-1">
             hello@vilarnau.com
           </a>
           <a href="tel:+493061202363" className="flex">

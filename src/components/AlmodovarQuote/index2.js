@@ -2,7 +2,7 @@ import AnimatedImageBox from "../Tools/AnimatedImageBox";
 
 const AlmodovarQuote2 = () => {
   return(
-    <div className="w-screen min-h-screen flex flex-col tracking-wider uppercase font-myfont2 justify-center text-justify text-5xl px-2">
+    <div className="w-full min-h-screen flex flex-col tracking-wider uppercase font-myfont2 justify-center text-justify text-5xl px-2">
       <div className="flex flex-col">
         {/* <p className="flex"></p> */}
         <p className="flex">"well, as i was saying it costs a lot to be authentic, madam.</p>

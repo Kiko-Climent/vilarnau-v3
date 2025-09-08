@@ -4,17 +4,17 @@ export default function Footer() {
       className="relative h-[300px] md:h-[375px] bg-[#0f0f0f]"
       style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)" }}
     >
-      <div className="fixed bottom-0 h-[300px] md:h-[375px] w-full flex flex-col justify-between text-white px-2 py-4">
+      <div className="fixed bottom-0 h-[300px] md:h-[375px] w-full flex flex-col justify-between text-white px-2 py-4 font-myfont2 tracking-wider">
         <div className="flex flex-row justify-between items-start blur-[0.3px]">
           {/* Address */}
-          <div className="flex flex-col text-sm md:text-base -space-y-2">
+          <div className="flex flex-col text-base md:text-lg leading-none">
             <h3>address</h3>
             <h3>manteufelstr.55</h3>
             <h3>10247 · berlin</h3>
           </div>
           
           {/* Inquires */}
-          <div className="flex flex-col text-sm md:text-base -space-y-2">
+          <div className="flex flex-col text-base md:text-lg leading-none">
             <h3>inquires</h3>
             <a href="mailto:hello@vilarnau.com" className="flex">
               hello@vilarnau.com
@@ -22,7 +22,7 @@ export default function Footer() {
           </div>
 
           {/* Appointments */}
-          <div className="flex flex-col text-sm md:text-base -space-y-2 items-end">
+          <div className="flex flex-col text-base md:text-lg leading-none items-end">
             <h3>appointments</h3>
             <a href="tel:+493061202363" className="flex">
               (030) 61202363

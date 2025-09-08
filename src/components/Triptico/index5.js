@@ -2,7 +2,7 @@ import GridRevealImage from "../Tools/GridRevealAnimation";
 
 const Triptico5 = () => {
   return (
-    <div className="w-screen h-screen overflow-hidden bg-white">
+    <div className="w-full h-screen overflow-hidden bg-white">
       {/* Imagen en esquina superior izquierda */}
       <div className="absolute top-0 right-0 w-10/12 md:w-7/12 h-[75%] aspect-[4/3]">
         <GridRevealImage
@@ -16,8 +16,8 @@ const Triptico5 = () => {
       </div>
 
       {/* Texto en esquina inferior derecha */}
-      <div className="absolute bottom-2 left-2 text-left">
-        <p className="text-lg leading-none">
+      <div className="absolute bottom-2 left-2 text-left font-myfont2">
+        <p className="text-base md:text-lg tracking-wider leading-none">
           a place where individuality<br />
           and self expression<br />
           are not just embraced<br />
