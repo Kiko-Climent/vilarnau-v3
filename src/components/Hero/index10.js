@@ -10,9 +10,10 @@ const imageFilenames = [
 ];
 
 const animateIn = async (target, onComplete) => {
-  const module = await import('gsap/SplitText');
-  const SplitText = module.default;
+  const gsapModule = await import('gsap/SplitText');
+  const SplitText = gsapModule.default;
   gsap.registerPlugin(SplitText);
+
 
   gsap.set(target, { opacity: 1 });
   const split = new SplitText(target, { type: 'chars' });

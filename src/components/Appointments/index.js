@@ -34,7 +34,7 @@ const AppointmentsSection = () => {
             className="w-full h-full object-cover rounded-xl"
           /> */}
           <div className="absolute blur-[0.7px] justify-center flex items-center w-full text-4xl text-white text-start pl-2 leading-7 text-white font-semibold left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-          becasue you are more authentic the more you resemble what you've dreamed you are.
+          becasue you are more authentic the more you resemble what you&apos;ve dreamed you are.
             {/* <p>becasue you are<br></br>more authentic<br></br>the more you resemble<br></br>what you've dreamed<br></br>you are</p> */}
           </div>
         </div>

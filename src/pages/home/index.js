@@ -9,14 +9,9 @@ import Footer from "@/components/Sticky_Footer/footer";
 import Triptico5 from "@/components/Triptico/index5";
 import Composition3 from "@/components/Composition/index3";
 import Test4 from "@/components/NewHero/test4";
-import Test3 from "@/components/NewHero/text3";
-import Composition4 from "@/components/Composition/index4";
 import Composition4Wrapper from "@/components/CompositionWrapper";
 import Team from "@/components/Team";
-import AlmodovarQuote2 from "@/components/AlmodovarQuote/index2";
 import AlmodovarQuoteWrapper from "@/components/AlmodovarQuote/AlmodovarQuoteWrapper";
-import TextWrapper4 from "@/components/TextWrapper/index4";
-import TextWrapper from "@/components/TextWrapper";
 import Triptico6 from "@/components/Triptico/index6";
 import Quote1 from "@/components/Other/index2";
 
