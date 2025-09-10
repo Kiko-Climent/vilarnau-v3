@@ -1,3 +1,5 @@
+'use client';
+
 import { useRef } from 'react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import Image from 'next/image';
@@ -21,15 +23,14 @@ export default function StickyPics() {
   const targetYs = ['12vh', '5vh', '25vh', '15vh'];
 
   const pics = [Pic1, Pic2, Pic3, Pic4];
-  const totalImages = pics.length;
-  const step = 1 / totalImages;
 
-  // ✅ Creamos todos los useTransform directamente en el componente
-  const translateYs = pics.map((_, index) => {
-    const start = index * step;
-    const end = (index + 1) * step;
-    return useTransform(scrollYProgress, [start, end], ['150vh', '0vh']);
-  });
+  // ✅ Creamos los useTransform individualmente fuera de cualquier callback
+  const translateY1 = useTransform(scrollYProgress, [0, 0.25], ['150vh', '0vh']);
+  const translateY2 = useTransform(scrollYProgress, [0.25, 0.5], ['150vh', '0vh']);
+  const translateY3 = useTransform(scrollYProgress, [0.5, 0.75], ['150vh', '0vh']);
+  const translateY4 = useTransform(scrollYProgress, [0.75, 1], ['150vh', '0vh']);
+
+  const translateYs = [translateY1, translateY2, translateY3, translateY4];
 
   return (
     <div ref={container} className="relative h-[300vh] overflow-visible">
@@ -50,7 +51,7 @@ export default function StickyPics() {
             style={{
               top: targetYs[index],
               left: targetXs[index],
-              y: translateYs[index], // ✅ usamos el array creado fuera del map
+              y: translateYs[index], // usamos el array ya creado correctamente
             }}
             transition={{
               ease: "easeOut",
