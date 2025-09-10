@@ -33,8 +33,8 @@ const Hero4 = () => {
 
   // Animación de entrada
   const animateIn = async (target, onComplete) => {
-    const module = await import("gsap/SplitText");
-    const SplitText = module.default;
+    const SplitModule = await import('gsap/SplitText');
+    const SplitText = SplitModule.default;
     gsap.registerPlugin(SplitText);
 
     const split = new SplitText(target, { type: "chars" });

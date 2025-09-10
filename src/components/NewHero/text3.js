@@ -4,8 +4,8 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 
 const animateIn = async (target, onComplete) => {
-  const module = await import('gsap/SplitText');
-  const SplitText = module.default;
+  const SplitModule = await import('gsap/SplitText'); // ✅ Cambiado de "module" a "SplitModule"
+  const SplitText = SplitModule.default;
   gsap.registerPlugin(SplitText);
 
   gsap.set(target, { opacity: 1 });
@@ -28,7 +28,7 @@ const animateIn = async (target, onComplete) => {
 
 export default function Test3() {
   const containerRef = useRef(null);
-  const textRef = useRef(null)
+  const textRef = useRef(null);
 
   useEffect(() => {
     const runAnimation = async () => {
@@ -69,7 +69,6 @@ export default function Test3() {
   
     runAnimation();
   }, []);
-  
 
   return (
     <div
@@ -100,10 +99,9 @@ export default function Test3() {
         </div>
 
         {/* Info en el fondo */}
-        <div className="test-info flex flex-col md:flex-row justify-between w-full"
-        ref={textRef}>
+        <div className="test-info flex flex-col md:flex-row justify-between w-full" ref={textRef}>
           <div className="flex flex-col -space-y-2">
-            <h1 className="text-black ">salon vilarnau</h1>
+            <h1 className="text-black">salon vilarnau</h1>
             <p>manteufelstr.55</p>
             <p>10999 · kreuzberg</p>
           </div>
@@ -120,6 +118,5 @@ export default function Test3() {
         </div>
       </div>
     </div>
-
   );
 }

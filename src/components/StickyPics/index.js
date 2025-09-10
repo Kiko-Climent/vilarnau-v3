@@ -24,7 +24,7 @@ export default function StickyPics() {
   const totalImages = pics.length;
   const step = 1 / totalImages;
 
-  // ✅ Creamos todos los translateY fuera del map
+  // Todos los useTransform fuera del map
   const translateYs = pics.map((_, index) => {
     const start = index * step;
     const end = (index + 1) * step;
@@ -50,7 +50,7 @@ export default function StickyPics() {
             style={{
               top: targetYs[index],
               left: targetXs[index],
-              y: translateYs[index], // usamos el array ya creado
+              y: translateYs[index],
             }}
             transition={{
               ease: "easeOut",
@@ -70,4 +70,3 @@ export default function StickyPics() {
     </div>
   );
 }
-

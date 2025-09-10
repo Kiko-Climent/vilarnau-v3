@@ -13,78 +13,75 @@ import { useRef, useEffect, useState } from 'react';
 import Lenis from 'lenis';
 
 export default function ZoomGallery2() {
-
   const container = useRef(null);
   const [showText, setShowText] = useState(false);
 
-    const { scrollYProgress } = useScroll({
-        target: container,
-        offset: ['start start', 'end end']
-    })
+  const { scrollYProgress } = useScroll({
+    target: container,
+    offset: ['start start', 'end end']
+  });
 
-    useEffect( () => {
-      const lenis = new Lenis()
-  
-      function raf(time) {
-        lenis.raf(time)
-        requestAnimationFrame(raf)
-      }
-  
-      requestAnimationFrame(raf)
-    }, [])
+  useEffect(() => {
+    const lenis = new Lenis();
 
-    // solo empieza a escalar a partir del 66% del scroll
-    const scale4 = useTransform(scrollYProgress, [0.66, 1], [1, 4]);
-    const scale5 = useTransform(scrollYProgress, [0.66, 1], [1, 5]);
-    const scale6 = useTransform(scrollYProgress, [0.66, 1], [1, 6]);
-    const scale8 = useTransform(scrollYProgress, [0.66, 1], [1, 8]);
-    const scale9 = useTransform(scrollYProgress, [0.66, 1], [1, 9]);
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
 
+    requestAnimationFrame(raf);
+  }, []);
 
-    const pics = [
-      { src: Pic1, scale: scale4, opacityRange: [0.00, 0.15] },
-      { src: Pic2, scale: scale5, opacityRange: [0.05, 0.20] },
-      { src: Pic3, scale: scale6, opacityRange: [0.10, 0.25] },
-      { src: Pic4, scale: scale5, opacityRange: [0.15, 0.30] },
-      { src: Pic5, scale: scale6, opacityRange: [0.20, 0.35] },
-      { src: Pic6, scale: scale8, opacityRange: [0.25, 0.40] },
-      { src: Pic7, scale: scale9, opacityRange: [0.30, 0.45] }
-    ]
-    
-    useMotionValueEvent(scale4, "change", (latest) => {
-      setShowText(latest >= 3.5); // o cualquier valor que te funcione mejor
-    });
+  // Escalado a partir del 66% del scroll
+  const scale4 = useTransform(scrollYProgress, [0.66, 1], [1, 4]);
+  const scale5 = useTransform(scrollYProgress, [0.66, 1], [1, 5]);
+  const scale6 = useTransform(scrollYProgress, [0.66, 1], [1, 6]);
+  const scale8 = useTransform(scrollYProgress, [0.66, 1], [1, 8]);
+  const scale9 = useTransform(scrollYProgress, [0.66, 1], [1, 9]);
 
-  return(
+  // Opacidades calculadas fuera del map
+  const opacities = [
+    useTransform(scrollYProgress, [0.00, 0.15], [0, 1]),
+    useTransform(scrollYProgress, [0.05, 0.20], [0, 1]),
+    useTransform(scrollYProgress, [0.10, 0.25], [0, 1]),
+    useTransform(scrollYProgress, [0.15, 0.30], [0, 1]),
+    useTransform(scrollYProgress, [0.20, 0.35], [0, 1]),
+    useTransform(scrollYProgress, [0.25, 0.40], [0, 1]),
+    useTransform(scrollYProgress, [0.30, 0.45], [0, 1]),
+  ];
+
+  const pics = [
+    { src: Pic1, scale: scale4 },
+    { src: Pic2, scale: scale5 },
+    { src: Pic3, scale: scale6 },
+    { src: Pic4, scale: scale5 },
+    { src: Pic5, scale: scale6 },
+    { src: Pic6, scale: scale8 },
+    { src: Pic7, scale: scale9 }
+  ];
+
+  useMotionValueEvent(scale4, "change", (latest) => {
+    setShowText(latest >= 3.5);
+  });
+
+  return (
     <div ref={container} className="container-zoom">
       <div className="sticky-zoom">
-        {
-          pics.map(({ src, scale, opacityRange }, index) => {
-            const opacity = useTransform(scrollYProgress, opacityRange, [0, 1]);
-            
-            return (
-              <motion.div
-                key={index} // ✅ key aquí en el root del map
-                style={{ scale, opacity }}
-                className="el-zoom"
-              >
-                <div className="image-container-zoom">
-                  <Image
-                    src={src}
-                    fill
-                    alt={`image-${index}`}
-                  />
-                </div>
-              </motion.div>
-            );
-          })
-        }
+        {pics.map(({ src, scale }, index) => (
+          <motion.div
+            key={index}
+            style={{ scale, opacity: opacities[index] }}
+            className="el-zoom"
+          >
+            <div className="image-container-zoom">
+              <Image src={src} fill alt={`image-${index}`} />
+            </div>
+          </motion.div>
+        ))}
+
         {showText && (
           <TextAnimation>
             <div className="zoom-text-overlay text-5xl font-medium blur-[0.7px] tracking-tighter">
-              {/* <p>we believe in creating a look that while keeping an insight on actual trends, better highlights your features and lifestyle</p> */}
-              {/* <p>elevating the craft of</p>
-              <p>hairstyling since 2019</p> */}
               <p>where classics</p>
               <p>meets contemporary</p>
             </div>
@@ -92,5 +89,5 @@ export default function ZoomGallery2() {
         )}
       </div>
     </div>
-  )
+  );
 }

@@ -39,8 +39,8 @@ const Hero5 = () => {
 
   // Animación de entrada
   const animateIn = async (target, onComplete) => {
-    const module = await import("gsap/SplitText");
-    const SplitText = module.default;
+    const SplitModule = await import('gsap/SplitText');
+    const SplitText = SplitModule.default;
     gsap.registerPlugin(SplitText);
 
     gsap.set(target, { opacity: 1 });

@@ -1,27 +1,29 @@
+'use client';
+
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
 
-import Pic1 from "../../../public/images/img18.JPG"
-import Pic2 from "../../../public/images/img3.jpg"
-import Pic3 from "../../../public/images/img2.jpeg"
-import Pic4 from "../../../public/images/img8.jpg"
+import Pic1 from "../../../public/images/img18.JPG";
+import Pic2 from "../../../public/images/img3.jpg";
+import Pic3 from "../../../public/images/img2.jpeg";
+import Pic4 from "../../../public/images/img8.jpg";
 
-export default function StickyPics2 () {
-
+export default function StickyPics2() {
   const container = useRef(null);
 
   const { scrollYProgress } = useScroll({
     target: container,
-    offset: ['start start', 'end end']
+    offset: ['start start', 'end end'],
   });
 
+  // Coordenadas fijas para las imágenes
   const targetXs = ['50px', '200px', '300px', '500px'];
   const targetYs = ['12vh', '5vh', '25vh', '15vh'];
 
   const pics = [Pic1, Pic2, Pic3, Pic4];
 
-  // ✅ Creamos todos los scales fuera del map
+  // Creamos todos los scales fuera del map
   const scales = pics.map((_, index) => {
     const start = index * 0.1;
     const end = start + 0.3;
@@ -29,10 +31,7 @@ export default function StickyPics2 () {
   });
 
   return (
-    <div
-      ref={container}
-      className="relative h-[200vh] overflow-visible"
-    >
+    <div ref={container} className="relative h-[200vh] overflow-visible">
       <div className="sticky top-0 h-screen w-full">
         {pics.map((src, index) => (
           <motion.div
@@ -54,8 +53,8 @@ export default function StickyPics2 () {
         ))}
       </div>
 
-      <div className='fixed top-1/2 right-10 transform -translate-y-1/2 z-50'>
-        <p className='text-black text-right max-w-[500px] text-5xl'>
+      <div className="fixed top-1/2 right-10 transform -translate-y-1/2 z-50">
+        <p className="text-black text-right max-w-[500px] text-5xl">
           because you are more authentic the more you resemble what you&apos;ve dreamed you are
         </p>
       </div>
