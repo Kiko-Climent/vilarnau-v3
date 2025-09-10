@@ -3,13 +3,22 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 
-export default function StyleSlider8() {
+export default function StyleSliderMobile() {
   const sliderRef = useRef(null);
   const counterRef = useRef(null);
   const previewsRef = useRef(null);
   const sliderImagesRef = useRef(null);
 
   useEffect(() => {
+    // 🔹 Precarga de imágenes
+    const imageList = Array.from({ length: 16 }, (_, i) => `/styles/img${i + 1}.jpg`);
+    imageList.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+      img.loading = 'eager';
+      img.decoding = 'async';
+    });
+
     let ctx = gsap.context(() => {
       import('gsap/CustomEase').then(({ CustomEase }) => {
         gsap.registerPlugin(CustomEase);
@@ -22,7 +31,6 @@ export default function StyleSlider8() {
         const counter = counterRef.current;
         const prevSlides = previewsRef.current.querySelectorAll('.preview');
         const slidePreview = previewsRef.current;
-
         let currentImg = 1;
         const totalSlides = 16;
 
@@ -30,7 +38,6 @@ export default function StyleSlider8() {
           if (counter) {
             counter.textContent = `${currentImg} / ${totalSlides}`;
           }
-
         }
 
         function updateActiveSlidePreview() {
@@ -39,22 +46,26 @@ export default function StyleSlider8() {
         }
 
         function animateSlide(direction) {
-          const currentSlide =
-            sliderImages.querySelectorAll('.img-slider-new')[
-              sliderImages.querySelectorAll('.img-slider-new').length - 1
-            ];
+          const currentSlide = sliderImages.querySelectorAll('.img-slider-new')[
+            sliderImages.querySelectorAll('.img-slider-new').length - 1
+          ];
 
           const slideImg = document.createElement('div');
-          slideImg.classList.add('img-slider-new');
+          slideImg.classList.add('img-slider-new', 'absolute', 'w-full', 'h-full');
+          slideImg.style.willChange = 'transform, opacity, clip-path';
 
           const slideImgElem = document.createElement('img');
           slideImgElem.src = `/styles/img${currentImg}.jpg`;
-          gsap.set(slideImgElem, { x: direction === 'left' ? -500 : 500 });
+          slideImgElem.loading = 'eager';
+          slideImgElem.decoding = 'async';
+          slideImgElem.className =
+            'w-full h-full object-cover object-top transform-gpu backface-hidden will-change-transform';
 
+          gsap.set(slideImgElem, { x: direction === 'left' ? -500 : 500 });
           slideImg.appendChild(slideImgElem);
           sliderImages.appendChild(slideImg);
 
-          gsap.to(currentSlide.querySelector('img-slider-new'), {
+          gsap.to(currentSlide.querySelector('img'), {
             x: direction === 'left' ? 500 : -500,
             duration: 1.5,
             ease: 'hop',
@@ -97,10 +108,8 @@ export default function StyleSlider8() {
 
           if (slidePreview.contains(event.target)) {
             const clickedPrev = event.target.closest('.preview');
-
             if (clickedPrev) {
               const clickedIndex = Array.from(prevSlides).indexOf(clickedPrev) + 1;
-
               if (clickedIndex !== currentImg) {
                 if (clickedIndex < currentImg) {
                   currentImg = clickedIndex;
@@ -123,7 +132,6 @@ export default function StyleSlider8() {
             currentImg++;
             animateSlide('right');
           }
-
           updateActiveSlidePreview();
           updateCounterAndTitlePosition();
         }
@@ -137,78 +145,67 @@ export default function StyleSlider8() {
   }, []);
 
   return (
-    <div className='container-styles-2 font-myfont2 text-xl tracking-wider'>
-      <div className="slider" ref={sliderRef}>
-        <div className="slider-images" ref={sliderImagesRef}>
-          <div className="img-slider-new">
-            <img src="/styles/img1.jpg" alt="img1" />
-          </div>
-        </div>
-      </div>
-      <div className='slider-content'>
-        <div className='contact-content'>  
-          <div className='header-content leading-none'>
-            <p>salon vilarnau | styles</p>
-            <p>T : (030) 61202363</p>
-            <p>E : hello@vilarnau.de</p>
-          </div>
-          <div className="slider-counter">
-            <p ref={counterRef}>1 / 6</p>
+    <div className="min-h-screen w-screen flex flex-col font-myfont2 gap-2 px-2 justify-center">
+      {/* Primera columna */}
+      <div className="flex h-[70%] w-full flex-row gap-2">
+        <div className="flex-1 flex items-center justify-center">
+          <div
+            className="aspect-[3/4] w-full relative overflow-hidden will-change-transform"
+            ref={sliderRef}
+          >
+            <div className="slider-images w-full h-full relative" ref={sliderImagesRef}>
+              <div className="img-slider-new absolute w-full h-full will-change-transform">
+                <img
+                  src="/styles/img1.jpg"
+                  alt="img1"
+                  loading="eager"
+                  decoding="async"
+                  className="w-full h-full object-cover object-top transform-gpu backface-hidden will-change-transform"
+                />
+              </div>
+            </div>
           </div>
         </div>
 
-        <div className="slider-preview" ref={previewsRef}>
-          <div className="preview active">
-            <img src="/styles/img1.jpg" alt="img1" />
-          </div>
-          <div className="preview">
-            <img src="/styles/img2.jpg" alt="img2" />
-          </div>
-          <div className="preview">
-            <img src="/styles/img3.jpg" alt="img3" />
-          </div>
-          <div className="preview">
-            <img src="/styles/img4.jpg" alt="img4" />
-          </div>
-          <div className="preview">
-            <img src="/styles/img5.jpg" alt="img5" />
-          </div>
-          <div className="preview">
-            <img src="/styles/img6.jpg" alt="img5" />
-          </div>
-          <div className="preview">
-            <img src="/styles/img7.jpg" alt="img5" />
-          </div>
-          <div className="preview">
-            <img src="/styles/img8.jpg" alt="img5" />
-          </div>
-          <div className="preview">
-            <img src="/styles/img9.jpg" alt="img5" />
-          </div>
-          <div className="preview">
-            <img src="/styles/img10.jpg" alt="img5" />
-          </div>
-          <div className="preview">
-            <img src="/styles/img11.jpg" alt="img5" />
-          </div>
-          <div className="preview">
-            <img src="/styles/img12.jpg" alt="img5" />
-          </div>
-          <div className="preview">
-            <img src="/styles/img13.jpg" alt="img5" />
-          </div>
-          <div className="preview">
-            <img src="/styles/img14.jpg" alt="img5" />
-          </div>
-          <div className="preview">
-            <img src="/styles/img15.jpg" alt="img5" />
-          </div>
-          <div className="preview">
-            <img src="/styles/img16.jpg" alt="img5" />
-          </div>
+        {/* Paginación */}
+        <div className="w-15 flex flex-col justify-end items-center">
+          <p ref={counterRef} className="text-3xl">1 / 16</p>
         </div>
       </div>
 
+      {/* Previews */}
+      <div className="flex h-[20%] w-full items-center justify-center">
+        <div className="grid grid-cols-8 grid-rows-2 gap-2 w-full h-full" ref={previewsRef}>
+          {Array.from({ length: 16 }, (_, index) => (
+            <div
+              key={index + 1}
+              className={`preview cursor-pointer relative ${
+                index === 0 ? 'active' : ''
+              }`}
+            >
+              <img
+                src={`/styles/img${index + 1}.jpg`}
+                alt={`img${index + 1}`}
+                loading="eager"
+                decoding="async"
+                className="w-full h-full object-cover rounded-sm transform-gpu backface-hidden will-change-transform"
+              />
+              <div
+                className={`absolute inset-0 rounded-sm transition-opacity duration-300 ${
+                  index === 0 ? 'opacity-0' : 'bg-opacity-40'
+                }`}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Info */}
+      <div className="flex h-[20%] flex-col justify-center items-start -space-y-2 tracking-wider">
+        <p className="text-xl">vilarnau | styles</p>
+        <p className="text-xl">T : (030) 61202363</p>
+        <p className="text-xl">E : hello@vilarnau.de</p>
+      </div>
     </div>
   );
 }

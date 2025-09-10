@@ -27,6 +27,8 @@
   width: 100%;
   height: 100%;
   position: absolute;
+  will-change: clip-path, transform, opacity;
+  contain: layout paint style;
 }
 
 .img-slider-new img {
@@ -108,26 +110,4 @@
 
 .preview.active::after {
   background: transparent;
-}
-
-@media (max-width: 900px) {
-  .container-styles-2 {
-    display: flex;
-    flex-direction: column;
-    width: 100vw;
-    height: 100vh;
-  }
-
-  .slider {
-    flex: 0 0 80vw;
-    aspect-ratio: 4 / 3;     
-    height: 70%;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    align-self: flex-start; 
-    padding-bottom: 0.5rem;
-    padding-left: 0.5rem;
-  }
 }

@@ -3,11 +3,22 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 
-export default function StyleSlider8() {
+export default function StyleSlider11() {
   const sliderRef = useRef(null);
   const counterRef = useRef(null);
   const previewsRef = useRef(null);
   const sliderImagesRef = useRef(null);
+
+  // 🔹 Precarga de imágenes al montar
+  useEffect(() => {
+    const imageList = Array.from({ length: 16 }, (_, i) => `/styles/img${i + 1}.jpg`);
+    imageList.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+      img.loading = 'eager';
+      img.decoding = 'async';
+    });
+  }, []);
 
   useEffect(() => {
     let ctx = gsap.context(() => {
@@ -30,7 +41,6 @@ export default function StyleSlider8() {
           if (counter) {
             counter.textContent = `${currentImg} / ${totalSlides}`;
           }
-
         }
 
         function updateActiveSlidePreview() {
@@ -49,6 +59,8 @@ export default function StyleSlider8() {
 
           const slideImgElem = document.createElement('img');
           slideImgElem.src = `/styles/img${currentImg}.jpg`;
+          slideImgElem.loading = 'eager';
+          slideImgElem.decoding = 'async';
           gsap.set(slideImgElem, { x: direction === 'left' ? -500 : 500 });
 
           slideImg.appendChild(slideImgElem);
@@ -141,7 +153,7 @@ export default function StyleSlider8() {
       <div className="slider" ref={sliderRef}>
         <div className="slider-images" ref={sliderImagesRef}>
           <div className="img-slider-new">
-            <img src="/styles/img1.jpg" alt="img1" />
+            <img src="/styles/img1.jpg" alt="img1" loading="eager" decoding="async" />
           </div>
         </div>
       </div>
@@ -153,62 +165,23 @@ export default function StyleSlider8() {
             <p>E : hello@vilarnau.de</p>
           </div>
           <div className="slider-counter">
-            <p ref={counterRef}>1 / 6</p>
+            <p ref={counterRef}>1 / 16</p>
           </div>
         </div>
 
         <div className="slider-preview" ref={previewsRef}>
-          <div className="preview active">
-            <img src="/styles/img1.jpg" alt="img1" />
-          </div>
-          <div className="preview">
-            <img src="/styles/img2.jpg" alt="img2" />
-          </div>
-          <div className="preview">
-            <img src="/styles/img3.jpg" alt="img3" />
-          </div>
-          <div className="preview">
-            <img src="/styles/img4.jpg" alt="img4" />
-          </div>
-          <div className="preview">
-            <img src="/styles/img5.jpg" alt="img5" />
-          </div>
-          <div className="preview">
-            <img src="/styles/img6.jpg" alt="img5" />
-          </div>
-          <div className="preview">
-            <img src="/styles/img7.jpg" alt="img5" />
-          </div>
-          <div className="preview">
-            <img src="/styles/img8.jpg" alt="img5" />
-          </div>
-          <div className="preview">
-            <img src="/styles/img9.jpg" alt="img5" />
-          </div>
-          <div className="preview">
-            <img src="/styles/img10.jpg" alt="img5" />
-          </div>
-          <div className="preview">
-            <img src="/styles/img11.jpg" alt="img5" />
-          </div>
-          <div className="preview">
-            <img src="/styles/img12.jpg" alt="img5" />
-          </div>
-          <div className="preview">
-            <img src="/styles/img13.jpg" alt="img5" />
-          </div>
-          <div className="preview">
-            <img src="/styles/img14.jpg" alt="img5" />
-          </div>
-          <div className="preview">
-            <img src="/styles/img15.jpg" alt="img5" />
-          </div>
-          <div className="preview">
-            <img src="/styles/img16.jpg" alt="img5" />
-          </div>
+          {Array.from({ length: 16 }, (_, i) => (
+            <div className={`preview ${i === 0 ? 'active' : ''}`} key={i}>
+              <img
+                src={`/styles/img${i + 1}.jpg`}
+                alt={`img${i + 1}`}
+                loading="eager"
+                decoding="async"
+              />
+            </div>
+          ))}
         </div>
       </div>
-
     </div>
   );
 }
