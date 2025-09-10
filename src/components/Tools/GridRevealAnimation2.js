@@ -97,4 +97,6 @@ const GridRevealImage2 = forwardRef(
   }
 );
 
+GridRevealImage2.displayName = "GridRevealImage2";
+
 export default GridRevealImage2;

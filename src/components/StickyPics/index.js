@@ -24,59 +24,50 @@ export default function StickyPics() {
   const totalImages = pics.length;
   const step = 1 / totalImages;
 
+  // ✅ Creamos todos los translateY fuera del map
+  const translateYs = pics.map((_, index) => {
+    const start = index * step;
+    const end = (index + 1) * step;
+    return useTransform(scrollYProgress, [start, end], ['150vh', '0vh']);
+  });
+
   return (
-    <div
-      ref={container}
-      className="relative h-[300vh] overflow-visible"
-    >
+    <div ref={container} className="relative h-[300vh] overflow-visible">
       {isInView && (
         <div className='fixed top-1/2 right-10 transform -translate-y-1/2 z-50'>
           <TextAnimation3 delay={0}>
             <p className='text-black text-right max-w-[500px] text-5xl leading-[1.2]'>
-              because you are more authentic the more you resemble what you've dreamed you are
+              because you are more authentic the more you resemble what you&apos;ve dreamed you are
             </p>
           </TextAnimation3>
         </div>
       )}
 
       <div className="sticky top-0 h-screen w-full">
-        {pics.map((src, index) => {
-          const start = index * step;
-          const end = (index + 1) * step;
-
-          // Translate desde abajo (fuera del viewport) hasta su sitio
-          const translateY = useTransform(scrollYProgress, [start, end], ['150vh', '0vh']);
-
-          return (
-            <motion.div
-              key={index}
-              style={{
-                top: targetYs[index],
-                left: targetXs[index],
-                y: translateY,
-              }}
-              transition={{
-                ease: "easeOut",
-                duration: 1.2, // puedes ajustar
-              }}
-              className="absolute w-[350px] h-[500px]"
-            >
-              <Image
-                src={src}
-                alt={`image-${index}`}
-                className="object-cover"
-                fill
-              />
-            </motion.div>
-          );
-        })}
+        {pics.map((src, index) => (
+          <motion.div
+            key={index}
+            style={{
+              top: targetYs[index],
+              left: targetXs[index],
+              y: translateYs[index], // usamos el array ya creado
+            }}
+            transition={{
+              ease: "easeOut",
+              duration: 1.2,
+            }}
+            className="absolute w-[350px] h-[500px]"
+          >
+            <Image
+              src={src}
+              alt={`image-${index}`}
+              className="object-cover"
+              fill
+            />
+          </motion.div>
+        ))}
       </div>
-
-      {/* <div className='fixed top-1/2 right-10 transform -translate-y-1/2 z-50'>
-        <p className='text-black text-right max-w-[500px] text-5xl'>
-          because you are more authentic the more you resemble what you've dreamed you are
-        </p>
-      </div> */}
     </div>
   );
 }
+

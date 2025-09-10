@@ -5,11 +5,10 @@ import gsap from "gsap";
 import GridRevealImage from "../Tools/GridRevealAnimation";
 
 const animateIn = async (target, onComplete) => {
-  const module = await import("gsap/SplitText");
-  const SplitText = module.default;
+  const { default: SplitText } = await import("gsap/SplitText");
   gsap.registerPlugin(SplitText);
 
-  // Hacemos visible el contenedor justo antes de animar
+
   gsap.set(target, { opacity: 1 });
 
   const split = new SplitText(target, { type: "chars" });

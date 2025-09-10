@@ -76,20 +76,26 @@ export default function ZoomGallery() {
   return(
     <div ref={container} className="container-zoom">
       <div className="sticky-zoom">
-        {
-          pics.map( ({src, scale}, index) => {
-            return <motion.div style={{scale}} className="el-zoom">
+      {
+        pics.map(({ src, scale }, index) => {
+          return (
+            <motion.div
+              key={index} // ✅ key aquí en el root del map
+              style={{ scale }}
+              className="el-zoom"
+            >
               <div className="image-container-zoom">
                 <Image
                   src={src}
-                  key={index}
                   fill
-                  alt="image"
+                  alt={`image-${index}`}
                 />
               </div>
             </motion.div>
-          })
-        }
+          );
+        })
+      }
+
         {showText && (
           <TextAnimation>
             <div className="zoom-text-overlay text-5xl font-medium blur-[0.7px] tracking-tighter">

@@ -4,8 +4,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 
 const animateIn = async (target, onComplete) => {
-  const module = await import("gsap/SplitText");
-  const SplitText = module.default;
+  const { default: SplitText } = await import("gsap/SplitText");
   gsap.registerPlugin(SplitText);
 
   // Hacemos visible el contenedor justo antes de animar

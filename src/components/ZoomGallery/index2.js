@@ -58,28 +58,27 @@ export default function ZoomGallery2() {
   return(
     <div ref={container} className="container-zoom">
       <div className="sticky-zoom">
-      {
-        pics.map(({ src, scale, opacityRange }, index) => {
-          const opacity = useTransform(scrollYProgress, opacityRange, [0, 1]);
-          
-          return (
-            <motion.div
-              key={index}
-              style={{ scale, opacity }}
-              className="el-zoom"
-            >
-              <div className="image-container-zoom">
-                <Image
-                  src={src}
-                  fill
-                  alt={`image-${index}`}
-                />
-              </div>
-            </motion.div>
-          );
-        })
-      }
-
+        {
+          pics.map(({ src, scale, opacityRange }, index) => {
+            const opacity = useTransform(scrollYProgress, opacityRange, [0, 1]);
+            
+            return (
+              <motion.div
+                key={index} // ✅ key aquí en el root del map
+                style={{ scale, opacity }}
+                className="el-zoom"
+              >
+                <div className="image-container-zoom">
+                  <Image
+                    src={src}
+                    fill
+                    alt={`image-${index}`}
+                  />
+                </div>
+              </motion.div>
+            );
+          })
+        }
         {showText && (
           <TextAnimation>
             <div className="zoom-text-overlay text-5xl font-medium blur-[0.7px] tracking-tighter">

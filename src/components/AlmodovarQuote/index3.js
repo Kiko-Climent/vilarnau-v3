@@ -7,8 +7,8 @@ const AlmodovarQuote2Mobile = () => {
       {/* Intro */}
       <div className="flex">
         <p className="text-[clamp(1.25rem,3vw,1.75rem)] leading-none">
-          "well, as i was saying it costs a lot to be authentic, madam. 
-          And one can't be stingy with these things,
+          &quot;well, as i was saying it costs a lot to be authentic, madam. 
+          And one can&apos;t be stingy with these things,
         </p>
       </div>
 
@@ -26,10 +26,10 @@ const AlmodovarQuote2Mobile = () => {
       {/* Frase final */}
       <div className="flex flex-col">
         <p className="pt-2 flex text-[clamp(3rem,12vw,6rem)] leading-[0.8]">
-          the more you resemble what you've dreamed you are." -
+          the more you resemble what you&apos;ve dreamed you are.&quot; -
         </p>
         <p className="flex text-[clamp(1.25rem,3vw,1.75rem)] leading-none">
-          Agrado from "Todo Sobre Mi Madre”
+          Agrado from &quot;Todo Sobre Mi Madre&quot;
         </p>
       </div>
     </div>
