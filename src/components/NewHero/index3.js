@@ -114,21 +114,21 @@ export default function NewHero3() {
   return (
     <div className="image-grid" ref={gridRef}>
       <div className="grid-row">
-        <div className="img-newhero"><img src="/newhero/img1.webp" alt="" /></div>
-        <div className="img-newhero"><img src="/newhero/img3.webp" alt="" /></div>
-        <div className="img-newhero"><img src="/newhero/img4.webp" alt="" /></div>
+        <div className="img-newhero"><img src="/newheromobile/img1.webp" alt="" /></div>
+        <div className="img-newhero"><img src="/newheromobile/img3.webp" alt="" /></div>
+        <div className="img-newhero"><img src="/newheromobile/img4.webp" alt="" /></div>
       </div>
       <div className="grid-row">
-        <div className="img-newhero"><img src="/newhero/img5.webp" alt="" /></div>
-        <div className="img-newhero hero-img"><img src="/newhero/img12.webp" alt="" /></div>
-        <div className="img-newhero"><img src="/newhero/img7.webp" alt="" /></div>
+        <div className="img-newhero"><img src="/newheromobile/img5.webp" alt="" /></div>
+        <div className="img-newhero hero-img"><img src="/newheromobile/img12.webp" alt="" /></div>
+        <div className="img-newhero"><img src="/newheromobile/img7.webp" alt="" /></div>
       </div>
       <div className="grid-row">
-        <div className="img-newhero"><img src="/newhero/img8.webp" alt="" /></div>
-        <div className="img-newhero"><img src="/newhero/img11.webp" alt="" /></div>
-        <div className="img-newhero"><img src="/newhero/img6.webp" alt="" /></div>
+        <div className="img-newhero"><img src="/newheromobile/img8.webp" alt="" /></div>
+        <div className="img-newhero"><img src="/newheromobile/img11.webp" alt="" /></div>
+        <div className="img-newhero"><img src="/newheromobile/img6.webp" alt="" /></div>
       </div>
-      <div className="header">
+      <div className="header font-myfont2">
         {/* <h1>manteufelstr.55</h1> */}
         <h1>salon vilarnau</h1>
       </div>
