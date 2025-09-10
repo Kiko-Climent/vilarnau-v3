@@ -1,6 +1,5 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
-import TextAnimation from "../Tools";
 
 const TextWrapper = () => {
   const sectionRef = useRef(null);
@@ -8,8 +7,6 @@ const TextWrapper = () => {
   const rightTextRef = useRef(null);
   const imageWrapperRef = useRef(null);
   const imageRef = useRef(null);
-  const [showFinalText, setShowFinalText] = useState(false);
-  const showFinalTextRef = useRef(false); // <-- ref para controlar estado sin render
 
   useEffect(() => {
     let lenis;
@@ -21,6 +18,7 @@ const TextWrapper = () => {
 
       gsap.registerPlugin(ScrollTrigger);
 
+      // smooth scroll
       lenis = new Lenis();
       const raf = (time) => {
         lenis.raf(time);
@@ -29,12 +27,14 @@ const TextWrapper = () => {
       requestAnimationFrame(raf);
       lenis.on("scroll", ScrollTrigger.update);
 
+      // scroll trigger
       scrollTriggerInstance = ScrollTrigger.create({
         trigger: sectionRef.current,
         start: "top top",
-        end: `+=${window.innerHeight * 1}`,
+        end: "+=100%", // ⬅️ solo 1 pantalla de duración (compacto)
         pin: true,
         scrub: 1,
+        anticipatePin: 1, // ayuda a que no "salte"
         onUpdate: (self) => {
           const progress = self.progress;
 
@@ -61,15 +61,6 @@ const TextWrapper = () => {
             gsap.set(imageWrapperRef.current, { scale: 1 });
             gsap.set(imageRef.current, { scale: 1 });
           }
-
-          // Controlar aparición/desaparición del texto en 0.65 con ref para evitar renders innecesarios
-          if (progress > 0.65 && !showFinalTextRef.current) {
-            showFinalTextRef.current = true;
-            setShowFinalText(true);
-          } else if (progress <= 0.65 && showFinalTextRef.current) {
-            showFinalTextRef.current = false;
-            setShowFinalText(false);
-          }
         },
       });
     };
@@ -95,16 +86,6 @@ const TextWrapper = () => {
       <div className="spotlight-bg-img" ref={imageWrapperRef}>
         <img src="/images/img5.jpg" ref={imageRef} />
       </div>
-      {showFinalText && (
-        <TextAnimation>
-          <div className="spotlight-text">
-            <p className="p-spot-img">
-              we believe in creating a look that while keeping an insight on
-              actual trends, better highlights your features and lifestyle
-            </p>
-          </div>
-        </TextAnimation>
-      )}
     </section>
   );
 };

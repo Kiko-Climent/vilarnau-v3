@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import PriceList from "@/components/Prices";
+import PriceList2 from "@/components/Prices/index2";
 
 const Menu2 = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -24,7 +25,7 @@ const Menu2 = () => {
           </a>
         </div>
       </nav>
-      {isModalOpen && <PriceList isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />}
+      {isModalOpen && <PriceList2 isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />}
     </>
   )
 }

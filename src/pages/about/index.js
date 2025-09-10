@@ -7,7 +7,7 @@ export default function About() {
   return(
     <div className="w-screen min-h-screen relative">
       {/* <TextWrapper2 /> */}
-      <TextWrapper4 />
+      <TextWrapper />
       {/* <TextWrapper /> */}
     </div>
   )

@@ -4,6 +4,7 @@ import TextAnimation from "../Tools";
 
 const TextWrapper4 = () => {
   const sectionRef = useRef(null);
+  const innerRef = useRef(null);
   const leftTextRef = useRef(null);
   const rightTextRef = useRef(null);
   const imageWrapperRef = useRef(null);
@@ -33,14 +34,18 @@ const TextWrapper4 = () => {
       // estados iniciales
       gsap.set(imageWrapperRef.current, { scale: 0, opacity: 0 });
       gsap.set(imageRef.current, { scale: 1.5, opacity: 0 });
-      gsap.set(imageWrapperRef2.current, { opacity: 0, clipPath: "inset(0% 0% 100% 0%)" });
+      gsap.set(imageWrapperRef2.current, {
+        opacity: 0,
+        clipPath: "inset(0% 0% 100% 0%)"
+      });
 
       scrollTriggerInstance = ScrollTrigger.create({
         trigger: sectionRef.current,
         start: "top top",
         end: `+=${window.innerHeight * 0.8}`,
-        pin: true,
+        pin: innerRef.current, // 👈 solo pinneamos el contenido
         scrub: 1,
+        anticipatePin: 1, // 👈 evita que dispare otros triggers demasiado pronto
         onUpdate: (self) => {
           const progress = self.progress;
 
@@ -67,8 +72,8 @@ const TextWrapper4 = () => {
               opacity: 1,
             });
 
-            gsap.set(imageWrapperRef2.current, { 
-              opacity: 0, 
+            gsap.set(imageWrapperRef2.current, {
+              opacity: 0,
               clipPath: "inset(0% 0% 100% 0%)"
             });
           }
@@ -78,7 +83,6 @@ const TextWrapper4 = () => {
             gsap.set(imageWrapperRef.current, { scale: 1, opacity: 1 });
             gsap.set(imageRef.current, { scale: 1, opacity: 1 });
 
-            // 🔥 Fade out textos
             gsap.to([leftTextRef.current, rightTextRef.current], {
               opacity: 0,
               duration: 0.5,
@@ -93,25 +97,27 @@ const TextWrapper4 = () => {
             const fadeProgress = (progress - 0.6) / 0.05;
             gsap.set(imageWrapperRef.current, { opacity: 1 - fadeProgress });
             gsap.set(imageRef.current, { opacity: 1 - fadeProgress });
-            gsap.set(imageWrapperRef2.current, { opacity: 0, clipPath: "inset(0% 0% 100% 0%)" });
+            gsap.set(imageWrapperRef2.current, {
+              opacity: 0,
+              clipPath: "inset(0% 0% 100% 0%)"
+            });
           }
 
-          // Mostrar imagen final con efecto cortina (repetible)
+          // Mostrar imagen final con efecto cortina
           else if (progress > 0.65 && progress <= 0.85) {
             gsap.set(imageWrapperRef.current, { opacity: 0 });
             gsap.set(imageRef.current, { opacity: 0 });
 
             gsap.to(imageWrapperRef2.current, {
               opacity: 1,
-              clipPath: "inset(0% 0% 0% 0%)", // revela de arriba a abajo
+              clipPath: "inset(0% 0% 0% 0%)",
               duration: 1,
               immediateRender: false,
               ease: "power2.out"
             });
           } else if (progress <= 0.65) {
-            // Reiniciamos para que pueda repetirse al scrollear otra vez
-            gsap.set(imageWrapperRef2.current, { 
-              opacity: 0, 
+            gsap.set(imageWrapperRef2.current, {
+              opacity: 0,
               clipPath: "inset(0% 0% 100% 0%)"
             });
           }
@@ -138,37 +144,39 @@ const TextWrapper4 = () => {
 
   return (
     <section ref={sectionRef} className="spotlight font-myfont2 tracking-wider text-lg">
-      <div className="spotlight-intro-text-wrapper">
-        <div className="spotlight-intro-text" ref={leftTextRef}>
-          <p className="p-spot">where classics</p>
-        </div>
-        <div className="spotlight-intro-text" ref={rightTextRef}>
-          <p className="p-spot">meets contemporary</p>
-        </div>
-      </div>
-
-      {/* Imagen inicial */}
-      <div className="spotlight-bg-img" ref={imageWrapperRef}>
-        <img src="/images/img5.jpg" ref={imageRef} />
-      </div>
-
-      {/* Imagen final */}
-      <div className="spotlight-final-img" ref={imageWrapperRef2}>
-        <img src="/images/img5.jpg" />
-      </div>
-
-      {showFinalText && (
-        <TextAnimation>
-          <div className="spotlight-text2 pb-2">
-            <p className="p-spot-img tracking-wider leading-none text-lg">
-              we believe in creating a look<br />
-              that while keeping an insight<br />
-              on actual trends, better highlights<br />
-              your features and lifestyle
-            </p>
+      <div ref={innerRef} className="spotlight-inner">
+        <div className="spotlight-intro-text-wrapper">
+          <div className="spotlight-intro-text" ref={leftTextRef}>
+            <p className="p-spot">where classics</p>
           </div>
-        </TextAnimation>
-      )}
+          <div className="spotlight-intro-text" ref={rightTextRef}>
+            <p className="p-spot">meets contemporary</p>
+          </div>
+        </div>
+
+        {/* Imagen inicial */}
+        <div className="spotlight-bg-img" ref={imageWrapperRef}>
+          <img src="/images/img5.jpg" ref={imageRef} />
+        </div>
+
+        {/* Imagen final */}
+        <div className="spotlight-final-img" ref={imageWrapperRef2}>
+          <img src="/images/img5.jpg" />
+        </div>
+
+        {showFinalText && (
+          <TextAnimation>
+            <div className="spotlight-text2 pb-2">
+              <p className="p-spot-img tracking-wider leading-none text-lg">
+                we believe in creating a look<br />
+                that while keeping an insight<br />
+                on actual trends, better highlights<br />
+                your features and lifestyle
+              </p>
+            </div>
+          </TextAnimation>
+        )}
+      </div>
     </section>
   );
 };
