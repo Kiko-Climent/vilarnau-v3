@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import GridRevealImage from "../Tools/GridRevealAnimation";
+
 
 const animateIn = async (target, onComplete) => {
   const { default: SplitText } = await import("gsap/SplitText");
@@ -28,10 +29,21 @@ const animateIn = async (target, onComplete) => {
   );
 };
 
+
+
 export default function Test4() {
   const containerRef = useRef(null);
   const textRef = useRef(null);
   const hasAnimatedText = useRef(false);
+
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile(); // primera ejecución
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   const handleComplete = () => {
     if (!hasAnimatedText.current) {
@@ -48,12 +60,12 @@ export default function Test4() {
   return (
     <div
       ref={containerRef}
-      className="container-test-hero w-screen h-screen flex flex-col md:flex-row gap-2 bg-white text-base md:text-lg tracking-wider px-2 md:px-0 py-2 md:py-0 font-myfont2"
+      className="container-test-hero w-screen h-screen flex flex-col md:flex-row gap-1 md:gap-2 bg-white text-base md:text-lg tracking-wider px-2 md:px-0 py-2 md:py-0 font-myfont2"
     >
       {/* Lado izquierdo */}
-      <div className="flex w-full md:w-1/2 h-full overflow-hidden">
+      <div className="flex w-full md:w-1/2 aspect-[3/4] overflow-hidden">
         <GridRevealImage
-          src="/images/img1.jpeg"
+          src={isMobile ? "/newhero/img10.webp" : "/images/img1.jpeg"}
           className="w-full h-full"
           rows={5}
           cols={5}

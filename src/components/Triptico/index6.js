@@ -16,7 +16,7 @@ const Triptico6 = () => {
       </div>
 
       {/* Texto en esquina inferior derecha */}
-      <div className="absolute bottom-2 right-2 text-right font-myfont2">
+      <div className="absolute bottom-2 right-2 md:right-5 text-right font-myfont2">
         <p className="text-base md:text-lg tracking-wider leading-none">
           we believe in creating a look<br />
           that while keeping an insight<br />
