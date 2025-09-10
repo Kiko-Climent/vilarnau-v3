@@ -12,6 +12,7 @@ import Pic4 from "../../../public/images/img8.jpg";
 export default function StickyPics2() {
   const container = useRef(null);
 
+  // Scroll tracking
   const { scrollYProgress } = useScroll({
     target: container,
     offset: ['start start', 'end end'],
@@ -23,12 +24,13 @@ export default function StickyPics2() {
 
   const pics = [Pic1, Pic2, Pic3, Pic4];
 
-  // Creamos todos los scales fuera del map
-  const scales = pics.map((_, index) => {
-    const start = index * 0.1;
-    const end = start + 0.3;
-    return useTransform(scrollYProgress, [start, end], [0, 1]);
-  });
+  // ✅ Creamos todos los scales fuera del map
+  const scales = [
+    useTransform(scrollYProgress, [0, 0.3], [0, 1]),
+    useTransform(scrollYProgress, [0.1, 0.4], [0, 1]),
+    useTransform(scrollYProgress, [0.2, 0.5], [0, 1]),
+    useTransform(scrollYProgress, [0.3, 0.6], [0, 1]),
+  ];
 
   return (
     <div ref={container} className="relative h-[200vh] overflow-visible">
