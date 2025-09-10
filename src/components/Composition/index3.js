@@ -3,7 +3,7 @@ import GridRevealImage from "../Tools/GridRevealAnimation";
 
 const Composition3 = () => {
   return (
-    <div className="w-screen h-screen md:h-full py-24 flex items-center justify-center overflow-hidden">
+    <div className="w-screen h-screen md:h-full py-24 flex items-center justify-center overflow-hidden font-myfont2">
       <div className="relative w-full h-full max-w-[1920px] max-h-[calc(100vh-1rem)] aspect-[16/10]">
 
         {/* Imagen inferior centro */}
@@ -20,14 +20,13 @@ const Composition3 = () => {
         {/* Texto, pegado a la imagen por arriba */}
         <TextAnimation>
         <div className="absolute bottom-[58.5%] left-[24.5%] md:left-[32%] w-[38%] md:w-[31%] -translate-x-1/2 z-[2]
-            text-[clamp(0.9rem,1.2vw,1.3rem)] text-left leading-none"
+            text-base md:text-lg text-left leading-none tracking-wider"
         >
           <p className="p-1">
             vilarnau opens <br />
-            tuesday till friday<br />
-            from 12am to 8pm,<br />
-            saturday from 1am<br />
-            sunday and monday off.<br />
+            tuesday — friday<br />
+            from 12 to 20,<br />
+            saturdays from 13<br />
             come and say hello.
           </p>
         </div>

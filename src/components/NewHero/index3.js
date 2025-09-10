@@ -23,7 +23,7 @@ export default function NewHero3() {
       const heroImage = gridRef.current.querySelector(".img-newhero.hero-img");
       const images = gridImages.filter((img) => img !== heroImage);
 
-      const allImageSources = Array.from({ length: 35 }, (_, i) => `/newhero/img${i + 1}.webp`);
+      const allImageSources = Array.from({ length: 35 }, (_, i) => `/newheromobile/img${i + 1}.webp`);
 
       const getRandomImageSet = () => {
         const shuffled = [...allImageSources].sort(() => 0.5 - Math.random());
