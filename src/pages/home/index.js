@@ -29,6 +29,9 @@ export default function Home() {
     <>
     <Head>
         {/* Preload de las imágenes críticas del ZoomGallery */}
+        <link rel="preload" as="image" href="/newhero/img10.webp" />
+        <link rel="preload" as="image" href="/images/img1.jpeg" />
+        <link rel="preload" as="image" href="/images/img17.jpeg" />
         <link rel="preload" as="image" href={Pic1.src} />
         <link rel="preload" as="image" href={Pic2.src} />
         <link rel="preload" as="image" href={Pic3.src} />

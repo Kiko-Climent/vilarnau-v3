@@ -172,7 +172,7 @@ export default function GridRevealImage({
   return (
     <div
       ref={wrapRef}
-      className={`relative overflow-hidden opacity-0 ${className}`} // 🔹 opacity-0 inicial
+      className={`relative overflow-hidden opacity-0 ${className}`}
       style={style}
     >
       {Array.from({ length: total }).map((_, j) => (
