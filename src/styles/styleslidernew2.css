@@ -1,22 +1,22 @@
 .container-styles-2 {
-  display: flex;          /* dos columnas */
+  display: flex;              /* dos columnas */
   width: 100vw;
   height: 100vh;
-  overflow: hidden;  
+  overflow: hidden;           /* evita scroll accidental */
 }
 
 .slider {
-  flex: 0 0 40vw;          /* ocupa el 40% de ancho */
-  aspect-ratio: 4 / 3;     
+  flex: 0 0 40vw;             /* ocupa el 40% */
+  aspect-ratio: 4 / 3;
   height: 92%;
-  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  align-self: flex-end; 
+  align-self: flex-end;
   padding-bottom: 0.5rem;
   padding-left: 0.5rem;
-  overflow: hidden;  
+  position: relative;
+  overflow: hidden;           /* 👈 importantísimo para las animaciones */
 }
 
 .slider-images {
@@ -29,33 +29,35 @@
   width: 100%;
   height: 100%;
   position: absolute;
-  will-change: clip-path, transform, opacity;
+  top: 0; left: 0;
+  opacity: 0;
+  will-change: opacity, clip-path;   /* solo lo necesario */
   transform: translateZ(0);          /* fuerza render en GPU */
   backface-visibility: hidden;
-  /* contain: layout paint style; */
+}
+
+.img-slider-new.active {
+  opacity: 1;
+  z-index: 2;
 }
 
 .img-slider-new img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: top;
-  will-change: transform, opacity, clip-path; /* 👈 hint al navegador */
-  transform: translateZ(0); /* fuerza render en la GPU */
-  backface-visibility: hidden;
+  object-fit: cover;           /* que siempre llene */
+  object-position: center;     /* mejor que top para cortes de pelo */
+  display: block;
+  pointer-events: none;        /* evita bloqueos de clicks */
 }
 
 /* columna de la derecha */
 .slider-content {
-  flex: 1;                         /* ocupa el resto */
+  flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: end;  /* arriba info, abajo counter+preview */
+  justify-content: end;
   padding: 0.5rem;
 }
-
-/* info de contacto arriba */
-
 
 .contact-content {
   display: flex;
@@ -68,25 +70,14 @@
   margin-bottom: 0.6rem;
 }
 
-/* contador */
 .slider-counter {
-  display: flex;
-  /* gap: 0.5em; */
-  /* margin-bottom: 0.5rem; */
-  /* align-self: flex-end; */
   font-size: 4rem;
-}
-
-.counter {
-  display: flex;
-  gap: 0.5em;
 }
 
 .slider-counter p {
   margin: 0;
 }
 
-/* previews */
 .slider-preview {
   display: flex;
   gap: 0.5rem;
@@ -96,20 +87,23 @@
   flex: 1;
   cursor: pointer;
   position: relative;
+  overflow: hidden;
 }
 
 .preview img {
   width: 100%;
   height: auto;
   display: block;
+  transition: transform 0.3s ease;
 }
+
 
 .preview::after {
   content: "";
   position: absolute;
   inset: 0;
   background: rgba(0,0,0,0.5);
-  transition: 0.3s;
+  transition: background 0.3s ease;
 }
 
 .preview.active::after {

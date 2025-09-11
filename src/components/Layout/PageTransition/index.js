@@ -16,10 +16,8 @@ const anim = (variants) => {
 }
 
 const routes = {
-  "/home": "Home",
-  "/about": "About",
-  "/styles": "Styles",
-  "/prices": "Prices"
+  "/home": "vilarnau",
+  "/styles": "styles",
 }
 
 export default function PageTransition ({children, backgroundColor}) {

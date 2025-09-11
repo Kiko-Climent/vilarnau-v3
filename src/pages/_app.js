@@ -5,6 +5,7 @@ import "@/styles/hero.css";
 import "@/styles/zoomgallery.css";
 import "@/styles/newhero.css";
 import "@/styles/styleslidernew.css";
+// import "@/styles/styleslidernew2.css";
 import { useNavbar } from "@/components/Layout/Context/NavbarProvider";
 import { NavbarProvider } from "@/components/Layout/Context/NavbarProvider";
 

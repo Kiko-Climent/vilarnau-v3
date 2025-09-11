@@ -42,9 +42,27 @@ export default function StyleSliderMobile2() {
           ];
 
           const slideImg = document.createElement('div');
-          slideImg.classList.add('img-slider-new');
+          slideImg.classList.add(
+            'img-slider-new',
+            'absolute',
+            'w-full',
+            'h-full',
+            'will-change-transform',
+            'translate-z-0',
+            'backface-hidden'
+          );
+
           const slideImgElem = document.createElement('img');
           slideImgElem.src = `/styles/img${currentImg}.jpg`;
+          slideImgElem.classList.add(
+            'w-full',
+            'h-full',
+            'object-cover',
+            'object-top',
+            'will-change-transform',
+            'translate-z-0',
+            'backface-hidden'
+          );
 
           gsap.set(slideImgElem, { x: direction === 'left' ? -500 : 500 });
           slideImg.appendChild(slideImgElem);
@@ -131,31 +149,36 @@ export default function StyleSliderMobile2() {
 
   return (
     <div className="min-h-screen w-screen flex flex-col font-myfont2 gap-2 px-2 justify-center">
-      {/* Primera columna - más de la mitad */}
+      {/* Primera columna */}
       <div className="flex h-[70%] w-full flex-row gap-2">
-        {/* Slider a la izquierda */}
+        {/* Slider */}
         <div className="flex-1 flex items-center justify-center">
-          <div className="aspect-[3/4] w-full relative overflow-hidden" ref={sliderRef}>
-            <div className="slider-images w-full h-full relative" ref={sliderImagesRef}>
-              <div className="img-slider-new absolute w-full h-full">
+          <div
+            className="aspect-[3/4] w-full relative overflow-hidden"
+            ref={sliderRef}
+          >
+            <div
+              className="slider-images w-full h-full relative"
+              ref={sliderImagesRef}
+            >
+              <div className="img-slider-new absolute w-full h-full will-change-transform translate-z-0 backface-hidden">
                 <img
                   src="/styles/img1.jpg"
                   alt="img1"
-                  className="w-full h-full object-cover object-top"
+                  className="w-full h-full object-cover object-top will-change-transform translate-z-0 backface-hidden"
                 />
               </div>
             </div>
           </div>
         </div>
 
-        {/* Paginación a la derecha, pegada abajo */}
+        {/* Paginación */}
         <div className="w-15 flex flex-col justify-end items-center">
           <p ref={counterRef} className="text-3xl text-nowrap">1 / 16</p>
         </div>
       </div>
 
-      {/* Segunda columna - previews en fila */}
-      {/* Segunda columna - previews en 2 filas */}
+      {/* Previews */}
       <div className="flex h-[20%] w-full items-center justify-center">
         <div
           className="grid grid-cols-8 grid-rows-2 gap-2 w-full h-full"
@@ -169,27 +192,23 @@ export default function StyleSliderMobile2() {
               <img
                 src={`/styles/img${index + 1}.jpg`}
                 alt={`img${index + 1}`}
-                className="w-full h-full object-cover rounded-sm"
+                className="w-full h-full object-cover rounded-sm will-change-transform translate-z-0 backface-hidden"
               />
               <div
                 className={`absolute inset-0 rounded-sm transition-opacity duration-300
                   ${index === 0 ? 'opacity-0' : 'bg-opacity-40'}`}
               />
-
             </div>
           ))}
-
         </div>
       </div>
 
-
-      {/* Tercera columna - info en columna alineada a la izquierda */}
+      {/* Info */}
       <div className="flex h-[20%] flex-col justify-center items-start -space-y-2 tracking-wider">
         <p className="text-xl">vilarnau | styles</p>
         <p className="text-xl">T : (030) 61202363</p>
         <p className="text-xl">E : hello@vilarnau.de</p>
       </div>
     </div>
-
   );
 }
