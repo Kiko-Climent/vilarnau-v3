@@ -84,7 +84,7 @@
   height: 25vh;
 }
 
-.zoom-text-overlay {
+/* .zoom-text-overlay {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -95,6 +95,18 @@
   pointer-events: none;
   text-transform: uppercase;
 
+  will-change: filter, transform;
+} */
+
+.zoom-text-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  color: white;
+  text-transform: uppercase;
+  pointer-events: none;
   will-change: filter, transform;
 }
 

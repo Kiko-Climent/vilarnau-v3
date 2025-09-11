@@ -100,12 +100,39 @@ export default function ZoomGallery() {
         }
         {showText && (
           <TextAnimation>
-            <div className="zoom-text-overlay text-4xl md:text-8xl blur-[0.3px] tracking-wide w-full font-myfont2">
-              {/* <p>we believe in creating a look that while keeping an insight on actual trends, better highlights your features and lifestyle</p> */}
-              <p>elevating the craft of</p>
-              <p>hairstyling since 2019</p>
-              {/* <p>where classics</p>
-              <p>meets contemporary</p> */}
+            <div className="zoom-text-overlay text-4xl md:text-8xl blur-[0.3px] tracking-wide w-full font-myfont2 hidden md:flex flex-col -space-y-10">
+              <div className="flex flex-row justify-center text-5xl gap-4 pl-2 pr-6 tracking-[0.08em]">
+                <p className="text-9xl">elevating</p>
+                <div className="flex flex-col pt-3 -space-y-2">
+                  <p className="self-end">the</p>
+                  <p>craft of</p>                
+                </div>
+              </div>
+              <div className="flex flex-row justify-center gap-4 pl-2 pr-6 text-9xl">
+                <p>hairstyling</p>
+                <div className="flex flex-col text-5xl pt-3 -space-y-2">
+                  <p>since</p>
+                  <p>2019</p>
+                </div>
+              </div>
+            </div>
+            {/* layout for mobiles */}
+            <div className="zoom-text-overlay text-6xl blur-[0.2px] tracking-wide w-full font-myfont2 flex md:hidden flex-col pl-2 -space-y-3">
+              <div className="flex flex-col -space-y-3">
+                <p className="">elevating</p>
+                <div className="flex flex-row gap-3">
+                  <p className="flex">the</p>
+                  <p className="flex">craft</p>                
+                  <p className="flex">of</p>                
+                </div>
+              </div>
+              <div className="flex flex-col justify-center  -space-y-3">
+                <p>hairstyling</p>
+                <div className="flex flex-row gap-3 ">
+                  <p>since</p>
+                  <p>2019</p>
+                </div>
+              </div>
             </div>
           </TextAnimation>
         )}
