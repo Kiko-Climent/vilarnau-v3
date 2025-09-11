@@ -17,6 +17,7 @@
   transform-origin: center center;
   will-change: transform, opacity;
   backface-visibility: hidden;
+  
 }
 
 .img img {

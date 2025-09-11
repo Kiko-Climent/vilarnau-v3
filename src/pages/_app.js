@@ -3,8 +3,6 @@ import Menu2 from "@/components/Layout/Menu/menu2";
 import "@/styles/globals.css";
 import "@/styles/hero.css";
 import "@/styles/zoomgallery.css";
-import "@/styles/textwrapper.css";
-import "@/styles/stickypics.css";
 import "@/styles/newhero.css";
 import "@/styles/styleslidernew.css";
 import { useNavbar } from "@/components/Layout/Context/NavbarProvider";
