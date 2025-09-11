@@ -150,7 +150,7 @@ export default function StyleSliderMobile2() {
 
         {/* Paginación a la derecha, pegada abajo */}
         <div className="w-15 flex flex-col justify-end items-center">
-          <p ref={counterRef} className="text-3xl">1 / 16</p>
+          <p ref={counterRef} className="text-3xl text-nowrap">1 / 16</p>
         </div>
       </div>
 

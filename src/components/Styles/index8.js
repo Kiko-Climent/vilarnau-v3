@@ -48,7 +48,7 @@ export default function StyleSlider8() {
           slideImg.classList.add('img-slider-new');
 
           const slideImgElem = document.createElement('img');
-          slideImgElem.src = `/styles/img${currentImg}.jpg`;
+          slideImgElem.src = `/styles/img${currentImg}.webp`;
           gsap.set(slideImgElem, { x: direction === 'left' ? -500 : 500 });
 
           slideImg.appendChild(slideImgElem);
@@ -141,7 +141,7 @@ export default function StyleSlider8() {
       <div className="slider" ref={sliderRef}>
         <div className="slider-images" ref={sliderImagesRef}>
           <div className="img-slider-new">
-            <img src="/styles/img1.jpg" alt="img1" />
+            <img src="/styles/img1.webp" alt="img1" />
           </div>
         </div>
       </div>
@@ -159,52 +159,52 @@ export default function StyleSlider8() {
 
         <div className="slider-preview" ref={previewsRef}>
           <div className="preview active">
-            <img src="/styles/img1.jpg" alt="img1" />
+            <img src="/styles/img1.webp" alt="img1" />
           </div>
           <div className="preview">
-            <img src="/styles/img2.jpg" alt="img2" />
+            <img src="/styles/img2.webp" alt="img2" />
           </div>
           <div className="preview">
-            <img src="/styles/img3.jpg" alt="img3" />
+            <img src="/styles/img3.webp" alt="img3" />
           </div>
           <div className="preview">
-            <img src="/styles/img4.jpg" alt="img4" />
+            <img src="/styles/img4.webp" alt="img4" />
           </div>
           <div className="preview">
-            <img src="/styles/img5.jpg" alt="img5" />
+            <img src="/styles/img5.webp" alt="img5" />
           </div>
           <div className="preview">
-            <img src="/styles/img6.jpg" alt="img5" />
+            <img src="/styles/img6.webp" alt="img6" />
           </div>
           <div className="preview">
-            <img src="/styles/img7.jpg" alt="img5" />
+            <img src="/styles/img7.webp" alt="img7" />
           </div>
           <div className="preview">
-            <img src="/styles/img8.jpg" alt="img5" />
+            <img src="/styles/img8.jpg" alt="img8" />
           </div>
           <div className="preview">
-            <img src="/styles/img9.jpg" alt="img5" />
+            <img src="/styles/img9.webp" alt="img9" />
           </div>
           <div className="preview">
-            <img src="/styles/img10.jpg" alt="img5" />
+            <img src="/styles/img10.webp" alt="img10" />
           </div>
           <div className="preview">
-            <img src="/styles/img11.jpg" alt="img5" />
+            <img src="/styles/img11.webp" alt="img11" />
           </div>
           <div className="preview">
-            <img src="/styles/img12.jpg" alt="img5" />
+            <img src="/styles/img12.webp" alt="img12" />
           </div>
           <div className="preview">
-            <img src="/styles/img13.jpg" alt="img5" />
+            <img src="/styles/img13.webp" alt="img13" />
           </div>
           <div className="preview">
-            <img src="/styles/img14.jpg" alt="img5" />
+            <img src="/styles/img14.webp" alt="img14" />
           </div>
           <div className="preview">
-            <img src="/styles/img15.jpg" alt="img5" />
+            <img src="/styles/img15.webp" alt="img15" />
           </div>
           <div className="preview">
-            <img src="/styles/img16.jpg" alt="img5" />
+            <img src="/styles/img16.webp" alt="img16" />
           </div>
         </div>
       </div>

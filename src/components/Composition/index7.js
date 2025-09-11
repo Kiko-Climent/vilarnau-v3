@@ -33,12 +33,12 @@ const Composition4MobileFlex2 = () => {
           </div>
 
           {/* Row 2 (60%) */}
-          <div className="flex flex-col">
+          <div className="flex flex-col h-full justify-start">
             <div className="flex flex-col leading-none">
               <p>Open in the heart of Berlin-Kreuzberg since 2018.</p>
               <p>Come and say hello</p>
             </div>
-            <p className="flex text-lg">©vilarnau 2025</p>
+            <p className="flex text-lg mt-auto">©vilarnau 2025</p>
           </div>
         </div>
 

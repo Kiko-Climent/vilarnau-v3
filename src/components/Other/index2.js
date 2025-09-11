@@ -67,7 +67,7 @@ const Quote1 = () => {
       ref={sectionRef}
       className="w-screen h-screen flex flex-col items-center justify-center font-myfont2 tracking-wider text-4xl uppercase"
     >
-      <div ref={textRef} className="flex flex-col -space-y-2 text-center">
+      <div ref={textRef} className="flex flex-col -space-y-3 text-center">
         <p>where classics</p>
         <p>meets contemporary</p>
       </div>
