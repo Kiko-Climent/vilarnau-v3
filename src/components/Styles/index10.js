@@ -68,12 +68,6 @@ export default function StyleSliderMobile2() {
           slideImg.appendChild(slideImgElem);
           sliderImages.appendChild(slideImg);
 
-          gsap.to(currentSlide.querySelector('img'), {
-            x: direction === 'left' ? 500 : -500,
-            duration: 1.5,
-            ease: 'hop',
-          });
-
           gsap.fromTo(
             slideImg,
             {
