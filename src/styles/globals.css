@@ -28,6 +28,16 @@ html, body {
   height: 100%;
   width: 100%;
   font-family: 'MyFont2', sans-serif;
+  overscroll-behavior-x: none; /* Safari a veces mete rebotes */
+  -webkit-text-size-adjust: 100%; /* evita zoom raro en iOS */
+  width: 100%;
+  max-width: 100%; 
+}
+
+img, video {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
 .font-myfont2 {
@@ -37,6 +47,7 @@ html, body {
 
 body {
   overflow-x: hidden;
+  
 }
 
 /* .hero-text {

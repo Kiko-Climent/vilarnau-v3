@@ -37,7 +37,9 @@ export default function StyleSliderMobile2() {
         }
 
         function animateSlide(direction) {
-          
+          const currentSlide = sliderImages.querySelectorAll('.img-slider-new')[
+            sliderImages.querySelectorAll('.img-slider-new').length - 1
+          ];
 
           const slideImg = document.createElement('div');
           slideImg.classList.add(
@@ -65,6 +67,7 @@ export default function StyleSliderMobile2() {
           gsap.set(slideImgElem, { x: direction === 'left' ? -500 : 500 });
           slideImg.appendChild(slideImgElem);
           sliderImages.appendChild(slideImg);
+
 
           gsap.fromTo(
             slideImg,
@@ -140,7 +143,7 @@ export default function StyleSliderMobile2() {
   }, []);
 
   return (
-    <div className="min-h-screen w-screen flex flex-col font-myfont2 gap-2 px-2 justify-center">
+    <div className="min-h-screen w-screen flex flex-col font-myfont2 gap-2 px-2 justify-start pt-4">
       {/* Primera columna */}
       <div className="flex h-[70%] w-full flex-row gap-2">
         {/* Slider */}
