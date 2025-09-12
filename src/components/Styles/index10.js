@@ -53,7 +53,7 @@ export default function StyleSliderMobile2() {
           );
 
           const slideImgElem = document.createElement('img');
-          slideImgElem.src = `/styles/img${currentImg}.jpg`;
+          slideImgElem.src = `/stylesresized/img${currentImg}.webp`;
           slideImgElem.classList.add(
             'w-full',
             'h-full',
@@ -163,7 +163,7 @@ export default function StyleSliderMobile2() {
             >
               <div className="img-slider-new absolute w-full h-full will-change-transform translate-z-0 backface-hidden">
                 <img
-                  src="/styles/img1.jpg"
+                  src="/stylesresized/img1.webp"
                   alt="img1"
                   className="w-full h-full object-cover object-top will-change-transform translate-z-0 backface-hidden"
                 />
@@ -190,7 +190,7 @@ export default function StyleSliderMobile2() {
               className={`preview cursor-pointer relative ${index === 0 ? 'active' : ''}`}
             >
               <img
-                src={`/styles/img${index + 1}.jpg`}
+                src={`/stylesresized/img${index + 1}.webp`}
                 alt={`img${index + 1}`}
                 className="w-full h-full object-cover rounded-sm will-change-transform translate-z-0 backface-hidden"
               />
