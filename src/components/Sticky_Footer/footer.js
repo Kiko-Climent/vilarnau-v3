@@ -10,22 +10,25 @@ export default function Footer() {
           <div className="flex flex-col text-base md:text-lg leading-none">
             <h3>address</h3>
             <h3>manteufelstr.55</h3>
-            <h3>10247 · berlin</h3>
+            <h3>10247 berlin-kreuzberg</h3>
           </div>
           
           {/* Inquires */}
-          <div className="flex flex-col text-base md:text-lg leading-none">
+          {/* <div className="flex flex-col text-base md:text-lg leading-none">
             <h3>inquires</h3>
             <a href="mailto:hello@vilarnau.com" className="flex">
               hello@vilarnau.com
             </a>
-          </div>
+          </div> */}
 
           {/* Appointments */}
           <div className="flex flex-col text-base md:text-lg leading-none items-end">
             <h3>appointments</h3>
             <a href="tel:+493061202363" className="flex">
-              (030) 61202363
+              (030) - 61202363
+            </a>
+            <a href="mailto:hello@vilarnau.com" className="flex">
+              hello@vilarnau.com
             </a>
           </div>
         </div>

@@ -37,9 +37,7 @@ export default function StyleSliderMobile2() {
         }
 
         function animateSlide(direction) {
-          const currentSlide = sliderImages.querySelectorAll('.img-slider-new')[
-            sliderImages.querySelectorAll('.img-slider-new').length - 1
-          ];
+          
 
           const slideImg = document.createElement('div');
           slideImg.classList.add(

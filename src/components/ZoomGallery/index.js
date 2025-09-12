@@ -112,7 +112,7 @@ export default function ZoomGallery() {
                 <p>hairstyling</p>
                 <div className="flex flex-col text-5xl pt-3 -space-y-2">
                   <p>since</p>
-                  <p>2019</p>
+                  <p>2018</p>
                 </div>
               </div>
             </div>
@@ -130,7 +130,7 @@ export default function ZoomGallery() {
                 <p>hairstyling</p>
                 <div className="flex flex-row gap-3 ">
                   <p>since</p>
-                  <p>2019</p>
+                  <p>2018</p>
                 </div>
               </div>
             </div>
