@@ -143,7 +143,7 @@ export default function StyleSliderMobile2() {
   }, []);
 
   return (
-    <div className="min-h-screen w-screen flex flex-col font-myfont2 gap-2 px-2 justify-start pt-4">
+    <div className="min-h-screen w-screen flex flex-col font-myfont2 gap-2 px-2 justify-start pt-2">
       {/* Primera columna */}
       <div className="flex h-[70%] w-full flex-row gap-2">
         {/* Slider */}
