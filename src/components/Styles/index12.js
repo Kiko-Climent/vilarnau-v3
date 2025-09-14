@@ -17,9 +17,11 @@ export default function StyleSliderMobile3() {
   
     setVh();
     window.addEventListener("resize", setVh);
+    window.addEventListener("scroll", setVh);
   
     return () => {
       window.removeEventListener("resize", setVh);
+      window.removeEventListener("scroll", setVh);
     };
   }, []);
   
@@ -156,7 +158,7 @@ export default function StyleSliderMobile3() {
   }, []);
 
   return (
-    <div className="w-screen flex flex-col font-myfont2 gap-2 px-2 justify-center"
+    <div className="w-screen flex flex-col font-myfont2 gap-2 px-2 justify-center overflow-hidden"
     style={{ height: "calc(var(--vh, 1vh) * 100)" }}>
       {/* Primera columna */}
       <div className="flex h-[65%] w-full flex-row gap-2">
