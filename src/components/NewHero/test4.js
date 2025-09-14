@@ -107,7 +107,7 @@ export default function Test4() {
             <p>(030) 61987269</p>
           </div>
           <div className="hidden md:flex flex-col -space-y-2 md:-space-y-3">
-            <p>oppening times /</p>
+            <p>oppening hours /</p>
             <p>tue — fri from 12 to 20</p>
             <p>saturdays from 13 to 19</p>
           </div>

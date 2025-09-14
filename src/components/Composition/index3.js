@@ -22,12 +22,22 @@ const Composition3 = () => {
         <div className="absolute bottom-[58.5%] left-[24.5%] md:left-[32%] w-[38%] md:w-[31%] -translate-x-1/2 z-[2]
             text-base md:text-lg text-left leading-none tracking-wider"
         >
-          <p className="p-1">
+          {/* <p className="p-1">
             vilarnau opens <br />
             tuesday — friday<br />
             from 12 to 20,<br />
             saturdays from 13<br />
             come and say hello.
+          </p> */}
+          <p className="p-1">
+            vilarnau opens: <br />
+            tuesday 12 — 20<br />
+            wednesday 12 — 20<br />
+            thursday 12 — 20<br />
+            friday 12 — 20<br />
+            saturday 13 — 20<br />
+            sunday - closed<br />
+            monday - closed<br />
           </p>
         </div>
 

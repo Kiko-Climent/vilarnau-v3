@@ -3,11 +3,26 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 
-export default function StyleSliderMobile2() {
+export default function StyleSliderMobile3() {
   const sliderRef = useRef(null);
   const counterRef = useRef(null);
   const previewsRef = useRef(null);
   const sliderImagesRef = useRef(null);
+
+
+  useEffect(() => {
+    const setVh = () => {
+      document.documentElement.style.setProperty("--vh", `${window.innerHeight * 0.01}px`);
+    };
+  
+    setVh();
+    window.addEventListener("resize", setVh);
+  
+    return () => {
+      window.removeEventListener("resize", setVh);
+    };
+  }, []);
+  
 
   useEffect(() => {
     let ctx = gsap.context(() => {
@@ -37,9 +52,6 @@ export default function StyleSliderMobile2() {
         }
 
         function animateSlide(direction) {
-          const currentSlide = sliderImages.querySelectorAll('.img-slider-new')[
-            sliderImages.querySelectorAll('.img-slider-new').length - 1
-          ];
 
           const slideImg = document.createElement('div');
           slideImg.classList.add(
@@ -143,11 +155,12 @@ export default function StyleSliderMobile2() {
   }, []);
 
   return (
-    <div className="min-h-screen w-screen flex flex-col font-myfont2 gap-2 px-2 justify-center">
+    <div className="w-screen flex flex-col font-myfont2 gap-2 px-2 justify-center"
+    style={{ height: "calc(var(--vh, 1vh) * 100)" }}>
       {/* Primera columna */}
-      <div className="flex h-[70%] w-full flex-row gap-2">
+      <div className="flex h-[65%] w-full flex-row gap-2">
         {/* Slider */}
-        <div className="flex-1 flex items-center justify-center">
+        <div className="flex-1 flex items-end justify-center">
           <div
             className="aspect-[3/4] w-full relative overflow-hidden"
             ref={sliderRef}
@@ -174,7 +187,7 @@ export default function StyleSliderMobile2() {
       </div>
 
       {/* Previews */}
-      <div className="flex h-[20%] w-full items-center justify-center">
+      <div className="flex h-[15%] w-full items-center justify-center">
         <div
           className="grid grid-cols-8 grid-rows-2 gap-2 w-full h-full"
           ref={previewsRef}
@@ -187,10 +200,10 @@ export default function StyleSliderMobile2() {
               <img
                 src={`/stylesresized/img${index + 1}.webp`}
                 alt={`img${index + 1}`}
-                className="w-full h-full object-cover rounded-sm will-change-transform translate-z-0 backface-hidden"
+                className="w-full h-full object-cover will-change-transform translate-z-0 backface-hidden"
               />
               <div
-                className={`absolute inset-0 rounded-sm transition-opacity duration-300
+                className={`absolute inset-0 transition-opacity duration-300
                   ${index === 0 ? 'opacity-0' : 'bg-opacity-40'}`}
               />
             </div>
@@ -199,7 +212,7 @@ export default function StyleSliderMobile2() {
       </div>
 
       {/* Info */}
-      <div className="flex h-[20%] flex-col justify-center items-start -space-y-2 tracking-wider">
+      <div className="flex h-[20%] flex-col justify-start items-start -space-y-2 tracking-wider">
         <p className="text-xl">vilarnau | styles</p>
         <p className="text-xl">T : (030) 61202363</p>
         <p className="text-xl">E : hello@vilarnau.de</p>
