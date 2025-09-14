@@ -113,6 +113,7 @@ export default function StyleSliderMobile3() {
         }
 
         function handleClick(event) {
+          if (!sliderRef.current) return;
           const sliderWidth = sliderRef.current.clientWidth;
           const clickPosition = event.clientX;
 
@@ -181,7 +182,7 @@ export default function StyleSliderMobile3() {
         </div>
 
         {/* Paginación */}
-        <div className="w-15 flex flex-col justify-end items-center">
+        <div className="w-15 flex flex-col justify-end items-center h-full mt-2">
           <p ref={counterRef} className="text-3xl text-nowrap">1 / 16</p>
         </div>
       </div>
@@ -195,7 +196,7 @@ export default function StyleSliderMobile3() {
           {Array.from({ length: 16 }, (_, index) => (
             <div
               key={index + 1}
-              className={`preview cursor-pointer relative ${index === 0 ? 'active' : ''}`}
+              className={`preview cursor-pointer relative overflow-hidden ${index === 0 ? 'active' : ''}`}
             >
               <img
                 src={`/stylesresized/img${index + 1}.webp`}
