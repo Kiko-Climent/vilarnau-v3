@@ -158,10 +158,12 @@ export default function StyleSliderMobile3() {
   }, []);
 
   return (
-    <div className="w-screen flex flex-col font-myfont2 gap-2 px-2 justify-center overflow-hidden"
-    style={{ height: "calc(var(--vh, 1vh) * 100)" }}>
-      {/* Primera columna */}
-      <div className="flex h-[65%] w-full flex-row gap-2">
+    <div
+      className="w-screen h-screen flex flex-col font-myfont2 px-2 gap-2 overflow-hidden"
+      style={{ height: "calc(var(--vh, 1vh) * 100)" }}
+    >
+      {/* Slider + contador */}
+      <div className="flex flex-row flex-1 gap-2">
         {/* Slider */}
         <div className="flex-1 flex items-end justify-center">
           <div
@@ -190,7 +192,7 @@ export default function StyleSliderMobile3() {
       </div>
 
       {/* Previews */}
-      <div className="flex h-[15%] w-full items-center justify-center">
+      <div className="flex flex-none h-[calc(15vh)] w-full items-center justify-center">
         <div
           className="grid grid-cols-8 grid-rows-2 gap-2 w-full h-full"
           ref={previewsRef}
@@ -215,11 +217,12 @@ export default function StyleSliderMobile3() {
       </div>
 
       {/* Info */}
-      <div className="flex h-[20%] flex-col justify-start items-start -space-y-2 tracking-wider">
+      <div className="flex flex-none h-[calc(20vh)] flex-col justify-start items-start -space-y-2 tracking-wider">
         <p className="text-xl">vilarnau | styles</p>
         <p className="text-xl">T : (030) 61202363</p>
         <p className="text-xl">E : hello@vilarnau.de</p>
       </div>
     </div>
+
   );
 }
