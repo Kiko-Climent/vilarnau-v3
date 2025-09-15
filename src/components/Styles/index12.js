@@ -164,9 +164,10 @@ export default function StyleSliderMobile3() {
 
   return (
     <div
-      className="w-screen flex flex-col font-myfont2 px-2 gap-2"
+      className="w-full flex flex-col font-myfont2 px-2 gap-2"
       style={{
         height: "calc(var(--vh, 1vh) * 100)",
+        paddingTop: "env(safe-area-inset-top)",
         paddingBottom: "env(safe-area-inset-bottom)"
       }}
     >
