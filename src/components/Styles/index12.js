@@ -159,7 +159,7 @@ export default function StyleSliderMobile3() {
 
   return (
     <div
-      className="w-screen h-screen flex flex-col font-myfont2 px-2 gap-2 overflow-hidden"
+      className="w-screen overflow-x-hidden overflow-y-hidden fixed top-0 left-0 flex flex-col font-myfont2 px-2 gap-2 overflow-hidden"
       style={{ height: "calc(var(--vh, 1vh) * 100)" }}
     >
       {/* Slider + contador */}
