@@ -92,6 +92,7 @@ export default function StyleSlider8() {
         }
 
         function handleClick(event) {
+          if (!sliderRef.current) return;
           const sliderWidth = sliderRef.current.clientWidth;
           const clickPosition = event.clientX;
 

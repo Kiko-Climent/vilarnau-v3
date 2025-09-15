@@ -1,15 +1,24 @@
-"use client";
-import { createContext, useContext, useState } from "react";
-import { useEffect } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
+import { useRouter } from "next/router";
 
 const NavbarContext = createContext();
 
 export const NavbarProvider = ({ children }) => {
-  const [showNavbar, setShowNavbar] = useState(false);
+  const [showNavbar, setShowNavbar] = useState(true);
+  const router = useRouter();
 
   useEffect(() => {
-    console.log("Estado inicial de showNavbar:", showNavbar);
-  }, []);
+    if (router.pathname === "/") {
+      // en splash NO mostramos nunca
+      setShowNavbar(false);
+    } else if (router.pathname === "/home") {
+      // en home empieza oculto, luego lo mostrarás desde FlipSection
+      setShowNavbar(false);
+    } else {
+      // en el resto de páginas sí lo mostramos
+      setShowNavbar(true);
+    }
+  }, [router.pathname]);
 
   return (
     <NavbarContext.Provider value={{ showNavbar, setShowNavbar }}>
