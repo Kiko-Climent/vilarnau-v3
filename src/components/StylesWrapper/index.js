@@ -3,8 +3,6 @@
 import { useState, useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
 import StyleSlider8 from "../Styles/index8";
-// import StyleSlider11 from "../Styles/index11";
-// import StyleSliderMobile2 from "../Styles/index10";
 import StyleSliderMobile3 from "../Styles/index12";
 
 const StylesWrapper = () => {
