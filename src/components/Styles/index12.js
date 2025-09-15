@@ -12,18 +12,23 @@ export default function StyleSliderMobile3() {
 
   useEffect(() => {
     const setVh = () => {
-      document.documentElement.style.setProperty("--vh", `${window.innerHeight * 0.01}px`);
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty("--vh", `${vh}px`);
     };
-  
     setVh();
     window.addEventListener("resize", setVh);
-    window.addEventListener("scroll", setVh);
-  
+    return () => window.removeEventListener("resize", setVh);
+  }, []);
+
+  useEffect(() => {
+    const originalStyle = window.getComputedStyle(document.body).overflow;
+    document.body.style.overflow = "hidden";
     return () => {
-      window.removeEventListener("resize", setVh);
-      window.removeEventListener("scroll", setVh);
+      document.body.style.overflow = originalStyle;
     };
   }, []);
+  
+  
   
 
   useEffect(() => {
@@ -159,8 +164,11 @@ export default function StyleSliderMobile3() {
 
   return (
     <div
-      className="w-screen overflow-x-hidden overflow-y-hidden fixed top-0 left-0 flex flex-col font-myfont2 px-2 gap-2 overflow-hidden"
-      style={{ height: "calc(var(--vh, 1vh) * 100)" }}
+      className="w-full flex flex-col font-myfont2 px-2 gap-2 overflow-hidden"
+      style={{
+        height: "calc(var(--vh, 1vh) * 100)",
+        paddingBottom: "env(safe-area-inset-bottom)"
+      }}
     >
       {/* Slider + contador */}
       <div className="flex flex-row flex-1 gap-2">

@@ -19,7 +19,7 @@ export default function Styles() {
 
   return(
     // <PageTransition>
-      <div className="relative ">
+      <div className="">
         <StylesWrapper />
       </div>
     // </PageTransition>
