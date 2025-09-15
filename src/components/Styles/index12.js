@@ -164,7 +164,7 @@ export default function StyleSliderMobile3() {
 
   return (
     <div
-      className="w-full flex flex-col font-myfont2 px-2 gap-2 overflow-hidden justify-center"
+      className="w-screen flex flex-col font-myfont2 px-2 gap-2"
       style={{
         height: "calc(var(--vh, 1vh) * 100)",
         paddingBottom: "env(safe-area-inset-bottom)"
@@ -173,7 +173,7 @@ export default function StyleSliderMobile3() {
       {/* Slider + contador */}
       <div className="flex flex-row flex-1 gap-2">
         {/* Slider */}
-        <div className="flex-1 flex items-end justify-end">
+        <div className="flex-1 flex items-end justify-center">
           <div
             className="aspect-[3/4] w-full relative overflow-hidden"
             ref={sliderRef}

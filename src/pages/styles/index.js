@@ -19,7 +19,10 @@ export default function Styles() {
 
   return(
     // <PageTransition>
-      <div className="relative ">
+      <div 
+        className="relative w-full overflow-hidden"
+        style={{ height: "calc(var(--vh, 1vh) * 100)" }}
+      >
         <StylesWrapper />
       </div>
     // </PageTransition>
