@@ -32,6 +32,8 @@ html, body {
   -webkit-text-size-adjust: 100%; /* evita zoom raro en iOS */
   max-width: 100%;
   overscroll-behavior: none;
+  margin: 0;
+  padding: 0;
 }
 
 img, video {
