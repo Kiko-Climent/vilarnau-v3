@@ -8,7 +8,7 @@ import Pic4 from "../../../public/zoomgallery/zoom2.webp";
 import Pic5 from "../../../public/zoomgallery/zoom3.webp";
 import Pic6 from "../../../public/zoomgallery/zoom4.webp";
 import Pic7 from "../../../public/zoomgallery/zoom6.webp";
-// import PageTransition from "@/components/Layout/PageTransition";
+import PageTransition from "@/components/Layout/PageTransition";
 import { ReactLenis } from "lenis/react";
 import FlipSection from "@/components/FlipSections";
 import ZoomGallery from "@/components/ZoomGallery";
@@ -56,7 +56,7 @@ export default function Home() {
         <link rel="preload" as="image" href={Pic7.src} />
     </Head>
       <div className="w-screen  relative">
-        {/* <PageTransition> */}
+        <PageTransition>
           <ReactLenis root>
             <FlipSection FirstComponent={Test4} SecondComponent={Triptico5} />
             <ZoomGallery />
@@ -74,7 +74,7 @@ export default function Home() {
             </div>
             <Footer />        
           </ReactLenis>
-        {/* </PageTransition> */}
+        </PageTransition>
       </div>
     </>
     
