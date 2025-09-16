@@ -17,12 +17,12 @@ const Menu2 = () => {
           <Link href="/home">vilarnau</Link>
           <div className="flex"><Link href="/styles">styles</Link></div>
           <div className="flex cursor-pointer" onClick={() => setIsModalOpen(true)}>prices</div>
-          <div className="flex"><Link href="/about">about</Link></div>
+          <div className="flex"><Link href="/home#about" scroll={false}>about</Link></div>
         </div>
 
         {/* 👇 Solo mostramos si NO estamos en "/styles" */}
         {router.pathname !== "/styles" && (
-          <div className="flex flex-col md:flex-row items-end gap-0 md:gap-6 -space-y-1">
+          <div className="flex flex-col md:flex-row items-end gap-0 md:gap-6 -space-y-2 md:-space-y-1">
             <a href="mailto:hello@vilarnau.com" className="flex pb-1">
               hello@vilarnau.com
             </a>

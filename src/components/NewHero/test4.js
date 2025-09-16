@@ -16,15 +16,17 @@ const animateIn = async (target, onComplete) => {
 
   gsap.fromTo(
     split.chars,
-    { yPercent: "random([-100, 100])", opacity: 0, filter: "blur(10px)" },
+    { yPercent: "random([-100, 100])", opacity: 0 },
     {
       yPercent: 0,
       opacity: 1,
       stagger: { amount: 0.4, from: "random" },
       duration: 1,
       ease: "power3.out",
-      onComplete,
-      filter: "blur(0px)",
+      onComplete: () => {
+        split.revert(); // 🔹 devuelve el texto a como estaba originalmente
+        if (onComplete) onComplete();
+      }
     }
   );
 };
@@ -55,6 +57,12 @@ export default function Test4() {
   // 🔹 Inicialmente ocultamos el texto
   useEffect(() => {
     gsap.set(textRef.current, { opacity: 0 });
+  
+    return () => {
+      if (textRef.current) {
+        textRef.current.innerHTML = textRef.current.textContent; // 🔹 resetea
+      }
+    };
   }, []);
 
   return (

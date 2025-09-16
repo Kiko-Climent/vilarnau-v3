@@ -74,6 +74,12 @@ body {
   line-height: 1.06;
 }
 
+.test-info h1, 
+.test-info p {
+  will-change: transform, opacity;
+}
+
+
 
 .mask {
   will-change: clip-path, transform;

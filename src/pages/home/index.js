@@ -21,9 +21,24 @@ import Team from "@/components/Team";
 import AlmodovarQuoteWrapper from "@/components/AlmodovarQuote/AlmodovarQuoteWrapper";
 import Triptico6 from "@/components/Triptico/index6";
 import Quote1 from "@/components/Other/index2";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+import { useLenis } from "lenis/react";
 
 
 export default function Home() {
+
+  const router = useRouter();
+  const lenis = useLenis();
+
+  useEffect(() => {
+    if (router.asPath.includes("#about")) {
+      // Esperamos un poco para que el DOM esté montado
+      setTimeout(() => {
+        lenis?.scrollTo("#about");
+      }, 300);
+    }
+  }, [router.asPath, lenis]);
   
   return(
     <>
@@ -51,7 +66,9 @@ export default function Home() {
             </div>
             <Composition3 />
             <Team />
-            <Composition4Wrapper />
+            <div id="about">
+              <Composition4Wrapper />
+            </div>
             <div className="pt-24">
               <AlmodovarQuoteWrapper />
             </div>
