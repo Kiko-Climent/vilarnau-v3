@@ -1,6 +1,6 @@
 "use client"
 
-import PageTransition from "@/components/Layout/PageTransition";
+// import PageTransition from "@/components/Layout/PageTransition";
 import { useEffect } from "react";
 import StylesWrapper from "@/components/StylesWrapper";
 
@@ -18,10 +18,10 @@ export default function Styles() {
   // const images = Array.from({ length: 16 }, (_, i) => `/styles/img${i + 1}.jpg`);
 
   return(
-    <PageTransition>
+    // <PageTransition>
       <div className="relative w-full">
         <StylesWrapper />
       </div>
-    </PageTransition>
+    // </PageTransition>
   )
 }

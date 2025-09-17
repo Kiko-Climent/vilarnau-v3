@@ -27,8 +27,9 @@ export default function PageTransition ({children, backgroundColor}) {
     height: 0,
     width: 0
   })
+  const [ready, setReady] = useState(false);
 
-  useEffect( () => {
+  useEffect(() => {
     const resize = () => {
       setDimensions({
         width: window.innerWidth,
@@ -37,43 +38,32 @@ export default function PageTransition ({children, backgroundColor}) {
     }
     resize();
     window.addEventListener("resize", resize)
-    return () => {
-      window.removeEventListener("resize", resize)
-    }
-  }, [])
+    return () => window.removeEventListener("resize", resize)
+  }, []);
+
+  // ✅ Reset scroll y marcar ready antes de montar el SVG
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "instant" });
+    setReady(true);
+  }, []);
+  
 
   const text = {
-    initial: {
-      opacity: 1
-    },
+    initial: { opacity: 1 },
     enter: {
       opacity: 0,
       top: -100,
-      transition: {
-        duration: .75,
-        delay: 0.3,
-        ease: [0.76, 0, 0.24, 1]
-      },
-      transitionEnd: {
-        top: "47.5%"
-      }
+      transition: { duration: .75, delay: 0.3, ease: [0.76, 0, 0.24, 1] },
+      transitionEnd: { top: "47.5%" }
     },
-    exit: {
-      opacity: 1,
-      top: "40%",
-      transition: {
-        duration: .5,
-        delay: 0.4,
-        ease: [0.33, 1, 0.68, 1]
-      },
-    }
+    exit: { opacity: 1, top: "40%", transition: { duration: .5, delay: 0.4, ease: [0.33, 1, 0.68, 1] } }
   }
 
-  return(
+  return (
     <div className="page curve" style={backgroundColor}>
       <motion.p {...anim(text)} className="route">{routes[router.route]}</motion.p>
       <div style={{opacity: dimensions.width > 0 ? 0 : 1}} className="background"></div>
-      {dimensions.width > 0 && <SVG {...dimensions} />}
+      {ready && dimensions.width > 0 && <SVG {...dimensions} />}
       {children}
     </div>
   )

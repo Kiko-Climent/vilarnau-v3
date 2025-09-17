@@ -11,11 +11,11 @@ const Menu2 = () => {
   return (
     <>
       <nav 
-        className="w-full h-auto px-2 py-2 fixed flex items-start justify-between text-gray-400 mix-blend-difference text-base md:text-lg tracking-wider z-2 font-myfont2"
+        className="w-full h-auto top-0 left-0 right-0 px-2 py-2 fixed flex items-start justify-between text-gray-400 mix-blend-difference text-base md:text-lg tracking-wider z-2 font-myfont2"
       >
         <div className="flex flex-row items-start gap-2 md:gap-6">
-          <Link href="/home">vilarnau</Link>
-          <div className="flex"><Link href="/styles">styles</Link></div>
+          <Link href="/home" scroll={false}>vilarnau</Link>
+          <div className="flex"><Link href="/styles" scroll={false}>styles</Link></div>
           <div className="flex cursor-pointer" onClick={() => setIsModalOpen(true)}>prices</div>
           <div className="flex"><Link href="/home#about" scroll={false}>about</Link></div>
         </div>
