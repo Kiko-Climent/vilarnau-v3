@@ -6,49 +6,14 @@ import "@/styles/hero.css";
 import "@/styles/zoomgallery.css";
 import "@/styles/newhero.css";
 import "@/styles/styleslidernew.css";
+// import "@/styles/styleslidernew2.css";
 import { useNavbar } from "@/components/Layout/Context/NavbarProvider";
 import { NavbarProvider } from "@/components/Layout/Context/NavbarProvider";
-import { useEffect, useRef } from "react";
-import { useRouter } from "next/router";
-import PageTransition from "@/components/Layout/PageTransition";
 
-function Layout({ Component, pageProps, router }) {
-  const { showNavbar } = useNavbar();
-  const pathname = router.pathname;
-  const nextRouter = useRouter();
-  const prevPathRef = useRef(null);
+function Layout ({ Component, pageProps, router }) {
+  const {showNavbar} = useNavbar();
 
-  // Previene que Next.js haga scroll automático
-  useEffect(() => {
-    window.history.scrollRestoration = "manual";
-  }, []);
-
-  // Guarda la ruta previa
-  useEffect(() => {
-    const handleRouteChangeStart = () => {
-      window.scrollTo({ top: 0, behavior: "instant" });
-      prevPathRef.current = nextRouter.pathname;
-    };
-    nextRouter.events.on("routeChangeStart", handleRouteChangeStart);
-    return () => {
-      nextRouter.events.off("routeChangeStart", handleRouteChangeStart);
-    };
-  }, [nextRouter]);
-
-  // Forzar scrollTop en cada cambio de página completado
-  useEffect(() => {
-    const handleRouteChangeComplete = () => {
-      window.scrollTo({ top: 0, behavior: "instant" });
-    };
-    nextRouter.events.on("routeChangeComplete", handleRouteChangeComplete);
-    return () => {
-      nextRouter.events.off("routeChangeComplete", handleRouteChangeComplete);
-    };
-  }, [nextRouter]);
-
-  // Detecta si venimos de "/" a "/home"
-  const isSplashToHome =
-    prevPathRef.current === "/" && pathname === "/home";
+  const pathname = router.pathname
 
   return (
     <>
@@ -56,20 +21,9 @@ function Layout({ Component, pageProps, router }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <div className="w-screen min-h-screen flex flex-col">
-        {showNavbar && <Menu2 />}
+        {showNavbar && <Menu2 />} {/* 👈 solo mostramos si está activo */}
         <AnimatePresence mode="wait">
-          {pathname === "/home" || pathname === "/styles" ? (
-            isSplashToHome ? (
-              // No aplicar transición si vienes del splash
-              <Component key={pathname} {...pageProps} />
-            ) : (
-              <PageTransition key={pathname}>
-                <Component {...pageProps} />
-              </PageTransition>
-            )
-          ) : (
-            <Component key={pathname} {...pageProps} />
-          )}
+          <Component key={pathname} {...pageProps} />
         </AnimatePresence>
       </div>
     </>
@@ -77,6 +31,9 @@ function Layout({ Component, pageProps, router }) {
 }
 
 export default function App({ Component, pageProps, router }) {
+
+  console.log("ROUTE:", router.route); // <-- deberías ver "/home", "/about", etc.
+
   return (
     <NavbarProvider>
       <Layout Component={Component} pageProps={pageProps} router={router} />
