@@ -3,7 +3,7 @@ import GridRevealImage from "../Tools/GridRevealAnimation";
 
 const Team = () => {
   return(
-    <div className="w-screen h-screen flex items-center justify-center gap-3 px-2">
+    <div className="w-screen h-screen flex items-center justify-center gap-3 px-2 pb-24">
       <div className="flex flex-col w-6/12 md:w-3/12 h-[50%]">
       <TextAnimation>
         <p className="flex text-4xl text-nowrap md:text-5xl self-end text-right uppercase font-myfont2 tracking-wider">

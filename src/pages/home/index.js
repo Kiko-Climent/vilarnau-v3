@@ -23,6 +23,7 @@ import Quote1 from "@/components/Other/index2";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useLenis } from "lenis/react";
+import FlipSection2 from "@/components/FlipSections/index2";
 
 
 export default function Home() {
@@ -59,10 +60,11 @@ export default function Home() {
           <ReactLenis root>
             <FlipSection FirstComponent={Test4} SecondComponent={Triptico5} />
             <ZoomGallery />
-            <Quote1 />
+            {/* <Quote1 />
             <div className="pt-24">
               <Triptico6 />
-            </div>
+            </div> */}
+            <FlipSection2 FirstComponent={Quote1} SecondComponent={Triptico6}/>
             <Composition3 />
             <Team />
             <div id="about">

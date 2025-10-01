@@ -4,7 +4,7 @@ const Triptico6 = () => {
   return (
     <div className="w-screen h-screen overflow-hidden bg-white relative">
       {/* Imagen en esquina superior izquierda */}
-      <div className="absolute top-0 left-0 w-10/12 md:w-7/12 h-[75%] aspect-[4/3]">
+      <div className="absolute top-0 left-0 w-10/12 md:w-8/12 h-[75%] aspect-[4/3]">
         <GridRevealImage
           src="/images/img5.jpg"
           className="w-full h-full"
