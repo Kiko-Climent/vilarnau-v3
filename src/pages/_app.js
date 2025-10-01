@@ -1,5 +1,4 @@
 import { AnimatePresence } from "framer-motion";
-import PageTransitionWrapper from "@/components/Layout/PageTransition/PageTransitionOverlay";
 import Head from "next/head";
 import Menu2 from "@/components/Layout/Menu/menu2";
 import "@/styles/globals.css";
@@ -16,24 +15,16 @@ function Layout ({ Component, pageProps, router }) {
 
   const pathname = router.pathname
 
-  const enableTransition =
-    (pathname === "/home" || pathname === "/styles");
-
   return (
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <div className="w-screen min-h-screen flex flex-col">
-        {showNavbar && <Menu2 />}
-        
-        {enableTransition ? (
-          <PageTransitionWrapper route={pathname}>
-            <Component {...pageProps} />
-          </PageTransitionWrapper>
-        ) : (
-          <Component {...pageProps} />
-        )}
+        {showNavbar && <Menu2 />} {/* 👈 solo mostramos si está activo */}
+        <AnimatePresence mode="wait">
+          <Component key={pathname} {...pageProps} />
+        </AnimatePresence>
       </div>
     </>
   );
