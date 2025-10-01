@@ -18,10 +18,8 @@ export default function Styles() {
   // const images = Array.from({ length: 16 }, (_, i) => `/styles/img${i + 1}.jpg`);
 
   return(
-    // <PageTransition>
       <div className="relative w-full">
         <StylesWrapper />
       </div>
-    // </PageTransition>
   )
 }

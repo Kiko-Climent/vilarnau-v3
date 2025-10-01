@@ -2,35 +2,72 @@
 
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
+import GridRevealImage from '../Tools/GridRevealAnimation';
 
-export default function StyleSlider8() {
+export default function StyleSlider9() {
   const sliderRef = useRef(null);
   const counterRef = useRef(null);
   const previewsRef = useRef(null);
   const sliderImagesRef = useRef(null);
+  const textRef = useRef(null);
+
+  // Animación del texto
+  const animateIn = async (target, onComplete) => {
+    const { default: SplitText } = await import("gsap/SplitText");
+    gsap.registerPlugin(SplitText);
+
+    gsap.set(target, { opacity: 1 });
+
+    const split = new SplitText(target, { type: "chars" });
+
+    gsap.fromTo(
+      split.chars,
+      { yPercent: "random([-100,100])", opacity: 0 },
+      {
+        yPercent: 0,
+        opacity: 1,
+        stagger: { amount: 0.4, from: "random" },
+        duration: 1,
+        ease: "power3.out",
+        onComplete: () => {
+          split.revert();
+          if (onComplete) onComplete();
+        }
+      }
+    );
+  };
 
   useEffect(() => {
     let ctx = gsap.context(() => {
       import('gsap/CustomEase').then(({ CustomEase }) => {
         gsap.registerPlugin(CustomEase);
-        CustomEase.create(
-          'hop',
-          'M0,0 C0.071,0.505 0.192,0.726 0.318,0.852 0.45,0.984 0.504,1 1,1'
-        );
+        CustomEase.create('hop', 'M0,0 C0.071,0.505 0.192,0.726 0.318,0.852 0.45,0.984 0.504,1 1,1');
 
         const sliderImages = sliderImagesRef.current;
         const counter = counterRef.current;
         const prevSlides = previewsRef.current.querySelectorAll('.preview');
-        const slidePreview = previewsRef.current;
 
         let currentImg = 1;
         const totalSlides = 16;
 
-        function updateCounterAndTitlePosition() {
-          if (counter) {
-            counter.textContent = `${currentImg} / ${totalSlides}`;
-          }
+        // Preparamos previews: opacity 0 + GPU hints
+        prevSlides.forEach(prev => {
+          const img = prev.querySelector('img');
+          gsap.set(prev, { opacity: 0 });
+          img.style.willChange = 'transform, clip-path';
+          img.style.transform = 'translateZ(0)';
+          img.style.backfaceVisibility = 'hidden';
+        });
 
+        // Preparamos header text: opacity 0 + GPU hints
+        const headerContent = textRef.current;
+        gsap.set(headerContent, { opacity: 0 });
+        headerContent.style.willChange = 'transform, opacity';
+        headerContent.style.transform = 'translateZ(0)';
+        headerContent.style.backfaceVisibility = 'hidden';
+
+        function updateCounterAndTitlePosition() {
+          if (counter) counter.textContent = `${currentImg} / ${totalSlides}`;
         }
 
         function updateActiveSlidePreview() {
@@ -81,14 +118,8 @@ export default function StyleSlider8() {
             ease: 'hop',
           });
 
-          cleanupSlides();
-        }
-
-        function cleanupSlides() {
           const imgElements = sliderImages.querySelectorAll('.img-slider-new');
-          if (imgElements.length > totalSlides) {
-            imgElements[0].remove();
-          }
+          if (imgElements.length > totalSlides) imgElements[0].remove();
         }
 
         function handleClick(event) {
@@ -96,20 +127,13 @@ export default function StyleSlider8() {
           const sliderWidth = sliderRef.current.clientWidth;
           const clickPosition = event.clientX;
 
-          if (slidePreview.contains(event.target)) {
+          if (previewsRef.current.contains(event.target)) {
             const clickedPrev = event.target.closest('.preview');
-
             if (clickedPrev) {
               const clickedIndex = Array.from(prevSlides).indexOf(clickedPrev) + 1;
-
               if (clickedIndex !== currentImg) {
-                if (clickedIndex < currentImg) {
-                  currentImg = clickedIndex;
-                  animateSlide('left');
-                } else {
-                  currentImg = clickedIndex;
-                  animateSlide('right');
-                }
+                currentImg = clickedIndex;
+                animateSlide(clickedIndex < currentImg ? 'left' : 'right');
                 updateActiveSlidePreview();
                 updateCounterAndTitlePosition();
               }
@@ -142,12 +166,34 @@ export default function StyleSlider8() {
       <div className="slider" ref={sliderRef}>
         <div className="slider-images" ref={sliderImagesRef}>
           <div className="img-slider-new">
-            <img src="/styles/img1.webp" alt="img1" />
+            <GridRevealImage
+              src="/styles/img1.webp"
+              alt="img1"
+              className="w-full h-full"
+              rows={5}
+              cols={5}
+              order="diagonal"
+              start="top 85%"
+              onComplete={() => {
+                // Animamos el header-content al acabar el GridReveal
+                animateIn(textRef.current, () => {
+                  // Animamos previews después del texto
+                  const prevSlides = previewsRef.current.querySelectorAll('.preview');
+                  gsap.to(prevSlides, {
+                    opacity: 1,
+                    duration: 0.6,
+                    stagger: 0.05,
+                    ease: 'power2.out'
+                  });
+                });
+              }}
+            />
           </div>
         </div>
       </div>
+
       <div className='slider-content'>
-        <div className='contact-content'>  
+        <div className='contact-content' ref={textRef}>
           <div className='header-content leading-none'>
             <p>salon vilarnau | styles</p>
             <p>T : (030) 61202363</p>
@@ -159,57 +205,21 @@ export default function StyleSlider8() {
         </div>
 
         <div className="slider-preview" ref={previewsRef}>
-          <div className="preview active">
-            <img src="/styles/img1.webp" alt="img1" />
-          </div>
-          <div className="preview">
-            <img src="/styles/img2.webp" alt="img2" />
-          </div>
-          <div className="preview">
-            <img src="/styles/img3.webp" alt="img3" />
-          </div>
-          <div className="preview">
-            <img src="/styles/img4.webp" alt="img4" />
-          </div>
-          <div className="preview">
-            <img src="/styles/img5.webp" alt="img5" />
-          </div>
-          <div className="preview">
-            <img src="/styles/img6.webp" alt="img6" />
-          </div>
-          <div className="preview">
-            <img src="/styles/img7.webp" alt="img7" />
-          </div>
-          <div className="preview">
-            <img src="/styles/img8.jpg" alt="img8" />
-          </div>
-          <div className="preview">
-            <img src="/styles/img9.webp" alt="img9" />
-          </div>
-          <div className="preview">
-            <img src="/styles/img10.webp" alt="img10" />
-          </div>
-          <div className="preview">
-            <img src="/styles/img11.webp" alt="img11" />
-          </div>
-          <div className="preview">
-            <img src="/styles/img12.webp" alt="img12" />
-          </div>
-          <div className="preview">
-            <img src="/styles/img13.webp" alt="img13" />
-          </div>
-          <div className="preview">
-            <img src="/styles/img14.webp" alt="img14" />
-          </div>
-          <div className="preview">
-            <img src="/styles/img15.webp" alt="img15" />
-          </div>
-          <div className="preview">
-            <img src="/styles/img16.webp" alt="img16" />
-          </div>
+          {Array.from({ length: 16 }, (_, i) => (
+            <div key={i} className={`preview ${i === 0 ? 'active' : ''}`}>
+              <img
+                src={`/styles/img${i + 1}${i === 7 ? '.jpg' : '.webp'}`}
+                alt={`img${i + 1}`}
+                style={{
+                  willChange: 'transform, clip-path',
+                  transform: 'translateZ(0)',
+                  backfaceVisibility: 'hidden'
+                }}
+              />
+            </div>
+          ))}
         </div>
       </div>
-
     </div>
   );
 }

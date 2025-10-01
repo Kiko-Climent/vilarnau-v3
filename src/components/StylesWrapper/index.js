@@ -2,8 +2,9 @@
 
 import { useState, useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
-import StyleSlider8 from "../Styles/index8";
+// import StyleSlider8 from "../Styles/index8";
 import StyleSliderMobile3 from "../Styles/index12";
+import StyleSlider9 from "../Styles/index13";
 
 const StylesWrapper = () => {
   const [mounted, setMounted] = useState(false);
@@ -18,7 +19,7 @@ const StylesWrapper = () => {
     return null;
   }
 
-  return isDesktop ? <StyleSlider8 /> : <StyleSliderMobile3 />;
+  return isDesktop ? <StyleSlider9 /> : <StyleSliderMobile3 />;
 }
 
 export default StylesWrapper;

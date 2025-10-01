@@ -30,7 +30,7 @@
   height: 100%;
   position: absolute;
   will-change: clip-path, transform, opacity;
-  transform: translateZ(0);          /* fuerza render en GPU */
+  transform: translateZ(0);
   backface-visibility: hidden;
   /* contain: layout paint style; */
 }
