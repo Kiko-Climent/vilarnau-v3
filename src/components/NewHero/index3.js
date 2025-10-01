@@ -129,7 +129,6 @@ export default function NewHero3() {
         <div className="img-newhero"><img src="/newheromobile/img6.webp" alt="" /></div>
       </div>
       <div className="header font-myfont2">
-        {/* <h1>manteufelstr.55</h1> */}
         <h1>salon vilarnau</h1>
       </div>
     </div>
