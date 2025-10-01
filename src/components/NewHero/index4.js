@@ -7,11 +7,13 @@ import CounterPreloader from "../Tools/CounterPreloader";
 export default function NewHero4() {
   const gridRef = useRef(null);
   const router = useRouter();
-  const [loading, setLoading] = useState(true);   // controla preloader visible
-  const [imagesLoaded, setImagesLoaded] = useState(false); // controla precarga imágenes
+
+  const [loading, setLoading] = useState(true);             // CounterPreloader visible
+  const [imagesLoaded, setImagesLoaded] = useState(false);  // Splash images precargadas
+  const [test4ImagesLoaded, setTest4ImagesLoaded] = useState(false); // Test4 images precargadas
 
   // -------------------------------
-  // Precarga de imágenes
+  // Función de precarga genérica
   // -------------------------------
   const preloadImages = (images, onComplete) => {
     let loaded = 0;
@@ -24,6 +26,30 @@ export default function NewHero4() {
       };
     });
   };
+
+  // -------------------------------
+  // Precarga imágenes Splash
+  // -------------------------------
+  useEffect(() => {
+    const splashImages = [
+      ...Array.from({ length: 35 }, (_, i) => `/newheromobile/img${i + 1}.webp`),
+      "/newhero/img5.webp",
+      "/newhero/img12.webp"
+    ];
+    preloadImages(splashImages, () => setImagesLoaded(true));
+  }, []);
+
+  // -------------------------------
+  // Precarga imágenes Test4
+  // -------------------------------
+  useEffect(() => {
+    const test4Images = [
+      "/newhero/img10.webp",
+      "/images/img1.webp",
+      "/images/img17.webp"
+    ];
+    preloadImages(test4Images, () => setTest4ImagesLoaded(true));
+  }, []);
 
   // -------------------------------
   // Animación del splash
@@ -91,30 +117,32 @@ export default function NewHero4() {
       clipPath: "polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%)",
       duration: 0.6,
       ease: "power2.inOut",
-      onComplete: () => router.push("/home"),
+      onComplete: () => {
+        // 🔹 Esperamos que Test4 esté precargado antes de ir a /home
+        if (test4ImagesLoaded) {
+          router.push("/home");
+        } else {
+          const checkLoaded = setInterval(() => {
+            if (test4ImagesLoaded) {
+              clearInterval(checkLoaded);
+              router.push("/home");
+            }
+          }, 50);
+        }
+      },
     });
   };
 
   // -------------------------------
-  // Inicia precarga de imágenes
-  // -------------------------------
-  useEffect(() => {
-    const allImages = [
-      ...Array.from({ length: 35 }, (_, i) => `/newheromobile/img${i + 1}.webp`),
-      "/newhero/img5.webp",
-      "/newhero/img12.webp"
-    ];
-
-    preloadImages(allImages, () => setImagesLoaded(true));
-  }, []);
-
-  // -------------------------------
-  // Ejecuta animación cuando preloader y precarga terminan
+  // Ejecuta animación solo cuando preloader y splash images estén listas
   // -------------------------------
   useEffect(() => {
     if (!loading && imagesLoaded) runAnimation();
   }, [loading, imagesLoaded]);
 
+  // -------------------------------
+  // Renderizado
+  // -------------------------------
   return (
     <>
       {loading && <CounterPreloader duration={3} onComplete={() => setLoading(false)} />}
