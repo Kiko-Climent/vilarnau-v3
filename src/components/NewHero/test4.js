@@ -73,7 +73,7 @@ export default function Test4() {
       {/* Lado izquierdo */}
       <div className="flex w-full md:w-1/2 aspect-[3/4] overflow-hidden">
         <GridRevealImage
-          src={isMobile ? "/newhero/img10.webp" : "/images/img1.jpeg"}
+          src={isMobile ? "/newhero/img10.webp" : "/images/img1.webp"}
           className="w-full h-full"
           rows={5}
           cols={5}
@@ -88,7 +88,7 @@ export default function Test4() {
         <div className="hidden md:flex flex-1 items-center justify-center">
           <div className="aspect-[3/4] w-1/2">
             <GridRevealImage
-              src="/images/img17.jpeg"
+              src="/images/img17.webp"
               className="w-full h-full"
               rows={5}
               cols={5}

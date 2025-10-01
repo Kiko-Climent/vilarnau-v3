@@ -25,7 +25,7 @@ export default function CounterPreloader({ onComplete, duration = 3 }) {
 
   return (
     <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-white">
-      <div className="text-[1.2rem] md:text-[2rem] select-none">
+      <div className="text-8xl select-none tracking-wide">
         <span ref={countRef}>0</span>
       </div>
     </div>
