@@ -173,6 +173,7 @@ export default function StyleSlider9({ready}) {
             <GridRevealImage
               src="/styles/img1.webp"
               alt="img1"
+              objectPosition="top"
               className="w-full h-full"
               rows={5}
               cols={5}

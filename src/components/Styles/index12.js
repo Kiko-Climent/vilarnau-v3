@@ -100,10 +100,10 @@ export default function StyleSliderMobile3({ ready }) {
         }
 
         function animateSlide(direction) {
-          const currentSlide =
-            sliderImages.querySelectorAll('.img-slider-new')[
-              sliderImages.querySelectorAll('.img-slider-new').length - 1
-            ];
+          // const currentSlide =
+          //   sliderImages.querySelectorAll('.img-slider-new')[
+          //     sliderImages.querySelectorAll('.img-slider-new').length - 1
+          //   ];
 
           const slideImg = document.createElement('div');
           slideImg.classList.add('img-slider-new', 'absolute', 'w-full', 'h-full');

@@ -145,7 +145,7 @@ export default function NewHero4() {
   // -------------------------------
   return (
     <>
-      {loading && <CounterPreloader duration={3} onComplete={() => setLoading(false)} />}
+      {loading && <CounterPreloader duration={4} onComplete={() => setLoading(false)} />}
       {!loading && (
         <div className="image-grid" ref={gridRef}>
           <div className="grid-row">

@@ -1,7 +1,7 @@
 import { useRef, useEffect } from "react";
 import gsap from "gsap";
 
-export default function CounterPreloader({ onComplete, duration = 3 }) {
+export default function CounterPreloader({ onComplete, duration = 4 }) {
   const countRef = useRef(null);
   const currentValue = useRef({ val: 0 });
 

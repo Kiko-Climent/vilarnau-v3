@@ -60,6 +60,7 @@ const makeOrder = (rows, cols, mode = "diagonal") => {
   return groups;
 };
 
+// Default prop: objectPosition = 'center'
 export default function GridRevealImage({
   src,
   rows = 5,
@@ -75,15 +76,18 @@ export default function GridRevealImage({
   groupOffset = 0.125,
   start = "top 80%",
   once = true,
+  objectPosition = "center", // 🔹 default center
   onComplete,
 }) {
   const wrapRef = useRef(null);
   const tlRef = useRef(null);
   const hasAnimatedRef = useRef(false);
 
+  const resolvedSrc = getSrc(src);
+  const total = rows * cols;
+
   useEffect(() => {
     if (once && hasAnimatedRef.current) return;
-
     let mounted = true;
 
     (async () => {
@@ -97,7 +101,6 @@ export default function GridRevealImage({
       const hidden = buildClipPaths(rows, cols, "hidden", overlap);
       const visible = buildClipPaths(rows, cols, "visible", overlap);
 
-      // Inicialmente oculta cada máscara
       masks.forEach((mask, idx) =>
         gsap.set(mask, { clipPath: hidden[idx], willChange: "clip-path" })
       );
@@ -117,10 +120,8 @@ export default function GridRevealImage({
         },
       });
 
-      // 🔹 Hacer visible el contenedor antes de animar las máscaras
       tl.set(wrap, { opacity: 1, duration: 0 });
 
-      // Animación de las máscaras
       groups.forEach((group, groupIndex) => {
         const elements = group
           .map((idx) => wrap.querySelector(`.mask${idx}`))
@@ -133,6 +134,11 @@ export default function GridRevealImage({
             duration,
             ease,
             stagger,
+            onStart: () => {
+              elements.forEach((el) => {
+                el.style.backgroundPosition = objectPosition; // 🔹 se aplica
+              });
+            },
           },
           groupIndex * groupOffset
         );
@@ -163,11 +169,9 @@ export default function GridRevealImage({
     groupOffset,
     start,
     once,
+    objectPosition,
     onComplete,
   ]);
-
-  const resolvedSrc = getSrc(src);
-  const total = rows * cols;
 
   return (
     <div
@@ -180,9 +184,13 @@ export default function GridRevealImage({
           key={j}
           className={`mask mask${j} absolute inset-0 bg-center bg-cover`}
           data-index={j}
-          style={{ backgroundImage: `url(${resolvedSrc})` }}
+          style={{
+            backgroundImage: `url(${resolvedSrc})`,
+            backgroundPosition: objectPosition || "center", // 🔹 fallback
+          }}
         />
       ))}
     </div>
   );
 }
+
