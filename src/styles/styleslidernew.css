@@ -92,10 +92,20 @@
   gap: 0.5rem;
 }
 
+/* .preview {
+  flex: 1;
+  cursor: pointer;
+  position: relative;
+} */
+
 .preview {
   flex: 1;
   cursor: pointer;
   position: relative;
+  opacity: 0; /* arranca invisibles */
+  transform: translateY(10px) translateZ(0); /* preparado GPU */
+  will-change: transform, opacity;
+  contain: paint layout style;
 }
 
 .preview img {

@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import GridRevealImage from '../Tools/GridRevealAnimation';
 
-export default function StyleSlider9() {
+export default function StyleSlider9({ready}) {
   const sliderRef = useRef(null);
   const counterRef = useRef(null);
   const previewsRef = useRef(null);
@@ -38,6 +38,8 @@ export default function StyleSlider9() {
   };
 
   useEffect(() => {
+    if (!ready) return;
+    
     let ctx = gsap.context(() => {
       import('gsap/CustomEase').then(({ CustomEase }) => {
         gsap.registerPlugin(CustomEase);
@@ -85,7 +87,7 @@ export default function StyleSlider9() {
           slideImg.classList.add('img-slider-new');
 
           const slideImgElem = document.createElement('img');
-          slideImgElem.src = `/styles/img${currentImg}.webp`;
+          slideImgElem.src = `/stylesresized/img${currentImg}.webp`;
           gsap.set(slideImgElem, { x: direction === 'left' ? -500 : 500 });
 
           slideImg.appendChild(slideImgElem);
@@ -132,21 +134,23 @@ export default function StyleSlider9() {
             if (clickedPrev) {
               const clickedIndex = Array.from(prevSlides).indexOf(clickedPrev) + 1;
               if (clickedIndex !== currentImg) {
+                const direction = clickedIndex > currentImg ? 'right' : 'left';
                 currentImg = clickedIndex;
-                animateSlide(clickedIndex < currentImg ? 'left' : 'right');
+                animateSlide(direction);
                 updateActiveSlidePreview();
                 updateCounterAndTitlePosition();
               }
+              
             }
             return;
           }
 
           if (clickPosition < sliderWidth / 2 && currentImg !== 1) {
-            currentImg--;
             animateSlide('left');
+            currentImg--;
           } else if (clickPosition > sliderWidth / 2 && currentImg !== totalSlides) {
-            currentImg++;
             animateSlide('right');
+            currentImg++;
           }
 
           updateActiveSlidePreview();
@@ -159,7 +163,7 @@ export default function StyleSlider9() {
     }, sliderRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [ready]);
 
   return (
     <div className='container-styles-2 font-myfont2 text-xl tracking-wider'>
@@ -181,10 +185,12 @@ export default function StyleSlider9() {
                   const prevSlides = previewsRef.current.querySelectorAll('.preview');
                   gsap.to(prevSlides, {
                     opacity: 1,
+                    y: 0,
                     duration: 0.6,
                     stagger: 0.05,
                     ease: 'power2.out'
                   });
+                  
                 });
               }}
             />
@@ -208,7 +214,7 @@ export default function StyleSlider9() {
           {Array.from({ length: 16 }, (_, i) => (
             <div key={i} className={`preview ${i === 0 ? 'active' : ''}`}>
               <img
-                src={`/styles/img${i + 1}${i === 7 ? '.jpg' : '.webp'}`}
+                src={`/stylesresized/img${i + 1}${'.webp'}`}
                 alt={`img${i + 1}`}
                 style={{
                   willChange: 'transform, clip-path',

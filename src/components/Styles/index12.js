@@ -2,36 +2,64 @@
 
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
+import GridRevealImage from '../Tools/GridRevealAnimation';
 
-export default function StyleSliderMobile3() {
+export default function StyleSliderMobile3({ ready }) {
   const sliderRef = useRef(null);
   const counterRef = useRef(null);
   const previewsRef = useRef(null);
   const sliderImagesRef = useRef(null);
+  const textRef = useRef(null);
 
+  // Animación del texto tipo SplitText
+  const animateIn = async (target, onComplete) => {
+    const { default: SplitText } = await import('gsap/SplitText');
+    gsap.registerPlugin(SplitText);
 
+    gsap.set(target, { opacity: 1 });
+
+    const split = new SplitText(target, { type: 'chars' });
+
+    gsap.fromTo(
+      split.chars,
+      { yPercent: 'random([-100,100])', opacity: 0 },
+      {
+        yPercent: 0,
+        opacity: 1,
+        stagger: { amount: 0.4, from: 'random' },
+        duration: 1,
+        ease: 'power3.out',
+        onComplete: () => {
+          split.revert();
+          if (onComplete) onComplete();
+        },
+      }
+    );
+  };
+
+  // Ajuste de vh para móviles
   useEffect(() => {
     const setVh = () => {
       const vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty("--vh", `${vh}px`);
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
     };
     setVh();
-    window.addEventListener("resize", setVh);
-    return () => window.removeEventListener("resize", setVh);
+    window.addEventListener('resize', setVh);
+    return () => window.removeEventListener('resize', setVh);
   }, []);
 
+  // Evita scroll mientras está el slider
   useEffect(() => {
     const originalStyle = window.getComputedStyle(document.body).overflow;
-    document.body.style.overflow = "hidden";
+    document.body.style.overflow = 'hidden';
     return () => {
       document.body.style.overflow = originalStyle;
     };
   }, []);
-  
-  
-  
 
   useEffect(() => {
+    if (!ready) return;
+
     let ctx = gsap.context(() => {
       import('gsap/CustomEase').then(({ CustomEase }) => {
         gsap.registerPlugin(CustomEase);
@@ -43,14 +71,27 @@ export default function StyleSliderMobile3() {
         const sliderImages = sliderImagesRef.current;
         const counter = counterRef.current;
         const prevSlides = previewsRef.current.querySelectorAll('.preview');
-        const slidePreview = previewsRef.current;
         let currentImg = 1;
         const totalSlides = 16;
 
-        function updateCounterAndTitlePosition() {
-          if (counter) {
-            counter.textContent = `${currentImg} / ${totalSlides}`;
-          }
+        // Inicializamos previews con opacity 0
+        prevSlides.forEach((prev) => {
+          gsap.set(prev, { opacity: 0, y: 20 });
+          const img = prev.querySelector('img');
+          img.style.willChange = 'transform, clip-path';
+          img.style.transform = 'translateZ(0)';
+          img.style.backfaceVisibility = 'hidden';
+        });
+
+        // Inicializamos texto
+        const headerContent = textRef.current;
+        gsap.set(headerContent, { opacity: 0 });
+        headerContent.style.willChange = 'transform, opacity';
+        headerContent.style.transform = 'translateZ(0)';
+        headerContent.style.backfaceVisibility = 'hidden';
+
+        function updateCounterAndTitle() {
+          if (counter) counter.textContent = `${currentImg} / ${totalSlides}`;
         }
 
         function updateActiveSlidePreview() {
@@ -59,34 +100,27 @@ export default function StyleSliderMobile3() {
         }
 
         function animateSlide(direction) {
+          const currentSlide =
+            sliderImages.querySelectorAll('.img-slider-new')[
+              sliderImages.querySelectorAll('.img-slider-new').length - 1
+            ];
 
           const slideImg = document.createElement('div');
-          slideImg.classList.add(
-            'img-slider-new',
-            'absolute',
-            'w-full',
-            'h-full',
-            'will-change-transform',
-            'translate-z-0',
-            'backface-hidden'
-          );
+          slideImg.classList.add('img-slider-new', 'absolute', 'w-full', 'h-full');
 
           const slideImgElem = document.createElement('img');
           slideImgElem.src = `/stylesresized/img${currentImg}.webp`;
-          slideImgElem.classList.add(
-            'w-full',
-            'h-full',
-            'object-cover',
-            'object-top',
-            'will-change-transform',
-            'translate-z-0',
-            'backface-hidden'
-          );
+          slideImgElem.classList.add('w-full', 'h-full', 'object-cover', 'object-top');
+
+          // GPU hints solo para activo y siguiente
+          slideImgElem.style.willChange = 'transform, clip-path';
+          slideImgElem.style.transform = 'translateZ(0)';
+          slideImgElem.style.backfaceVisibility = 'hidden';
 
           gsap.set(slideImgElem, { x: direction === 'left' ? -500 : 500 });
+
           slideImg.appendChild(slideImgElem);
           sliderImages.appendChild(slideImg);
-
 
           gsap.fromTo(
             slideImg,
@@ -109,35 +143,35 @@ export default function StyleSliderMobile3() {
             ease: 'hop',
           });
 
-          cleanupSlides();
+          // Limitar slides en DOM
+          const imgElements = sliderImages.querySelectorAll('.img-slider-new');
+          if (imgElements.length > totalSlides) imgElements[0].remove();
         }
 
-        function cleanupSlides() {
-          const imgElements = sliderImages.querySelectorAll('.img-slider-new');
-          if (imgElements.length > totalSlides) {
-            imgElements[0].remove();
-          }
-        }
+        // Animación inicial de previews
+        gsap.to(prevSlides, {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          stagger: 0.05,
+          ease: 'power2.out',
+        });
 
         function handleClick(event) {
           if (!sliderRef.current) return;
           const sliderWidth = sliderRef.current.clientWidth;
           const clickPosition = event.clientX;
 
-          if (slidePreview.contains(event.target)) {
+          if (previewsRef.current.contains(event.target)) {
             const clickedPrev = event.target.closest('.preview');
             if (clickedPrev) {
               const clickedIndex = Array.from(prevSlides).indexOf(clickedPrev) + 1;
               if (clickedIndex !== currentImg) {
-                if (clickedIndex < currentImg) {
-                  currentImg = clickedIndex;
-                  animateSlide('left');
-                } else {
-                  currentImg = clickedIndex;
-                  animateSlide('right');
-                }
+                const direction = clickedIndex > currentImg ? 'right' : 'left';
+                currentImg = clickedIndex;
+                animateSlide(direction);
                 updateActiveSlidePreview();
-                updateCounterAndTitlePosition();
+                updateCounterAndTitle();
               }
             }
             return;
@@ -150,8 +184,9 @@ export default function StyleSliderMobile3() {
             currentImg++;
             animateSlide('right');
           }
+
           updateActiveSlidePreview();
-          updateCounterAndTitlePosition();
+          updateCounterAndTitle();
         }
 
         document.addEventListener('click', handleClick);
@@ -160,34 +195,34 @@ export default function StyleSliderMobile3() {
     }, sliderRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [ready]);
 
   return (
     <div
       className="w-full flex flex-col font-myfont2 px-2 gap-2"
       style={{
-        height: "calc(var(--vh, 1vh) * 100)",
-        paddingTop: "40px",
-        paddingBottom: "env(safe-area-inset-bottom)"
+        height: 'calc(var(--vh, 1vh) * 100)',
+        paddingTop: '40px',
+        paddingBottom: 'env(safe-area-inset-bottom)',
       }}
     >
       {/* Slider + contador */}
       <div className="flex flex-row flex-1 gap-2">
-        {/* Slider */}
         <div className="flex-1 flex items-end justify-center">
-          <div
-            className="aspect-[3/4] w-full relative overflow-hidden"
-            ref={sliderRef}
-          >
-            <div
-              className="slider-images w-full h-full relative"
-              ref={sliderImagesRef}
-            >
-              <div className="img-slider-new absolute w-full h-full will-change-transform translate-z-0 backface-hidden">
-                <img
-                  src="/stylesresized/img1.webp"
+          <div className="aspect-[3/4] w-full relative overflow-hidden" ref={sliderRef}>
+            <div className="slider-images w-full h-full relative" ref={sliderImagesRef}>
+              <div className="img-slider-new absolute w-full h-full">
+                <GridRevealImage
+                  src="/styles/img1.webp"
                   alt="img1"
-                  className="w-full h-full object-cover object-top will-change-transform translate-z-0 backface-hidden"
+                  className="w-full h-full"
+                  rows={5}
+                  cols={5}
+                  order="diagonal"
+                  start="top 85%"
+                  onComplete={() => {
+                    animateIn(textRef.current);
+                  }}
                 />
               </div>
             </div>
@@ -196,16 +231,15 @@ export default function StyleSliderMobile3() {
 
         {/* Paginación */}
         <div className="w-15 flex flex-col justify-end items-center h-full mt-2">
-          <p ref={counterRef} className="text-3xl text-nowrap">1 / 16</p>
+          <p ref={counterRef} className="text-3xl text-nowrap">
+            1 / 16
+          </p>
         </div>
       </div>
 
       {/* Previews */}
       <div className="flex flex-none h-[calc(15vh)] w-full items-center justify-center">
-        <div
-          className="grid grid-cols-8 grid-rows-2 gap-2 w-full h-full"
-          ref={previewsRef}
-        >
+        <div className="grid grid-cols-8 grid-rows-2 gap-2 w-full h-full" ref={previewsRef}>
           {Array.from({ length: 16 }, (_, index) => (
             <div
               key={index + 1}
@@ -214,11 +248,7 @@ export default function StyleSliderMobile3() {
               <img
                 src={`/stylesresized/img${index + 1}.webp`}
                 alt={`img${index + 1}`}
-                className="w-full h-full object-cover will-change-transform translate-z-0 backface-hidden"
-              />
-              <div
-                className={`absolute inset-0 transition-opacity duration-300
-                  ${index === 0 ? 'opacity-0' : 'bg-opacity-40'}`}
+                className="w-full h-full object-cover"
               />
             </div>
           ))}
@@ -226,12 +256,14 @@ export default function StyleSliderMobile3() {
       </div>
 
       {/* Info */}
-      <div className="flex flex-none h-[calc(20vh)] flex-col justify-start items-start -space-y-2 tracking-wider">
+      <div
+        ref={textRef}
+        className="flex flex-none h-[calc(20vh)] flex-col justify-start items-start -space-y-2 tracking-wider"
+      >
         <p className="text-xl">vilarnau | styles</p>
         <p className="text-xl">T : (030) 61202363</p>
         <p className="text-xl">E : hello@vilarnau.de</p>
       </div>
     </div>
-
   );
 }
