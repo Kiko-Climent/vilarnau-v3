@@ -95,7 +95,7 @@ const Composition4 = () => {
 
         {/* Imagen inferior derecha */}
         <div
-          className="absolute pr-2"
+          className="absolute pr-6"
           style={{
             bottom: "0%",
             right: "0%",

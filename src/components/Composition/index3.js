@@ -54,7 +54,7 @@ const Composition3 = () => {
 
 
         {/* Imagen inferior derecha */}
-        <div className="absolute bottom-0 right-[4.3%] md:right-0 w-[51%] md:w-[31.5%] h-[37.3%] pr-2 md:pr-2 z-[1]">
+        <div className="absolute bottom-0 right-[4.3%] md:right-0 w-[51%] md:w-[31.5%] h-[37.3%] pr-2 md:pr-6 z-[1]">
           <GridRevealImage
             src="/images/img2.jpg"
             className="w-full h-full object-cover"
