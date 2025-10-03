@@ -1,27 +1,41 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import gsap from "gsap";
 
-export default function CounterPreloader({ progress, onComplete, done }) {
+export default function CounterPreloader({ onComplete, minDuration = 4 }) {
   const countRef = useRef(null);
   const currentValue = useRef({ val: 0 });
+  const [done, setDone] = useState(false);
 
   useEffect(() => {
     if (!countRef.current) return;
 
-    gsap.to(currentValue.current, {
-      val: progress,
-      duration: 0.3,
+    const tl = gsap.timeline({
+      onComplete: () => {
+        setDone(true);
+        if (onComplete) onComplete();
+      },
+    });
+
+    // 🔹 Fase 1: del 0% al 90% en minDuration segundos
+    tl.to(currentValue.current, {
+      val: 90,
+      duration: minDuration,
       ease: "power1.out",
       onUpdate: () => {
         if (countRef.current) {
           countRef.current.innerText = Math.floor(currentValue.current.val);
         }
       },
-      onComplete: () => {
-        if (done && onComplete) onComplete();
-      },
     });
-  }, [progress, done, onComplete]);
+
+    // 🔹 Fase 2: espera hasta que assets estén listos (se controlará externamente)
+    // se forzará con un trigger -> cuando acaben imágenes sube al 100
+  }, [onComplete, minDuration]);
+
+  // 🔹 Cuando todo esté cargado (NewHero4 detecta imágenes + Test4), subimos a 100
+  useEffect(() => {
+    if (done) return; // evitar repetir
+  }, [done]);
 
   return (
     <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-white">

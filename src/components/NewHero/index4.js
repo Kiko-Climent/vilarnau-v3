@@ -138,17 +138,26 @@ export default function NewHero4() {
         img.src = src;
         img.onload = img.onerror = () => {
           loaded++;
-          setProgress(Math.floor((loaded / allImages.length) * 100));
+          // calcular progreso máximo inicial 90%
+          const maxInitialProgress = 90;
+          const progressValue = Math.min(
+            Math.floor((loaded / allImages.length) * 100),
+            maxInitialProgress
+          );
+          setProgress(progressValue);
+    
           if (loaded === allImages.length) resolve();
         };
       });
     });
+    
 
     const timerPromise = new Promise((resolve) => setTimeout(resolve, 4000));
 
     Promise.all([preloadPromise, timerPromise]).then(() => {
+      setProgress(100);
       setDone(true);
-      setTest4ImagesLoaded(true); // aquí ya sabemos que también Test4 está listo
+      setTest4ImagesLoaded(true);
     });
   }, []);
 
