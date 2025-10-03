@@ -56,14 +56,9 @@ export default function Home() {
         <link rel="preload" as="image" href={Pic7.src} />
     </Head>
       <div className="w-screen  relative">
-        {/* <PageTransition> */}
           <ReactLenis root>
             <FlipSection FirstComponent={Test4} SecondComponent={Triptico5} />
             <ZoomGallery />
-            {/* <Quote1 />
-            <div className="pt-24">
-              <Triptico6 />
-            </div> */}
             <FlipSection2 FirstComponent={Quote1} SecondComponent={Triptico6}/>
             <Composition3 />
             <Team />
@@ -75,7 +70,6 @@ export default function Home() {
             </div>
             <Footer />        
           </ReactLenis>
-        {/* </PageTransition> */}
       </div>
     </>
     

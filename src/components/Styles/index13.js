@@ -4,14 +4,14 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import GridRevealImage from '../Tools/GridRevealAnimation';
 
-export default function StyleSlider9({ready}) {
+export default function StyleSlider9({ ready }) {
   const sliderRef = useRef(null);
   const counterRef = useRef(null);
   const previewsRef = useRef(null);
   const sliderImagesRef = useRef(null);
   const textRef = useRef(null);
 
-  // Animación del texto
+  // Animación del texto (solo cabecera)
   const animateIn = async (target, onComplete) => {
     const { default: SplitText } = await import("gsap/SplitText");
     gsap.registerPlugin(SplitText);
@@ -30,7 +30,7 @@ export default function StyleSlider9({ready}) {
         duration: 1,
         ease: "power3.out",
         onComplete: () => {
-          split.revert();
+          split.revert(); // revert solo afecta a los chars animados
           if (onComplete) onComplete();
         }
       }
@@ -39,7 +39,7 @@ export default function StyleSlider9({ready}) {
 
   useEffect(() => {
     if (!ready) return;
-    
+
     let ctx = gsap.context(() => {
       import('gsap/CustomEase').then(({ CustomEase }) => {
         gsap.registerPlugin(CustomEase);
@@ -52,7 +52,7 @@ export default function StyleSlider9({ready}) {
         let currentImg = 1;
         const totalSlides = 16;
 
-        // Preparamos previews: opacity 0 + GPU hints
+        // Preparamos previews
         prevSlides.forEach(prev => {
           const img = prev.querySelector('img');
           gsap.set(prev, { opacity: 0 });
@@ -61,8 +61,8 @@ export default function StyleSlider9({ready}) {
           img.style.backfaceVisibility = 'hidden';
         });
 
-        // Preparamos header text: opacity 0 + GPU hints
-        const headerContent = textRef.current;
+        // Preparamos header text: solo la cabecera
+        const headerContent = textRef.current.querySelector('.header-content');
         gsap.set(headerContent, { opacity: 0 });
         headerContent.style.willChange = 'transform, opacity';
         headerContent.style.transform = 'translateZ(0)';
@@ -82,23 +82,19 @@ export default function StyleSlider9({ready}) {
             sliderImages.querySelectorAll('.img-slider-new')[
               sliderImages.querySelectorAll('.img-slider-new').length - 1
             ];
-
+        
+          // Creamos la nueva slide
           const slideImg = document.createElement('div');
           slideImg.classList.add('img-slider-new');
-
+        
           const slideImgElem = document.createElement('img');
           slideImgElem.src = `/stylesresized/img${currentImg}.webp`;
           gsap.set(slideImgElem, { x: direction === 'left' ? -500 : 500 });
-
+        
           slideImg.appendChild(slideImgElem);
           sliderImages.appendChild(slideImg);
-
-          gsap.to(currentSlide.querySelector('img-slider-new'), {
-            x: direction === 'left' ? 500 : -500,
-            duration: 1.5,
-            ease: 'hop',
-          });
-
+        
+          // Animación de la nueva slide
           gsap.fromTo(
             slideImg,
             {
@@ -113,16 +109,18 @@ export default function StyleSlider9({ready}) {
               ease: 'hop',
             }
           );
-
+        
           gsap.to(slideImgElem, {
             x: 0,
             duration: 1.5,
             ease: 'hop',
           });
-
+        
+          // Limitar número de slides en el DOM
           const imgElements = sliderImages.querySelectorAll('.img-slider-new');
           if (imgElements.length > totalSlides) imgElements[0].remove();
         }
+        
 
         function handleClick(event) {
           if (!sliderRef.current) return;
@@ -140,17 +138,16 @@ export default function StyleSlider9({ready}) {
                 updateActiveSlidePreview();
                 updateCounterAndTitlePosition();
               }
-              
             }
             return;
           }
 
           if (clickPosition < sliderWidth / 2 && currentImg !== 1) {
-            animateSlide('left');
             currentImg--;
+            animateSlide('left');
           } else if (clickPosition > sliderWidth / 2 && currentImg !== totalSlides) {
-            animateSlide('right');
             currentImg++;
+            animateSlide('right');
           }
 
           updateActiveSlidePreview();
@@ -158,6 +155,13 @@ export default function StyleSlider9({ready}) {
         }
 
         document.addEventListener('click', handleClick);
+
+        // Inicializamos previews y contador
+        requestAnimationFrame(() => {
+          updateActiveSlidePreview();
+          updateCounterAndTitlePosition();
+        });
+
         return () => document.removeEventListener('click', handleClick);
       });
     }, sliderRef);
@@ -181,8 +185,7 @@ export default function StyleSlider9({ready}) {
               start="top 85%"
               onComplete={() => {
                 // Animamos el header-content al acabar el GridReveal
-                animateIn(textRef.current, () => {
-                  // Animamos previews después del texto
+                animateIn(textRef.current.querySelector('.header-content'), () => {
                   const prevSlides = previewsRef.current.querySelectorAll('.preview');
                   gsap.to(prevSlides, {
                     opacity: 1,
@@ -191,7 +194,6 @@ export default function StyleSlider9({ready}) {
                     stagger: 0.05,
                     ease: 'power2.out'
                   });
-                  
                 });
               }}
             />
@@ -206,6 +208,7 @@ export default function StyleSlider9({ready}) {
             <p>T : (030) 61202363</p>
             <p>E : hello@vilarnau.de</p>
           </div>
+
           <div className="slider-counter">
             <p ref={counterRef}>1 / 16</p>
           </div>
@@ -215,7 +218,7 @@ export default function StyleSlider9({ready}) {
           {Array.from({ length: 16 }, (_, i) => (
             <div key={i} className={`preview ${i === 0 ? 'active' : ''}`}>
               <img
-                src={`/stylesresized/img${i + 1}${'.webp'}`}
+                src={`/stylesresized/img${i + 1}.webp`}
                 alt={`img${i + 1}`}
                 style={{
                   willChange: 'transform, clip-path',

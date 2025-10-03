@@ -1,10 +1,10 @@
-import Pic1 from "../../../public/images/img18.JPG"
-import Pic2 from "../../../public/images/img3.jpg"
-import Pic3 from "../../../public/images/img2.jpeg"
-import Pic4 from "../../../public/images/img8.jpg"
-import Pic5 from "../../../public/images/img3.jpeg"
-import Pic6 from "../../../public/images/img5.jpg"
-import Pic7 from "../../../public/images/img6.JPG"
+import Pic1 from "../../../public/zoomgallery/zoom5.webp"
+import Pic2 from "../../../public/zoomgallery/zoom1.webp"
+import Pic3 from "../../../public/zoomgallery/zoom7.webp"
+import Pic4 from "../../../public/zoomgallery/zoom2.webp"
+import Pic5 from "../../../public/zoomgallery/zoom3.webp"
+import Pic6 from "../../../public/zoomgallery/zoom4.webp"
+import Pic7 from "../../../public/zoomgallery/zoom6.webp"
 
 import TextAnimation from "../Tools"
 import { useScroll, useTransform, useMotionValueEvent, motion } from 'framer-motion';
@@ -13,81 +13,141 @@ import { useRef, useEffect, useState } from 'react';
 import Lenis from 'lenis';
 
 export default function ZoomGallery2() {
+
   const container = useRef(null);
   const [showText, setShowText] = useState(false);
 
-  const { scrollYProgress } = useScroll({
-    target: container,
-    offset: ['start start', 'end end']
-  });
 
-  useEffect(() => {
-    const lenis = new Lenis();
+    const { scrollYProgress } = useScroll({
+        target: container,
+        offset: ['start start', 'end end']
+    })
 
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
+    useEffect( () => {
+      const lenis = new Lenis()
+  
+      function raf(time) {
+        lenis.raf(time)
+        requestAnimationFrame(raf)
+      }
+  
+      requestAnimationFrame(raf)
+    }, [])
 
-    requestAnimationFrame(raf);
-  }, []);
+    const scale4 = useTransform(scrollYProgress, [0, 1], [1, 4]);
+    const scale5 = useTransform(scrollYProgress, [0, 1], [1, 5]);
+    const scale6 = useTransform(scrollYProgress, [0, 1], [1, 6]);
+    const scale8 = useTransform(scrollYProgress, [0, 1], [1, 8]);
+    const scale9 = useTransform(scrollYProgress, [0, 1], [1, 9]);
 
-  // Escalado a partir del 66% del scroll
-  const scale4 = useTransform(scrollYProgress, [0.66, 1], [1, 4]);
-  const scale5 = useTransform(scrollYProgress, [0.66, 1], [1, 5]);
-  const scale6 = useTransform(scrollYProgress, [0.66, 1], [1, 6]);
-  const scale8 = useTransform(scrollYProgress, [0.66, 1], [1, 8]);
-  const scale9 = useTransform(scrollYProgress, [0.66, 1], [1, 9]);
+    const clipCenter = useTransform(scrollYProgress, [0, 0.2, 0.4], [
+      "inset(0% 0% 100% 0%)", // totalmente tapada
+      "inset(0% 0% 50% 0%)",  // mitad visible
+      "inset(0% 0% 0% 0%)",   // completamente visible
+    ]);
 
-  // Opacidades calculadas fuera del map
-  const opacities = [
-    useTransform(scrollYProgress, [0.00, 0.15], [0, 1]),
-    useTransform(scrollYProgress, [0.05, 0.20], [0, 1]),
-    useTransform(scrollYProgress, [0.10, 0.25], [0, 1]),
-    useTransform(scrollYProgress, [0.15, 0.30], [0, 1]),
-    useTransform(scrollYProgress, [0.20, 0.35], [0, 1]),
-    useTransform(scrollYProgress, [0.25, 0.40], [0, 1]),
-    useTransform(scrollYProgress, [0.30, 0.45], [0, 1]),
-  ];
+    const pics = [
+      {
+        src: Pic1,
+        scale: scale4
+      },
+      {
+        src: Pic2,
+        scale: scale5
+      },
+      {
+        src: Pic3,
+        scale: scale6
+      },
+      {
+        src: Pic4,
+        scale: scale5
+      },
+      {
+        src: Pic5,
+        scale: scale6
+      },
+      {
+        src: Pic6,
+        scale: scale8
+      },
+      {
+        src: Pic7,
+        scale: scale9
+      }
+    ]
+    useMotionValueEvent(scale4, "change", (latest) => {
+      setShowText(latest >= 3.5); // o cualquier valor que te funcione mejor
+    });
 
-  const pics = [
-    { src: Pic1, scale: scale4 },
-    { src: Pic2, scale: scale5 },
-    { src: Pic3, scale: scale6 },
-    { src: Pic4, scale: scale5 },
-    { src: Pic5, scale: scale6 },
-    { src: Pic6, scale: scale8 },
-    { src: Pic7, scale: scale9 }
-  ];
-
-  useMotionValueEvent(scale4, "change", (latest) => {
-    setShowText(latest >= 3.5);
-  });
-
-  return (
+  return(
     <div ref={container} className="container-zoom">
       <div className="sticky-zoom">
-        {pics.map(({ src, scale }, index) => (
-          <motion.div
-            key={index}
-            style={{ scale, opacity: opacities[index] }}
-            className="el-zoom"
-          >
-            <div className="image-container-zoom">
-              <Image src={src} fill alt={`image-${index}`} />
-            </div>
-          </motion.div>
-        ))}
+        {pics.map(({ src, scale }, index) => {
+          const isCenter = index === 0;
+          return (
+            <motion.div
+              key={index}
+              style={{
+                scale,
+                clipPath: isCenter ? clipCenter : "inset(0% 0% 0% 0%)"
+              }}
+              className="el-zoom"
+            >
+              <div className="image-container-zoom">
+                <Image
+                  src={src}
+                  priority={index === 0}
+                  fill
+                  alt={`image-${index}`}
+                  objectFit="cover"
+                  objectPosition={isCenter ? "top" : "center"}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 100vw"
+                />
+              </div>
+            </motion.div>
+          )
+        })}
 
         {showText && (
           <TextAnimation>
-            <div className="zoom-text-overlay text-5xl font-medium blur-[0.7px] tracking-tighter">
-              <p>where classics</p>
-              <p>meets contemporary</p>
+            <div className="zoom-text-overlay text-4xl md:text-8xl blur-[0.3px] tracking-wide w-full font-myfont2 hidden md:flex flex-col -space-y-10">
+              <div className="flex flex-row justify-center text-5xl gap-4 pl-2 pr-6 tracking-[0.08em]">
+                <p className="text-9xl">elevating</p>
+                <div className="flex flex-col pt-3 -space-y-2">
+                  <p className="self-end">the</p>
+                  <p>craft of</p>                
+                </div>
+              </div>
+              <div className="flex flex-row justify-center gap-4 pl-2 pr-6 text-9xl">
+                <p>hairstyling</p>
+                <div className="flex flex-col text-5xl pt-3 -space-y-2">
+                  <p>since</p>
+                  <p>2018</p>
+                </div>
+              </div>
+            </div>
+            {/* layout for mobiles */}
+            <div className="zoom-text-overlay text-6xl blur-[0.2px] tracking-wide w-full font-myfont2 flex md:hidden flex-col pl-2 -space-y-3">
+              <div className="flex flex-col -space-y-3">
+                <p className="">elevating</p>
+                <div className="flex flex-row gap-3">
+                  <p className="flex">the</p>
+                  <p className="flex">craft</p>                
+                  <p className="flex">of</p>                
+                </div>
+              </div>
+              <div className="flex flex-col justify-center  -space-y-3">
+                <p>hairstyling</p>
+                <div className="flex flex-row gap-3 ">
+                  <p>since</p>
+                  <p>2018</p>
+                </div>
+              </div>
             </div>
           </TextAnimation>
         )}
       </div>
     </div>
-  );
+  )
 }
