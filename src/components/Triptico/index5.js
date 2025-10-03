@@ -1,3 +1,4 @@
+import TextAnimation from "../Tools";
 import GridRevealImage from "../Tools/GridRevealAnimation";
 
 const Triptico5 = () => {
@@ -16,6 +17,7 @@ const Triptico5 = () => {
       </div>
 
       {/* Texto en esquina inferior derecha */}
+      <TextAnimation>
       <div className="absolute bottom-2 left-2 text-left font-myfont2">
         <p className="text-base md:text-lg tracking-wider leading-none">
           a place where individuality<br />
@@ -24,6 +26,7 @@ const Triptico5 = () => {
           but celebrated
         </p>
       </div>
+      </TextAnimation>
     </div>
   );
 };

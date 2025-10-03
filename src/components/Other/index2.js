@@ -14,7 +14,7 @@ const animateIn = async (target, onComplete) => {
 
   gsap.fromTo(
     split.chars,
-    { yPercent: "random([-100, 100])", opacity: 0, filter: "blur(10px)" },
+    { yPercent: "random([-100, 100])", opacity: 0, filter: "blur(3px)" },
     {
       yPercent: 0,
       opacity: 1,

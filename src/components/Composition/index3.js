@@ -1,4 +1,5 @@
 import TextAnimation from "../Tools";
+import TextAnimation2 from "../Tools/AnimatedText2";
 import GridRevealImage from "../Tools/GridRevealAnimation";
 
 const Composition3 = () => {
@@ -18,30 +19,23 @@ const Composition3 = () => {
         </div>
 
         {/* Texto, pegado a la imagen por arriba */}
-        <TextAnimation>
-        <div className="absolute bottom-[58.5%] left-[24.5%] md:left-[32%] w-[38%] md:w-[31%] -translate-x-1/2 z-[2]
+        <div className="absolute bottom-[58.5%] left-[25.3%] md:left-[32%] w-[38%] md:w-[31%] -translate-x-1/2 z-[2]
             text-base md:text-lg text-left leading-none tracking-wider"
-        >
-          {/* <p className="p-1">
-            vilarnau opens <br />
-            tuesday — friday<br />
-            from 12 to 20,<br />
-            saturdays from 13<br />
-            come and say hello.
-          </p> */}
-          <p className="p-1">
-            vilarnau opens: <br />
-            tuesday 12 — 20<br />
-            wednesday 12 — 20<br />
-            thursday 12 — 20<br />
-            friday 12 — 20<br />
-            saturday 13 — 20<br />
-            sunday - closed<br />
-            monday - closed<br />
-          </p>
+            >
+          <TextAnimation2>
+            <div className="">
+            <p>vilarnau opens:</p>
+            <p>tuesday 12 — 20</p>
+            <p>wednesday 12 — 20</p>
+            <p>thursday 12 — 20</p>
+            <p>friday 12 — 20</p>
+            <p>saturday 13 — 20</p>
+            <p>sunday - closed</p>
+            <p>monday - closed</p>
+            </div>
+          </TextAnimation2>
         </div>
 
-        </TextAnimation>
 
         {/* Imagen superior centro */}
         <div className="absolute top-0 left-[48%] md:left-1/2 w-[49%] md:w-[36.5%] h-[61.5%] md:h-[62%] -translate-x-[7%] z-[1]">

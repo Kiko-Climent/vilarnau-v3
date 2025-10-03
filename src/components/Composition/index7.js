@@ -1,14 +1,17 @@
 import TextAnimation from "../Tools";
+import TextAnimation2 from "../Tools/AnimatedText2";
 import GridRevealImage from "../Tools/GridRevealAnimation";
 
 const Composition4MobileFlex2 = () => {
   return (
-    <div className="w-screen h-screen flex flex-col px-2 gap-2 uppercase text-[clamp(1rem,7vw,4rem)] font-myfont2 tracking-wide">
+    <div className="w-screen h-screen flex flex-col pr-2 gap-2 uppercase text-[clamp(1rem,7vw,4rem)] font-myfont2 tracking-wide">
       {/* Texto superior */}
-      <TextAnimation>
-      <div className="w-full flex-col text-justify leading-none">
+      <TextAnimation2>
+      <div className="w-full flex-col text-justify leading-none pl-1">
         <p className="flex">
-          Welcome to Salon Vilarnau.<br /><br></br>
+          Welcome to Salon Vilarnau.
+        </p>
+        <p className="flex">
           Our philosophy is to deeply understand your wishes, so that we can create
           individual cuts that accentuate your features and style.
         </p>
@@ -17,10 +20,10 @@ const Composition4MobileFlex2 = () => {
           leaving our salon feeling seen, understood, and phenomenal.
         </p>
       </div>
-      </TextAnimation>
+      </TextAnimation2>
 
       {/* Composición en dos columnas */}
-      <div className="flex gap-2">
+      <div className="flex gap-2 pl-2">
         {/* Columna izquierda (40%) */}
         <div className="flex flex-col w-2/5 gap-2">
           {/* Row 1 (40%) */}
