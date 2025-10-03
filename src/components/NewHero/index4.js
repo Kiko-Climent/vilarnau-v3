@@ -8,48 +8,9 @@ export default function NewHero4() {
   const gridRef = useRef(null);
   const router = useRouter();
 
-  const [loading, setLoading] = useState(true);             // CounterPreloader visible
-  const [imagesLoaded, setImagesLoaded] = useState(false);  // Splash images precargadas
-  const [test4ImagesLoaded, setTest4ImagesLoaded] = useState(false); // Test4 images precargadas
-
-  // -------------------------------
-  // Función de precarga genérica
-  // -------------------------------
-  const preloadImages = (images, onComplete) => {
-    let loaded = 0;
-    images.forEach((src) => {
-      const img = new Image();
-      img.src = src;
-      img.onload = img.onerror = () => {
-        loaded++;
-        if (loaded === images.length && onComplete) onComplete();
-      };
-    });
-  };
-
-  // -------------------------------
-  // Precarga imágenes Splash
-  // -------------------------------
-  useEffect(() => {
-    const splashImages = [
-      ...Array.from({ length: 35 }, (_, i) => `/newheromobile/img${i + 1}.webp`),
-      "/newhero/img5.webp",
-      "/newhero/img12.webp"
-    ];
-    preloadImages(splashImages, () => setImagesLoaded(true));
-  }, []);
-
-  // -------------------------------
-  // Precarga imágenes Test4
-  // -------------------------------
-  useEffect(() => {
-    const test4Images = [
-      "/newhero/img10.webp",
-      "/images/img1.webp",
-      "/images/img17.webp"
-    ];
-    preloadImages(test4Images, () => setTest4ImagesLoaded(true));
-  }, []);
+  const [progress, setProgress] = useState(0);   // porcentaje visible
+  const [done, setDone] = useState(false);       // preloader finalizado
+  const [test4ImagesLoaded, setTest4ImagesLoaded] = useState(false); // Test4 precargado
 
   // -------------------------------
   // Animación del splash
@@ -61,12 +22,18 @@ export default function NewHero4() {
     gsap.registerPlugin(CustomEase);
     CustomEase.create("hop", "0.9, 0, 0.1, 1");
 
-    const gridImages = gsap.utils.toArray(gridRef.current.querySelectorAll(".img-newhero"));
+    const gridImages = gsap.utils.toArray(
+      gridRef.current.querySelectorAll(".img-newhero")
+    );
     const heroImage = gridRef.current.querySelector(".img-newhero.hero-img");
-    const images = gridImages.filter(img => img !== heroImage);
+    const images = gridImages.filter((img) => img !== heroImage);
 
-    const allImageSources = Array.from({ length: 35 }, (_, i) => `/newheromobile/img${i + 1}.webp`);
-    const getRandomImageSet = () => [...allImageSources].sort(() => 0.5 - Math.random()).slice(0, 9);
+    const allImageSources = Array.from(
+      { length: 35 },
+      (_, i) => `/newheromobile/img${i + 1}.webp`
+    );
+    const getRandomImageSet = () =>
+      [...allImageSources].sort(() => 0.5 - Math.random()).slice(0, 9);
 
     const startImageRotation = () => {
       const totalCycles = 20;
@@ -101,17 +68,32 @@ export default function NewHero4() {
       onStart: () => setTimeout(() => startImageRotation(), 1000),
     });
 
-    tl.to(images, { clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)", duration: 1, delay: 2, stagger: 0.05, ease: "hop" });
+    tl.to(images, {
+      clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
+      duration: 1,
+      delay: 2,
+      stagger: 0.05,
+      ease: "hop",
+    });
 
     tl.to(heroImage, { y: 0, duration: 1, ease: "hop" });
 
-    tl.to(heroImage, {
-      scale: 4,
-      clipPath: "polygon(20% 10%, 80% 10%, 80% 90%, 20% 90%)",
-      duration: 0.8,
-      ease: "hop",
-      onStart: () => gsap.to(heroImage.querySelector("img"), { scale: 1, duration: 0.8, ease: "hop" }),
-    }, "-=0.8");
+    tl.to(
+      heroImage,
+      {
+        scale: 4,
+        clipPath: "polygon(20% 10%, 80% 10%, 80% 90%, 20% 90%)",
+        duration: 0.8,
+        ease: "hop",
+        onStart: () =>
+          gsap.to(heroImage.querySelector("img"), {
+            scale: 1,
+            duration: 0.8,
+            ease: "hop",
+          }),
+      },
+      "-=0.8"
+    );
 
     tl.to(heroImage, {
       clipPath: "polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%)",
@@ -134,34 +116,95 @@ export default function NewHero4() {
   };
 
   // -------------------------------
-  // Ejecuta animación solo cuando preloader y splash images estén listas
+  // Preload con progreso real + mínimo 4s
   // -------------------------------
   useEffect(() => {
-    if (!loading && imagesLoaded) runAnimation();
-  }, [loading, imagesLoaded]);
+    const splashImages = [
+      ...Array.from({ length: 35 }, (_, i) => `/newheromobile/img${i + 1}.webp`),
+      "/newhero/img5.webp",
+      "/newhero/img12.webp",
+    ];
+    const test4Images = [
+      "/newhero/img10.webp",
+      "/images/img1.webp",
+      "/images/img17.webp",
+    ];
+    const allImages = [...splashImages, ...test4Images];
+    let loaded = 0;
+
+    const preloadPromise = new Promise((resolve) => {
+      allImages.forEach((src) => {
+        const img = new Image();
+        img.src = src;
+        img.onload = img.onerror = () => {
+          loaded++;
+          setProgress(Math.floor((loaded / allImages.length) * 100));
+          if (loaded === allImages.length) resolve();
+        };
+      });
+    });
+
+    const timerPromise = new Promise((resolve) => setTimeout(resolve, 4000));
+
+    Promise.all([preloadPromise, timerPromise]).then(() => {
+      setDone(true);
+      setTest4ImagesLoaded(true); // aquí ya sabemos que también Test4 está listo
+    });
+  }, []);
+
+  // -------------------------------
+  // Lanzar animación cuando done = true
+  // -------------------------------
+  useEffect(() => {
+    if (done) runAnimation();
+  }, [done]);
 
   // -------------------------------
   // Renderizado
   // -------------------------------
   return (
     <>
-      {loading && <CounterPreloader duration={4} onComplete={() => setLoading(false)} />}
-      {!loading && (
+      {!done && (
+        <CounterPreloader
+          progress={progress}
+          done={done}
+          onComplete={() => setDone(true)}
+        />
+      )}
+      {done && (
         <div className="image-grid" ref={gridRef}>
           <div className="grid-row">
-            <div className="img-newhero"><img src="/newheromobile/img1.webp" alt="" /></div>
-            <div className="img-newhero"><img src="/newheromobile/img3.webp" alt="" /></div>
-            <div className="img-newhero"><img src="/newheromobile/img4.webp" alt="" /></div>
+            <div className="img-newhero">
+              <img src="/newheromobile/img1.webp" alt="" />
+            </div>
+            <div className="img-newhero">
+              <img src="/newheromobile/img3.webp" alt="" />
+            </div>
+            <div className="img-newhero">
+              <img src="/newheromobile/img4.webp" alt="" />
+            </div>
           </div>
           <div className="grid-row">
-            <div className="img-newhero"><img src="/newheromobile/img5.webp" alt="" /></div>
-            <div className="img-newhero hero-img"><img src="/newhero/img12.webp" alt="" /></div>
-            <div className="img-newhero"><img src="/newheromobile/img7.webp" alt="" /></div>
+            <div className="img-newhero">
+              <img src="/newheromobile/img5.webp" alt="" />
+            </div>
+            <div className="img-newhero hero-img">
+              <img src="/newhero/img12.webp" alt="" />
+            </div>
+            <div className="img-newhero">
+              <img src="/newheromobile/img7.webp" alt="" />
+            </div>
           </div>
           <div className="grid-row">
-            <div className="img-newhero"><img src="/newheromobile/img8.webp" alt="" /></div>
-            <div className="img-newhero"><img src="/newheromobile/img11.webp" alt="" /></div>
-            <div className="img-newhero"><img src="/newheromobile/img6.webp" alt="" /></div>
+            <div className="img-newhero">
+              <img src="/newheromobile/img8.webp" alt="" />
+            </div>
+            <div className="img-newhero">
+              <img src="/newheromobile/img11.webp" alt="" />
+            </div>
+            <div className="img-newhero">
+              <img src="/newheromobile/img6.webp" alt="" />
+            </div>
           </div>
           <div className="header font-myfont2">
             <h1>salon vilarnau</h1>

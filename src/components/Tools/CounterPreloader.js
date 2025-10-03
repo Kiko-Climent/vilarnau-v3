@@ -1,7 +1,7 @@
 import { useRef, useEffect } from "react";
 import gsap from "gsap";
 
-export default function CounterPreloader({ onComplete, duration = 4 }) {
+export default function CounterPreloader({ progress, onComplete, done }) {
   const countRef = useRef(null);
   const currentValue = useRef({ val: 0 });
 
@@ -9,8 +9,8 @@ export default function CounterPreloader({ onComplete, duration = 4 }) {
     if (!countRef.current) return;
 
     gsap.to(currentValue.current, {
-      val: 100,
-      duration: duration,
+      val: progress,
+      duration: 0.3,
       ease: "power1.out",
       onUpdate: () => {
         if (countRef.current) {
@@ -18,10 +18,10 @@ export default function CounterPreloader({ onComplete, duration = 4 }) {
         }
       },
       onComplete: () => {
-        if (onComplete) onComplete();
+        if (done && onComplete) onComplete();
       },
     });
-  }, [onComplete, duration]);
+  }, [progress, done, onComplete]);
 
   return (
     <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-white">
