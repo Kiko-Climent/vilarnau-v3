@@ -10,7 +10,7 @@ import TextAnimation from "../Tools"
 import { useScroll, useTransform, useMotionValueEvent, motion } from 'framer-motion';
 import Image from 'next/image';
 import { useRef, useEffect, useState } from 'react';
-import Lenis from 'lenis';
+// import Lenis from 'lenis';
 
 export default function ZoomGallery() {
 
@@ -22,16 +22,16 @@ export default function ZoomGallery() {
         offset: ['start start', 'end end']
     })
 
-    useEffect( () => {
-      const lenis = new Lenis()
+    // useEffect( () => {
+    //   const lenis = new Lenis()
   
-      function raf(time) {
-        lenis.raf(time)
-        requestAnimationFrame(raf)
-      }
+    //   function raf(time) {
+    //     lenis.raf(time)
+    //     requestAnimationFrame(raf)
+    //   }
   
-      requestAnimationFrame(raf)
-    }, [])
+    //   requestAnimationFrame(raf)
+    // }, [])
 
     const scale4 = useTransform(scrollYProgress, [0, 1], [1, 4]);
     const scale5 = useTransform(scrollYProgress, [0, 1], [1, 5]);

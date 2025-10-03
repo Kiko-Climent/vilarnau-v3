@@ -50,7 +50,7 @@
   flex: 1;                         /* ocupa el resto */
   display: flex;
   flex-direction: column;
-  justify-content: end;  /* arriba info, abajo counter+preview */
+  justify-content: end;
   padding: 0.5rem;
 }
 

@@ -8,7 +8,7 @@ import Pic4 from "../../../public/zoomgallery/zoom2.webp";
 import Pic5 from "../../../public/zoomgallery/zoom3.webp";
 import Pic6 from "../../../public/zoomgallery/zoom4.webp";
 import Pic7 from "../../../public/zoomgallery/zoom6.webp";
-import { ReactLenis } from "lenis/react";
+// import { ReactLenis } from "lenis/react";
 import FlipSection from "@/components/FlipSections";
 import ZoomGallery from "@/components/ZoomGallery";
 import Footer from "@/components/Sticky_Footer/footer";
@@ -22,14 +22,14 @@ import Triptico6 from "@/components/Triptico/index6";
 import Quote1 from "@/components/Other/index2";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import { useLenis } from "lenis/react";
+// import { useLenis } from "lenis/react";
 import FlipSection2 from "@/components/FlipSections/index2";
 
 
 export default function Home() {
 
   const router = useRouter();
-  const lenis = useLenis();
+  // const lenis = useLenis();
 
   useEffect(() => {
     if (router.asPath.includes("#about")) {
@@ -38,7 +38,8 @@ export default function Home() {
         lenis?.scrollTo("#about");
       }, 300);
     }
-  }, [router.asPath, lenis]);
+  }, [router.asPath]);
+// }, [router.asPath, lenis]);
   
   return(
     <>
@@ -56,7 +57,7 @@ export default function Home() {
         <link rel="preload" as="image" href={Pic7.src} />
     </Head>
       <div className="w-screen  relative">
-          <ReactLenis root>
+          {/* <ReactLenis root> */}
             <FlipSection FirstComponent={Test4} SecondComponent={Triptico5} />
             <ZoomGallery />
             <FlipSection2 FirstComponent={Quote1} SecondComponent={Triptico6}/>
@@ -69,7 +70,7 @@ export default function Home() {
               <AlmodovarQuoteWrapper />
             </div>
             <Footer />        
-          </ReactLenis>
+          {/* </ReactLenis> */}
       </div>
     </>
     
