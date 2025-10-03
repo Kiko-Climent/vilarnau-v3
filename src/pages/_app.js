@@ -10,26 +10,21 @@ import { useNavbar } from "@/components/Layout/Context/NavbarProvider";
 import { NavbarProvider } from "@/components/Layout/Context/NavbarProvider";
 
 import { ReactLenis, useLenis } from "lenis/react";
-import { useRouter } from "next/router";
+// import { useRouter } from "next/router";
 import { useEffect } from "react";
 
 function Layout({ Component, pageProps, router }) {
   const { showNavbar } = useNavbar();
   const pathname = router.pathname;
   const lenis = useLenis();
-  const r = useRouter();
+  // const r = useRouter();
 
-  // 🔑 Controlar Lenis según la ruta
-  useEffect(() => {
-    if (!lenis) return;
-    if (r.pathname === "/styles") {
-      lenis.stop();
-      // por seguridad, reseteamos el scroll
-      window.scrollTo(0, 0);
-    } else {
-      lenis.start();
-    }
-  }, [r.pathname, lenis]);
+ useEffect(() => {
+  if (!lenis) return;
+  // Reiniciar scroll al inicio de la página al cargar
+  lenis.scrollTo(0, { immediate: true });
+}, [lenis, router.pathname]);
+
 
   return (
     <>
