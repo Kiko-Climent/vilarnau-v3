@@ -136,7 +136,10 @@ export default function NewHero4() {
           );
           setProgress(progressValue);
     
-          if (loaded === allImages.length) resolve();
+          if (loaded === allImages.length) {
+            console.log("all images succesfully loaded");  
+            resolve();
+          }
         };
       });
     });
@@ -145,18 +148,26 @@ export default function NewHero4() {
     const timerPromise = new Promise((resolve) => setTimeout(resolve, 4000));
 
     Promise.all([preloadPromise, timerPromise]).then(() => {
-      setProgress(100);
-      setDone(true);
-      setTest4ImagesLoaded(true);
+      // Aseguramos que todas las imágenes realmente existen en caché antes de continuar
+      requestAnimationFrame(() => {
+        setProgress(100);
+        setTimeout(() => setDone(true), 500);
+      });
     });
+        
   }, []);
 
   // -------------------------------
   // Lanzar animación cuando done = true
   // -------------------------------
   useEffect(() => {
-    if (done) runAnimation();
+    if (done) {
+      requestAnimationFrame(() => {
+        runAnimation();
+      });
+    }
   }, [done]);
+  
 
   // -------------------------------
   // Renderizado
