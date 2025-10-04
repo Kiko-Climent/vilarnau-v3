@@ -19,11 +19,17 @@ function Layout({ Component, pageProps, router }) {
   const lenis = useLenis();
   // const r = useRouter();
 
- useEffect(() => {
-  if (!lenis) return;
-  // Reiniciar scroll al inicio de la página al cargar
-  lenis.scrollTo(0, { immediate: true });
-}, [lenis, router.pathname]);
+  useEffect(() => {
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+  }, []);
+  
+  useEffect(() => {
+    if (!lenis) return;
+    lenis.scrollTo(0, { immediate: true });
+  }, [lenis, router.pathname]);
+  
 
 
   return (

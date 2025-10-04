@@ -22,23 +22,25 @@ import Triptico6 from "@/components/Triptico/index6";
 import Quote1 from "@/components/Other/index2";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-// import { useLenis } from "lenis/react";
+import { useLenis } from "lenis/react";
 import FlipSection2 from "@/components/FlipSections/index2";
 
 
 export default function Home() {
 
   const router = useRouter();
-  // const lenis = useLenis();
+  const lenis = useLenis();
 
   useEffect(() => {
     if (router.asPath.includes("#about")) {
-      // Esperamos un poco para que el DOM esté montado
       setTimeout(() => {
         lenis?.scrollTo("#about");
       }, 300);
+    } else {
+      lenis?.scrollTo(0, { immediate: true });
     }
   }, [router.asPath]);
+  
 // }, [router.asPath, lenis]);
   
   return(
@@ -56,7 +58,7 @@ export default function Home() {
         <link rel="preload" as="image" href={Pic6.src} />
         <link rel="preload" as="image" href={Pic7.src} />
     </Head>
-      <div className="w-screen  relative">
+      <div className="w-screen relative">
           {/* <ReactLenis root> */}
             <FlipSection FirstComponent={Test4} SecondComponent={Triptico5} />
             <ZoomGallery />
