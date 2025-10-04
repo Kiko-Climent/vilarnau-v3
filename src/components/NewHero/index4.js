@@ -100,18 +100,8 @@ export default function NewHero4() {
       duration: 0.6,
       ease: "power2.inOut",
       onComplete: () => {
-        // 🔹 Esperamos que Test4 esté precargado antes de ir a /home
-        if (test4ImagesLoaded) {
-          router.push("/home");
-        } else {
-          const checkLoaded = setInterval(() => {
-            if (test4ImagesLoaded) {
-              clearInterval(checkLoaded);
-              router.push("/home");
-            }
-          }, 50);
-        }
-      },
+        router.push("/home");
+      },      
     });
   };
 
@@ -176,10 +166,10 @@ export default function NewHero4() {
       {!done && (
         <CounterPreloader
           progress={progress}
-          done={done}
           onComplete={() => setDone(true)}
         />
       )}
+
       {done && (
         <div className="image-grid" ref={gridRef}>
           <div className="grid-row">
