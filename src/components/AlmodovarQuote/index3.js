@@ -1,4 +1,5 @@
-import AnimatedImageBox from "../Tools/AnimatedImageBox";
+
+import AnimatedImageBoxMobile from "../Tools/AnimatedImageBoxMobile";
 
 const AlmodovarQuote2Mobile = () => {
   return (
@@ -14,7 +15,7 @@ const AlmodovarQuote2Mobile = () => {
 
       <div className="flex flex-row gap-2 items-stretch">
         <div className="flex aspect-square min-w-[160px] max-w-[280px]">
-          <AnimatedImageBox />
+          <AnimatedImageBoxMobile />
         </div>
         <div className="flex flex-1 items-center">
           <p className="text-[clamp(3rem,12vw,6rem)] leading-[0.8]">
@@ -26,10 +27,10 @@ const AlmodovarQuote2Mobile = () => {
       {/* Frase final */}
       <div className="flex flex-col">
         <p className="pt-2 flex text-[clamp(3rem,12vw,6rem)] leading-[0.8]">
-          the more you resemble what you&apos;ve dreamed you are.&quot; -
+          the more you resemble what you&apos;ve dreamed you are.&quot;
         </p>
         <p className="flex text-[clamp(1.25rem,3vw,1.75rem)] leading-none">
-          Agrado from &quot;Todo Sobre Mi Madre&quot;
+          - Agrado from &quot;Todo Sobre Mi Madre&quot;
         </p>
       </div>
     </div>

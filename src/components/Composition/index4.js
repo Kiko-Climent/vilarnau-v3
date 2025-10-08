@@ -61,7 +61,7 @@ const Composition4 = () => {
           }}
         >
           <GridRevealImage
-            src="/images/img21.jpg"
+            src="/images/img17.jpeg"
             className="w-full h-full object-cover"
             alt="img10"
           />
@@ -105,7 +105,7 @@ const Composition4 = () => {
           }}
         >
           <GridRevealImage
-            src="/images/img17.jpeg"
+            src="/images/img14.jpeg"
             className="w-full h-full object-cover"
             alt="img2"
           />

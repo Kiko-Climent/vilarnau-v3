@@ -37,7 +37,7 @@ export default function PriceList2({ isOpen, onClose }) {
   return (
     <div className="fixed inset-0 z-40" onClick={onClose}>
       {/* Blur completo de fondo */}
-      <div className="absolute inset-0 bg-white/80 backdrop-blur-xl" />
+      <div className="absolute inset-0 bg-[#f5f6f7]/90 backdrop-blur-2xl" />
 
       {/* Modal centrado */}
       <div

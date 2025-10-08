@@ -199,7 +199,7 @@ export default function StyleSliderMobile2() {
       </div>
 
       {/* Info */}
-      <div className="flex h-[20%] flex-col justify-center items-start -space-y-2 tracking-wider">
+      <div className="flex h-[20%] flex-col justify-center items-start -space-y-2 tracking-wider opacity-0">
         <p className="text-xl">vilarnau | styles</p>
         <p className="text-xl">T : (030) 61202363</p>
         <p className="text-xl">E : hello@vilarnau.de</p>

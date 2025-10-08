@@ -203,7 +203,7 @@ export default function StyleSlider9({ ready }) {
 
       <div className='slider-content'>
         <div className='contact-content' ref={textRef}>
-          <div className='header-content leading-none'>
+          <div className='header-content leading-none opacity-0'>
             <p>salon vilarnau | styles</p>
             <p>T : (030) 61202363</p>
             <p>E : hello@vilarnau.de</p>

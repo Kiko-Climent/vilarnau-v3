@@ -82,9 +82,12 @@
   gap: 0.5em;
 }
 
-.slider-counter p {
-  margin: 0;
+.slider-counter {
+  display: flex;
+  font-size: 4rem;
+  transform: translateY(1rem); /* empuja hacia abajo */
 }
+
 
 /* previews */
 .slider-preview {
