@@ -32,8 +32,8 @@ export default function CounterPreloader({ progress = 0, onComplete }) {
   }, [progress, onComplete]);
 
   return (
-    <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-white">
-      <div className="text-8xl select-none tracking-wide">
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-white overflow-hidden">
+      <div className="text-[clamp(2.5rem,10vw,6rem)] select-none tracking-tight px-2 overflow-visible leading-none">
         <span ref={countRef}>{displayProgress}</span>
       </div>
     </div>

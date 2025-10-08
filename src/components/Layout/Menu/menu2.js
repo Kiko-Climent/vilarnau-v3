@@ -22,7 +22,7 @@ const Menu2 = () => {
 
         {/* 👇 Solo mostramos si NO estamos en "/styles" */}
         {router.pathname !== "/styles" && (
-          <div className="flex flex-col md:flex-row items-end gap-0 md:gap-6 -space-y-2 md:-space-y-1">
+          <div className="flex flex-col md:flex-row items-end gap-0 md:gap-6 -space-y-2.5 md:-space-y-1">
             <a href="mailto:hello@vilarnau.com" className="flex pb-1">
               hello@vilarnau.com
             </a>

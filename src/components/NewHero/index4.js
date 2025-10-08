@@ -100,9 +100,11 @@ export default function NewHero4() {
       duration: 0.6,
       ease: "power2.inOut",
       onComplete: () => {
-        router.push("/home");
-      },      
+        // forzar refresh completo
+        window.location.href = "/home";
+      },
     });
+    
   };
 
   // -------------------------------

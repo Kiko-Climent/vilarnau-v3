@@ -1,7 +1,7 @@
 import TextAnimation from "../Tools";
 import AnimatedImageBox from "../Tools/AnimatedImageBox";
 
-const AlmodovarQuote2 = () => {
+const AlmodovarQuote4 = () => {
   return(
     <div className="w-full min-h-screen bg-[#0f0f0f] flex flex-col tracking-wider uppercase font-myfont2 justify-center text-justify text-5xl pl-1 pr-4">
       <div className="flex flex-col">
@@ -29,4 +29,4 @@ const AlmodovarQuote2 = () => {
   )
 }
 
-export default AlmodovarQuote2;
+export default AlmodovarQuote4;

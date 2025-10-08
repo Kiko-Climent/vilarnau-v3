@@ -4,24 +4,26 @@ import { useRouter } from "next/router";
 const NavbarContext = createContext();
 
 export const NavbarProvider = ({ children }) => {
-  const [showNavbar, setShowNavbar] = useState(true);
+  const [showNavbar, setShowNavbar] = useState(false);
+  const [initialized, setInitialized] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
+    if (!router.isReady) return;
+
     if (router.pathname === "/") {
-      // en splash NO mostramos nunca
       setShowNavbar(false);
     } else if (router.pathname === "/home") {
-      // en home empieza oculto, luego lo mostrarás desde FlipSection
       setShowNavbar(false);
     } else {
-      // en el resto de páginas sí lo mostramos
       setShowNavbar(true);
     }
-  }, [router.pathname]);
+
+    setInitialized(true);
+  }, [router.pathname, router.isReady]);
 
   return (
-    <NavbarContext.Provider value={{ showNavbar, setShowNavbar }}>
+    <NavbarContext.Provider value={{ showNavbar, setShowNavbar, initialized }}>
       {children}
     </NavbarContext.Provider>
   );
