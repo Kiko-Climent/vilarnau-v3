@@ -111,8 +111,8 @@ export default function Test4() {
           </div>
           <div className="hidden md:flex flex-col -space-y-2 md:-space-y-3">
             <p>info & appointments /</p>
-            <p>hello@vilarnau.com</p>
-            <p>(030) 61987269</p>
+            <a href="mailto:hello@vilarnau.com">hello@vilarnau.com</a>
+            <a href="tel:+493061202363">(030) 61202363</a>
           </div>
           <div className="hidden md:flex flex-col -space-y-2 md:-space-y-3">
             <p>oppening hours /</p>
@@ -123,8 +123,8 @@ export default function Test4() {
           <div className="flex md:hidden flex-col text-right">
             <div className="flex flex-col -space-y-2 md:-space-y-3">
               <p>info & appointments /</p>
-              <p>hello@vilarnau.com</p>
-              <p>(030) 61987269</p>
+              <a href="mailto:hello@vilarnau.com">hello@vilarnau.com</a>
+              <a href="tel:+493061202363">(030) 61202363</a>
             </div>
             <div className="flex flex-col -space-y-2 md:-space-y-3">
               <p>oppening times /</p>

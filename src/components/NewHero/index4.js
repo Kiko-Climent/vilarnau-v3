@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 import gsap from "gsap";
 import CounterPreloader from "../Tools/CounterPreloader";
+import CounterPreloader2 from "../Tools/CounterPreloader2";
 
 export default function NewHero4() {
   const gridRef = useRef(null);
@@ -177,7 +178,7 @@ export default function NewHero4() {
   return (
     <>
       {!done && (
-        <CounterPreloader
+        <CounterPreloader2
           progress={progress}
           onComplete={() => setDone(true)}
         />

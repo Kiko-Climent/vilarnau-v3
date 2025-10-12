@@ -261,8 +261,8 @@ export default function StyleSliderMobile3({ ready }) {
         className="flex flex-none h-[calc(20vh)] flex-col justify-start items-start -space-y-2 tracking-wider"
       >
         <p className="text-xl">vilarnau | styles</p>
-        <p className="text-xl">T : (030) 61202363</p>
-        <p className="text-xl">E : hello@vilarnau.de</p>
+        <a href="tel:+493061202363" className="text-xl">T : (030) 61202363</a>
+        <a href='mailto:hello@vilarnau.com' className="text-xl">E : hello@vilarnau.de</a>
       </div>
     </div>
   );

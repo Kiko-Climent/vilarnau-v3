@@ -81,8 +81,8 @@ export default function PriceList2({ isOpen, onClose }) {
 
         <div className="flex flex-row-reverse justify-between text-base tracking-wider leading-none">
           <div className="flex flex-col items-end">
-            <h2 className="flex">manteufelstr.35</h2>
-            <h2 className="flex">10247 · berlin</h2>
+            <h2 className="flex">manteufelstr.55</h2>
+            <h2 className="flex">10999 · berlin</h2>
           </div>
           <div className="flex flex-col">
             <h2 className="flex">T: (030) 61202363</h2>

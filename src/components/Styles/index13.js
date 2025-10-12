@@ -205,8 +205,8 @@ export default function StyleSlider9({ ready }) {
         <div className='contact-content' ref={textRef}>
           <div className='header-content leading-none opacity-0'>
             <p>salon vilarnau | styles</p>
-            <p>T : (030) 61202363</p>
-            <p>E : hello@vilarnau.de</p>
+            <a href='tel:+493061202363'>T : (030) 61202363</a>
+            <a href='mailto:hello@vilarnau.com'>E : hello@vilarnau.de</a>
           </div>
 
           <div className="slider-counter">

@@ -10,7 +10,7 @@ export default function Footer() {
           <div className="flex flex-col text-base md:text-lg leading-none">
             <h3>address</h3>
             <h3>manteufelstr.55</h3>
-            <h3>10247 berlin-kreuzberg</h3>
+            <h3>10999 berlin-kreuzberg</h3>
           </div>
 
           {/* Appointments */}

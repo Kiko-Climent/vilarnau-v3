@@ -128,3 +128,8 @@
 .preview.active::after {
   background: transparent;
 }
+
+.header-content a {
+  display: block;
+}
+
