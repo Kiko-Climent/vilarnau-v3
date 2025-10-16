@@ -68,7 +68,10 @@ export default function Test4() {
   return (
     <div
       ref={containerRef}
-      className="container-test-hero w-screen h-screen flex flex-col md:flex-row gap-1 md:gap-2 bg-white text-base md:text-lg tracking-wider px-2 md:px-0 py-2 md:py-0 font-myfont2"
+      className="container-test-hero w-screen h-screen flex flex-col md:flex-row gap-1 md:gap-2 bg-white text-base md:text-[clamp(0.8rem,1.4vw,1rem)] px-2 md:px-0 py-2 md:py-0 font-myfont2"
+      style={{
+        letterSpacing: 'clamp(0.05em, 0.2vw, 0.1em)',
+      }}
     >
       {/* Lado izquierdo */}
       <div className="flex w-full md:w-1/2 aspect-[3/4] overflow-hidden">
@@ -104,29 +107,29 @@ export default function Test4() {
           className="test-info flex flex-row justify-between w-full opacity-0 pr-0 md:pr-5"
           ref={textRef}
         >
-          <div className="flex flex-col -space-y-2 md:-space-y-3">
+          <div className="flex flex-col -space-y-2 md:-space-y-2">
             <h1 className="text-black">salon vilarnau</h1>
             <p>manteufelstr.55</p>
             <p>10999 · kreuzberg</p>
           </div>
-          <div className="hidden md:flex flex-col -space-y-2 md:-space-y-3">
+          <div className="hidden md:flex flex-col -space-y-2 md:-space-y-2">
             <p>info & appointments /</p>
             <a href="mailto:hello@vilarnau.com">hello@vilarnau.com</a>
             <a href="tel:+493061202363">(030) 61202363</a>
           </div>
-          <div className="hidden md:flex flex-col -space-y-2 md:-space-y-3">
+          <div className="hidden md:flex flex-col -space-y-2 md:-space-y-2">
             <p>oppening hours /</p>
             <p>tue — fri from 12 to 20</p>
             <p>saturdays from 13 to 19</p>
           </div>
 
           <div className="flex md:hidden flex-col text-right">
-            <div className="flex flex-col -space-y-2 md:-space-y-3">
+            <div className="flex flex-col -space-y-2 md:-space-y-2">
               <p>info & appointments /</p>
               <a href="mailto:hello@vilarnau.com">hello@vilarnau.com</a>
               <a href="tel:+493061202363">(030) 61202363</a>
             </div>
-            <div className="flex flex-col -space-y-2 md:-space-y-3">
+            <div className="flex flex-col -space-y-2 md:-space-y-2">
               <p>oppening times /</p>
               <p>tue — fri from 12 to 20</p>
               <p>saturdays from 13 to 19</p>

@@ -64,6 +64,7 @@ body {
 .line-line {
   display: block;
   overflow: hidden;
+  padding-left: 0.04em;
   /* line-height: 0.80; */
   /* padding-bottom: 0.20em; */
 }

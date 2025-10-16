@@ -7,14 +7,14 @@ export default function Footer() {
       <div className="fixed bottom-0 h-[300px] md:h-[375px] w-full flex flex-col justify-between text-white px-2 py-4 font-myfont2 tracking-wider">
         <div className="flex flex-row justify-between items-start">
           {/* Address */}
-          <div className="flex flex-col text-base md:text-lg leading-none">
+          <div className="flex flex-col text-base md:text-[clamp(1rem,2vw,1.6rem)] leading-none">
             <h3>address</h3>
             <h3>manteufelstr.55</h3>
             <h3>10999 berlin-kreuzberg</h3>
           </div>
 
           {/* Appointments */}
-          <div className="flex flex-col text-base md:text-lg leading-none items-end">
+          <div className="flex flex-col text-base md:text-[clamp(1rem,2vw,1.6rem)] leading-none items-end">
             <h3>appointments</h3>
             <a href="tel:+493061202363" className="flex">
               (030) - 61202363

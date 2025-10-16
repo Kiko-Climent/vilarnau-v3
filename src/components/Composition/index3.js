@@ -20,7 +20,7 @@ const Composition3 = () => {
 
         {/* Texto, pegado a la imagen por arriba */}
         <div className="absolute bottom-[58.5%] left-[25.3%] md:left-[32%] w-[38%] md:w-[31%] -translate-x-1/2 z-[2]
-            text-base md:text-lg text-left leading-none tracking-wider"
+            text-base md:text-[clamp(1rem,2vw,1.6rem)] text-left leading-none tracking-wider"
             >
           <TextAnimation2>
             <div className="">

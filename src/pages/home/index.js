@@ -65,12 +65,12 @@ export default function Home() {
             <FlipSection2 FirstComponent={Quote1} SecondComponent={Triptico6}/>
             <Composition3 />
             <Team />
-            <div id="about">
+            <div id="about" className="my-0 md:my-32">
               <Composition4Wrapper />
             </div>
-            <div className="pt-24">
+            {/* <div className="pt-24"> */}
               <AlmodovarQuoteWrapper />
-            </div>
+            {/* </div> */}
             <Footer />        
           {/* </ReactLenis> */}
       </div>

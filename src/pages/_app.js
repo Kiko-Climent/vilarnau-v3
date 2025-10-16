@@ -50,7 +50,6 @@ function Layout({ Component, pageProps, router }) {
 export default function App({ Component, pageProps, router }) {
   return (
     <NavbarProvider>
-      {/* 👇 Lenis global */}
       <ReactLenis root>
         <Layout Component={Component} pageProps={pageProps} router={router} />
       </ReactLenis>

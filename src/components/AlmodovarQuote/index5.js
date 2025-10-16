@@ -1,4 +1,3 @@
-import TextAnimation from "../Tools";
 import AnimatedImageBox from "../Tools/AnimatedImageBox";
 
 const AlmodovarQuote5 = () => {

@@ -16,12 +16,13 @@ const Triptico6 = () => {
       </div>
 
       {/* Texto en esquina inferior derecha */}
-      <div className="absolute bottom-2 right-2 md:right-5 text-right font-myfont2">
-        <p className="text-base md:text-lg tracking-wider leading-none">
-          we believe in creating a look<br />
-          that while keeping an insight<br />
-          on actual trends, better highlights<br />
-          your features and lifestyle
+      <div className="absolute bottom-2 right-2 md:right-6 text-right font-myfont2">
+        <p className="text-base md:text-[clamp(1rem,2vw,1.6rem)] tracking-wider leading-none">
+          designing looks<br />
+          that reflect the now<br />
+          while highlighting<br />
+          who you truly are<br />
+          
         </p>
       </div>
     </div>

@@ -1,7 +1,7 @@
 import TextAnimation from "../Tools";
 import GridRevealImage from "../Tools/GridRevealAnimation";
 
-const Composition4 = () => {
+const Composition4_2 = () => {
   return (
     <div className="w-screen h-screen flex items-center justify-center overflow-hidden">
       <div className="relative w-full h-full max-w-[1920px] max-h-[calc(100vh-1rem)] aspect-[16/10] font-myfont2">
@@ -37,9 +37,11 @@ const Composition4 = () => {
           }}
         >
           <p>
-          Welcome to Salon Vilarnau.<br></br>
+          Welcome to Salon Vilarnau.
+          </p>
+          <p>
           Our philosophy is to deeply understand your wishes, so that we can create individual
-          cuts that accentuate your features and style.<br></br>
+          cuts that accentuate your features and style.
           </p>
           <p>
           We believe in the power of classic meets contemporary, and customers leaving our salon
@@ -76,16 +78,21 @@ const Composition4 = () => {
             zIndex: 2,
           }}
         >
-          <p>Open in the heart <br></br>of Berlin-Kreuzberg<br></br>since 2018. <br></br>Come say hello.</p>
+          <p>Open in the heart</p>
+          <p>of Berlin-Kreuzberg</p>
+          <p>since 2018.</p>
+          <p>Come say hello.</p>
+            
         </div>
         <div
-          className="absolute text-right  uppercase leading-none tracking-wider"
+          className="absolute uppercase leading-none tracking-wider"
           style={{
             bottom: "-1%",
-            left: "41%",
+            left: "47.5%",
             width:"24,3%",
             zIndex: 2,
-            fontSize: "3rem", // ✅ responsive
+            fontSize: "clamp(1.6rem, 2.4vw, 2.8rem)"
+
           }}
         >
           {/* <p>(030) - 61202363 <br></br>hello@vilarnau.de</p> */}
@@ -114,4 +121,4 @@ const Composition4 = () => {
   );
 };
 
-export default Composition4;
+export default Composition4_2;

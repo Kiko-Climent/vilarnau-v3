@@ -65,11 +65,11 @@ const Quote1 = () => {
   return (
     <section
       ref={sectionRef}
-      className="w-screen h-screen flex flex-col items-center justify-center font-myfont2 tracking-wider text-4xl uppercase"
+      className="w-screen h-screen flex flex-col items-center justify-center font-myfont2 tracking-wider text-[clamp(1.1rem,2.2vw,1.8rem)] uppercase"
     >
-      <div ref={textRef} className="flex flex-col -space-y-3 text-center">
-        <p>where classics</p>
-        <p>meets contemporary</p>
+      <div ref={textRef} className="flex flex-col -space-y-2 md:-space-y-4 text-center">
+        <p>where timeless</p>
+        <p>meets today</p>
       </div>
     </section>
   );
