@@ -18,13 +18,12 @@ const Triptico5 = () => {
 
       {/* Texto en esquina inferior derecha */}
       <TextAnimation>
-      <div className="absolute bottom-2 left-2 text-left font-myfont2">
-        <p className="text-base md:text-[clamp(1rem,2vw,1.6rem)] tracking-wider leading-none">
-          a place where individuality<br />
-          and self expression are<br />
-          not just embraced<br />
-          but celebrated
-        </p>
+      <div className="absolute bottom-2 left-2 text-left font-myfont2 text-base md:text-[clamp(0.95rem,2vw,1.45rem)] tracking-wider leading-none md:leading-5">
+        <p>a place where individuality</p>
+        <p>and self expression are</p>
+        <p>not just embraced</p>
+        <p>but celebrated</p>
+        
       </div>
       </TextAnimation>
     </div>

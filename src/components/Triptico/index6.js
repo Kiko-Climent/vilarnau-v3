@@ -17,7 +17,7 @@ const Triptico6 = () => {
 
       {/* Texto en esquina inferior derecha */}
       <div className="absolute bottom-2 right-2 md:right-6 text-right font-myfont2">
-        <p className="text-base md:text-[clamp(1rem,2vw,1.6rem)] tracking-wider leading-none">
+        <p className="text-base md:text-[clamp(0.95rem,2vw,1.45rem)] tracking-wider leading-none md:leading-5">
           designing looks<br />
           that reflect the now<br />
           while highlighting<br />

@@ -69,6 +69,12 @@ body {
   /* padding-bottom: 0.20em; */
 }
 
+/* Fix exclusivo para TeamMobile2 */
+.team-mobile-fix .line-line {
+  margin-bottom: 0.05em;
+  line-height:normal;
+}
+
 .line-line2 {
   display: inline-block;
   overflow: visible;

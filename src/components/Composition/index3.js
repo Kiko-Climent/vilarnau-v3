@@ -19,11 +19,10 @@ const Composition3 = () => {
         </div>
 
         {/* Texto, pegado a la imagen por arriba */}
-        <div className="absolute bottom-[58.5%] left-[25.3%] md:left-[32%] w-[38%] md:w-[31%] -translate-x-1/2 z-[2]
-            text-base md:text-[clamp(1rem,2vw,1.6rem)] text-left leading-none tracking-wider"
+        <div className="absolute bottom-[60%] md:bottom-[58.5%] left-[25.3%] md:left-[32%] w-[38%] md:w-[31%] -translate-x-1/2 z-[2]
+            text-base md:text-[clamp(0.95rem,2vw,1.45rem)] text-left leading-5 tracking-wider"
             >
           <TextAnimation2>
-            <div className="">
             <p>vilarnau opens:</p>
             <p>tuesday 12 — 20</p>
             <p>wednesday 12 — 20</p>
@@ -32,13 +31,12 @@ const Composition3 = () => {
             <p>saturday 13 — 20</p>
             <p>sunday - closed</p>
             <p>monday - closed</p>
-            </div>
           </TextAnimation2>
         </div>
 
 
         {/* Imagen superior centro */}
-        <div className="absolute top-0 left-[48%] md:left-1/2 w-[49%] md:w-[36.5%] h-[61.5%] md:h-[62%] -translate-x-[7%] z-[1]">
+        <div className="absolute top-0 left-[48%] md:left-1/2 w-[49%] md:w-[36.5%] h-[61%] md:h-[62%] -translate-x-[7%] z-[1]">
           <GridRevealImage
             src="/images/img10.jpg"
             className="w-full h-full object-cover"

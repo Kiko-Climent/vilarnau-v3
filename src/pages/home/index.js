@@ -16,7 +16,6 @@ import Triptico5 from "@/components/Triptico/index5";
 import Composition3 from "@/components/Composition/index3";
 import Test4 from "@/components/NewHero/test4";
 import Composition4Wrapper from "@/components/CompositionWrapper";
-import Team from "@/components/Team";
 import AlmodovarQuoteWrapper from "@/components/AlmodovarQuote/AlmodovarQuoteWrapper";
 import Triptico6 from "@/components/Triptico/index6";
 import Quote1 from "@/components/Other/index2";
@@ -24,6 +23,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useLenis } from "lenis/react";
 import FlipSection2 from "@/components/FlipSections/index2";
+import TeamWrapper from "@/components/Team/TeamWrapper";
 
 
 export default function Home() {
@@ -64,8 +64,8 @@ export default function Home() {
             <ZoomGallery />
             <FlipSection2 FirstComponent={Quote1} SecondComponent={Triptico6}/>
             <Composition3 />
-            <Team />
-            <div id="about" className="my-0 md:my-32">
+            <TeamWrapper />
+            <div id="about" className="my-12 md:my-32">
               <Composition4Wrapper />
             </div>
             {/* <div className="pt-24"> */}
