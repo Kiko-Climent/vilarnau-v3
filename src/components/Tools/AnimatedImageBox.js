@@ -32,7 +32,7 @@ export default function AnimatedImageBox() {
 
   return (
     <div ref={boxRef} className="w-full h-full overflow-hidden">
-      <img src="/newhero/img1.webp" alt="animated" className="w-full h-full object-cover aspect-[1/1]" />
+      <img src="/newhero/img1.webp" alt="animated" className="w-full h-full object-cover aspect-[3/4]" />
     </div>
   );
 }

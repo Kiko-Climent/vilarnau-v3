@@ -11,6 +11,7 @@ import TeamMobile3 from "@/components/Team/index5";
 export default function About() {
   return(
     <>
+      <Composition5 />
       <FlipSection3 FirstComponent={AlmodovarQuoteNew} SecondComponent={AnimatedBoxComponent}/>
     </>
   )

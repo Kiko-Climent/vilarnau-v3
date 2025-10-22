@@ -2,7 +2,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 import gsap from "gsap";
-import CounterPreloader from "../Tools/CounterPreloader";
 import CounterPreloader2 from "../Tools/CounterPreloader2";
 
 export default function NewHero4() {
