@@ -24,6 +24,9 @@ import { useEffect } from "react";
 import { useLenis } from "lenis/react";
 import FlipSection2 from "@/components/FlipSections/index2";
 import TeamWrapper from "@/components/Team/TeamWrapper";
+import FlipSection3 from "@/components/FlipSections/index3";
+import AlmodovarQuoteNew from "@/components/AlmodovarQuote/index6";
+import AnimatedBoxComponent from "@/components/Other/AnimatedBoxComponent";
 
 
 export default function Home() {
@@ -69,7 +72,7 @@ export default function Home() {
               <Composition4Wrapper />
             </div>
             {/* <div className="pt-24"> */}
-              <AlmodovarQuoteWrapper />
+              <FlipSection3 FirstComponent={AlmodovarQuoteNew} SecondComponent={AnimatedBoxComponent} />
             {/* </div> */}
             <Footer />        
           {/* </ReactLenis> */}

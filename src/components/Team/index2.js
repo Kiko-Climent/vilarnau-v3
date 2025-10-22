@@ -3,7 +3,7 @@ import GridRevealImage from "../Tools/GridRevealAnimation";
 
 const Team2 = () => {
   return(
-    <div className="w-screen min-h-screen relative bg-white overflow-hidden">
+    <div className="w-screen min-h-screen relative overflow-hidden">
       <div className="absolute top-0 left-0 aspect-[3/4] w-4/12">
         <GridRevealImage src="/images/img4.jpg" 
         className="w-full h-full grayscale object-cover" />
