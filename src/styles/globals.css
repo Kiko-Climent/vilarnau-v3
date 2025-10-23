@@ -101,6 +101,15 @@ body {
 }
 
 
+/* Almodovar Quote */
+.reveal-img {
+  will-change: clip-path, transform, opacity;
+  transform: translateZ(0) scale(1.0001);
+  backface-visibility: hidden;
+  image-rendering: auto;
+}
+
+
 
 
 

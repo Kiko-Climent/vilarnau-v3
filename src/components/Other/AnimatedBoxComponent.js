@@ -43,7 +43,7 @@ const AnimatedBoxComponent = () => {
   return (
     <div ref={boxRef} 
     className="w-screen h-[100vh] flex justify-center items-center bg-white">
-      <div className="reveal-img sticky top-8 w-[40vw] max-w-[250px] mt-10">
+      <div className="reveal-img sticky top-8 w-[40vw] max-w-[35vw] md:max-w-[15vw]">
         <AnimatedImageBox />
       </div>
     </div>

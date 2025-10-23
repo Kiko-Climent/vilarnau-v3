@@ -5,7 +5,30 @@ import TextAnimation from "../Tools";
 
 
 const AlmodovarQuoteNew = () => {
+  
   const sectionRef = useRef(null);
+
+
+  useEffect(() => {
+    const preloadImages = [
+      "/images/Vilarnau_analog_04.webp",
+      "/images/Vilarnau_analog_06.webp",
+      "/images/Vilarnau_analog_13.webp",
+    ];
+
+    preloadImages.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+
+      img.decode?.().catch(() => {});
+    });
+  }, []);
+
+  // ✅ 2. Configuración GSAP global — solo una vez
+  useEffect(() => {
+    gsap.ticker.lagSmoothing(0); // evita micro-pauses
+    gsap.config({ force3D: true }); // prioriza GPU
+  }, []);
 
   useEffect(() => {
     let ctx;
@@ -21,16 +44,21 @@ const AlmodovarQuoteNew = () => {
       ctx = gsap.context(() => {
         gsap.set(images, {
           clipPath: "polygon(0 0, 0 0, 0 100%, 0 100%)",
+          willChange: "clip-path, transform, opacity",
+          transform: "translateZ(0) scale(1.0001)",
+          backfaceVisibility: "hidden",
         });
+        
 
         gsap.to(images, {
           clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
           duration: 1.2,
           ease: "power3.out",
           stagger: 0.25,
+          delay: 0.15,
           scrollTrigger: {
             trigger: section,
-            start: "top 25%",
+            start: "center-=100 center",
             toggleActions: "play none none reverse",
           },
         });
@@ -46,12 +74,14 @@ const AlmodovarQuoteNew = () => {
     <div ref={sectionRef} 
     className="relative h-screen w-screen flex flex-col justify-center items-start overflow-hidden gap-2 pl-2 md:pl-60 bg-white">
       <div className="flex w-[75%] md:w-[38%] h-[22%] md:h-[31%]">
-        <img src="/images/Vilarnau_analog_04.jpg"
-        className="reveal-img object-cover w-full h-full"/>
+        <img src="/images/Vilarnau_analog_04.webp"
+        className="reveal-img object-cover w-full h-full will-change-transform"
+        loading="eager"/>
       </div>
       <div className="flex w-[75%] md:w-[38%] h-[22%] md:h-[31%] ">
-        <img src="/images/Vilarnau_analog_06.jpg"
-        className="reveal-img object-cover w-full h-full "/>
+        <img src="/images/Vilarnau_analog_06.webp"
+        className="reveal-img object-cover w-full h-full will-change-transform" 
+        loading="eager"/>
         <TextAnimation>
           <div className="absolute bottom-[39%] md:bottom-[35%] left-[2%] md:left-[11%] w-screen md:w-[55%] mix-blend-difference ">
             <p className="text-gray-300 pr-2 md:pr-0 text-base md:text-[clamp(0.95rem,2vw,1.45rem)] tracking-wider leading-none md:leading-5 ">
@@ -64,8 +94,9 @@ const AlmodovarQuoteNew = () => {
         </TextAnimation>
       </div>
       <div className="flex w-[75%] md:w-[38%] h-[22%] md:h-[31%]">
-        <img src="/images/Vilarnau_analog_13.jpg"
-        className="reveal-img object-cover w-full h-full"/>
+        <img src="/images/Vilarnau_analog_13.webp"
+        className="reveal-img object-cover w-full h-full will-change-transform"
+        loading="eager"/>
       </div>
     </div>
   )
