@@ -27,7 +27,7 @@ const animateIn = async (target, onComplete) => {
   );
 };
 
-const Quote1 = () => {
+const Quote2 = () => {
   const sectionRef = useRef(null);
   const textRef = useRef(null);
   const hasAnimatedText = useRef(false);
@@ -65,14 +65,14 @@ const Quote1 = () => {
   return (
     <section
       ref={sectionRef}
-      className="w-screen h-screen flex flex-col items-center justify-center font-myfont2 tracking-wider text-[clamp(1rem,7vw,4rem)] md:text-[clamp(1.1rem,2.2vw,1.8rem)] uppercase"
+      className="w-screen h-screen flex flex-col items-center justify-center tracking-wider text-[clamp(1rem,7vw,4rem)] md:text-[clamp(1.1rem,2.2vw,1.8rem)] uppercase"
     >
       <div ref={textRef} className="flex flex-col -space-y-4 md:-space-y-4 text-center">
-        <p>where timeless</p>
-        <p>meets today</p>
+        <p>welcome to</p>
+        <p>salon vilarnau</p>
       </div>
     </section>
   );
 };
 
-export default Quote1;
+export default Quote2;

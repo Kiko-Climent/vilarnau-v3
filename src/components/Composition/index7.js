@@ -4,7 +4,7 @@ import GridRevealImage from "../Tools/GridRevealAnimation";
 
 const Composition4MobileFlex2 = () => {
   return (
-    <div className="w-screen h-screen flex flex-col pr-2 gap-2 uppercase text-[clamp(1rem,7vw,4rem)] font-myfont2 tracking-wide">
+    <div className="w-screen h-screen flex flex-col pr-2 gap-2 uppercase text-[clamp(1rem,7vw,4rem)] bg-white tracking-wide">
       {/* Texto superior */}
       <TextAnimation2>
       <div className="w-full flex-col text-justify leading-none pl-1">

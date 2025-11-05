@@ -7,16 +7,16 @@ export default function FlipSection2({ FirstComponent, SecondComponent }) {
   const containerRef = useRef(null);
 
 
-  useEffect( () => {
-    const lenis = new Lenis()
+  // useEffect( () => {
+  //   const lenis = new Lenis()
 
-    function raf(time) {
-      lenis.raf(time)
-      requestAnimationFrame(raf)
-    }
+  //   function raf(time) {
+  //     lenis.raf(time)
+  //     requestAnimationFrame(raf)
+  //   }
 
-    requestAnimationFrame(raf)
-  }, [])
+  //   requestAnimationFrame(raf)
+  // }, [])
 
 
   return (

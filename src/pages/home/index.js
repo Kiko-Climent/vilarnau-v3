@@ -3,12 +3,11 @@
 import Head from "next/head";
 import Pic1 from "../../../public/zoomgallery/zoom5.webp";
 import Pic2 from "../../../public/zoomgallery/zoom1.webp";
-import Pic3 from "../../../public/zoomgallery/zoom7.webp";
+import Pic3 from "../../../public/zoomgallery/zoom8.webp";
 import Pic4 from "../../../public/zoomgallery/zoom2.webp";
 import Pic5 from "../../../public/zoomgallery/zoom3.webp";
 import Pic6 from "../../../public/zoomgallery/zoom4.webp";
 import Pic7 from "../../../public/zoomgallery/zoom6.webp";
-// import { ReactLenis } from "lenis/react";
 import FlipSection from "@/components/FlipSections";
 import ZoomGallery from "@/components/ZoomGallery";
 import Footer from "@/components/Sticky_Footer/footer";
@@ -17,6 +16,7 @@ import Composition3 from "@/components/Composition/index3";
 import Test4 from "@/components/NewHero/test4";
 import Composition4Wrapper from "@/components/CompositionWrapper";
 import AlmodovarQuoteWrapper from "@/components/AlmodovarQuote/AlmodovarQuoteWrapper";
+import Quote2 from "@/components/Other/index3";
 import Triptico6 from "@/components/Triptico/index6";
 import Quote1 from "@/components/Other/index2";
 import { useRouter } from "next/router";
@@ -65,15 +65,14 @@ export default function Home() {
           {/* <ReactLenis root> */}
             <FlipSection FirstComponent={Test4} SecondComponent={Triptico5} />
             <ZoomGallery />
-            <FlipSection2 FirstComponent={Quote1} SecondComponent={Triptico6}/>
-            <Composition3 />
-            <TeamWrapper />
             <div id="about" className="my-12 md:my-32">
-              <Composition4Wrapper />
+              {/* <Composition4Wrapper /> */}
+              <FlipSection3 FirstComponent={Quote2} SecondComponent={Composition4Wrapper}/>
             </div>
-            {/* <div className="pt-24"> */}
+            <FlipSection2 FirstComponent={Quote1} SecondComponent={Triptico6}/>
+            <TeamWrapper />
+            <Composition3 />
               <FlipSection3 FirstComponent={AlmodovarQuoteNew} SecondComponent={AnimatedBoxComponent} />
-            {/* </div> */}
             <Footer />        
           {/* </ReactLenis> */}
       </div>

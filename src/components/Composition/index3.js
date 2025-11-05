@@ -38,7 +38,7 @@ const Composition3 = () => {
         {/* Imagen superior centro */}
         <div className="absolute top-0 left-[48%] md:left-1/2 w-[49%] md:w-[36.5%] h-[61%] md:h-[62%] -translate-x-[7%] z-[1]">
           <GridRevealImage
-            src="/images/img10.jpg"
+            src="/images/img2.jpeg"
             className="w-full h-full object-cover"
             alt="img10"
           />
@@ -48,7 +48,7 @@ const Composition3 = () => {
         {/* Imagen inferior derecha */}
         <div className="absolute bottom-0 right-[4.3%] md:right-0 w-[51%] md:w-[31.5%] h-[37.3%] pr-2 md:pr-6 z-[1]">
           <GridRevealImage
-            src="/images/img2.jpg"
+            src="/images/img23.jpg"
             className="w-full h-full object-cover"
             alt="img2"
           />

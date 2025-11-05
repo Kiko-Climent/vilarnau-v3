@@ -6,7 +6,7 @@ import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(); // Registrar sin plugins aún
 
-export default function TextAnimation({ children, animateOnScroll = true, delay = 0 }) {
+export default function TextAnimation({ children, animateOnScroll = true, delay = 0, start = "top 75%", }) {
   const containerRef = useRef(null);
   const elementRefs = useRef([]);
   const splitRefs = useRef([]);
@@ -72,8 +72,9 @@ export default function TextAnimation({ children, animateOnScroll = true, delay 
               ...animationProps,
               scrollTrigger: {
                 trigger: containerRef.current,
-                start: "top 75%",
+                start,
                 once: true,
+                // markers: true,
               },
             });
           } else {

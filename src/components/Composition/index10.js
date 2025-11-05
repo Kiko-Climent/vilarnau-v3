@@ -26,7 +26,7 @@ const Composition4_2 = () => {
         </div>
 
         {/* Texto superior */}
-        <TextAnimation>
+        <TextAnimation start="top 25%">
         <div
           className="absolute text-left pl-2 leading-none tracking-wider uppercase text-[clamp(0.95rem,2vw,1.45rem)]"
           style={{
@@ -36,9 +36,6 @@ const Composition4_2 = () => {
             zIndex: 2,
           }}
         >
-          <p>
-          Welcome to Salon Vilarnau.
-          </p>
           <p>
           Our philosophy is to deeply understand your wishes, so that we can create individual
           cuts that accentuate your features and style.

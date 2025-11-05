@@ -24,16 +24,16 @@ export default function FlipSection({ FirstComponent, SecondComponent }) {
     }
   })
 
-  useEffect( () => {
-    const lenis = new Lenis()
+  // useEffect( () => {
+  //   const lenis = new Lenis()
 
-    function raf(time) {
-      lenis.raf(time)
-      requestAnimationFrame(raf)
-    }
+  //   function raf(time) {
+  //     lenis.raf(time)
+  //     requestAnimationFrame(raf)
+  //   }
 
-    requestAnimationFrame(raf)
-  }, [])
+  //   requestAnimationFrame(raf)
+  // }, [])
 
   const scaleFirst = useTransform(scrollYProgress, [0, 1], [1, 0.8]);
   const rotateFirst = useTransform(scrollYProgress, [0, 1], [0, -5]);
