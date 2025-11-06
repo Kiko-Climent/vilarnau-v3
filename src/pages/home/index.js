@@ -2,12 +2,12 @@
 
 import Head from "next/head";
 import Pic1 from "../../../public/zoomgallery/zoom5.webp";
-import Pic2 from "../../../public/zoomgallery/zoom1.webp";
-import Pic3 from "../../../public/zoomgallery/zoom8.webp";
-import Pic4 from "../../../public/zoomgallery/zoom2.webp";
-import Pic5 from "../../../public/zoomgallery/zoom3.webp";
-import Pic6 from "../../../public/zoomgallery/zoom4.webp";
-import Pic7 from "../../../public/zoomgallery/zoom6.webp";
+// import Pic2 from "../../../public/zoomgallery/zoom1.webp";
+// import Pic3 from "../../../public/zoomgallery/zoom8.webp";
+// import Pic4 from "../../../public/zoomgallery/zoom2.webp";
+// import Pic5 from "../../../public/zoomgallery/zoom3.webp";
+// import Pic6 from "../../../public/zoomgallery/zoom4.webp";
+// import Pic7 from "../../../public/zoomgallery/zoom6.webp";
 import FlipSection from "@/components/FlipSections";
 import ZoomGallery from "@/components/ZoomGallery";
 import Footer from "@/components/Sticky_Footer/footer";
@@ -54,12 +54,12 @@ export default function Home() {
         <link rel="preload" as="image" href="/images/img1.jpeg" />
         <link rel="preload" as="image" href="/images/img17.jpeg" />
         <link rel="preload" as="image" href={Pic1.src} />
-        <link rel="preload" as="image" href={Pic2.src} />
+        {/* <link rel="preload" as="image" href={Pic2.src} />
         <link rel="preload" as="image" href={Pic3.src} />
         <link rel="preload" as="image" href={Pic4.src} />
         <link rel="preload" as="image" href={Pic5.src} />
         <link rel="preload" as="image" href={Pic6.src} />
-        <link rel="preload" as="image" href={Pic7.src} />
+        <link rel="preload" as="image" href={Pic7.src} /> */}
     </Head>
       <div className="w-screen relative">
           {/* <ReactLenis root> */}
@@ -70,7 +70,9 @@ export default function Home() {
               <FlipSection3 FirstComponent={Quote2} SecondComponent={Composition4Wrapper}/>
             </div>
             <FlipSection2 FirstComponent={Quote1} SecondComponent={Triptico6}/>
-            <TeamWrapper />
+            <div className="my-12 md:my-32">
+              <TeamWrapper />
+            </div>
             <Composition3 />
               <FlipSection3 FirstComponent={AlmodovarQuoteNew} SecondComponent={AnimatedBoxComponent} />
             <Footer />        

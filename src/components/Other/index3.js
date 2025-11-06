@@ -44,8 +44,8 @@ const Quote2 = () => {
 
       scrollTriggerInstance = ScrollTrigger.create({
         trigger: sectionRef.current,
-        start: "top 60+=100", // ⬅️ cuando el top del componente llega al 60% del viewport
-        once: true, // se ejecuta una sola vez
+        start: "top 50+=100",
+        once: true,
         onEnter: () => {
           if (!hasAnimatedText.current) {
             hasAnimatedText.current = true;

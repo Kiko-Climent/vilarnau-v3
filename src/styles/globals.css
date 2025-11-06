@@ -89,10 +89,17 @@ body {
 
 
 
-.mask {
+/* .mask {
   will-change: clip-path, transform;
   backface-visibility: hidden;
+} */
+
+.mask {
+  will-change: clip-path, opacity, transform;
+  contain: layout paint size style;
+  backface-visibility: hidden;
 }
+
 
 .swiper-slide-prev {
   opacity: 0 !important;
