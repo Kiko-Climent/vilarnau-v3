@@ -74,7 +74,7 @@ export default function TextAnimation({ children, animateOnScroll = true, delay 
                 trigger: containerRef.current,
                 start,
                 once: true,
-                // markers: true,
+                markers: true,
               },
             });
           } else {

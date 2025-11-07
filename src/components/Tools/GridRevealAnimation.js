@@ -113,6 +113,7 @@ export default function GridRevealImage({
           start,
           once,
           immediateRender: false,
+          markers: true,
         },
         onComplete: () => {
           if (once) hasAnimatedRef.current = true;

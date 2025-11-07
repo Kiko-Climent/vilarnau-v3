@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import GridRevealImage from '../Tools/GridRevealAnimation';
+import usePreloadImage from "../Tools/usePreloadImage";
 
 export default function StyleSlider9({ ready }) {
   const sliderRef = useRef(null);
@@ -10,6 +11,12 @@ export default function StyleSlider9({ ready }) {
   const previewsRef = useRef(null);
   const sliderImagesRef = useRef(null);
   const textRef = useRef(null);
+
+  // ✅ Preload de la primera imagen del slider (la que anima con GRID)
+  const [firstSlideSrc, FirstSlidePreload] = usePreloadImage(
+    "/styles/img1.webp",
+    { width: 1200, height: 1600, priority: true }
+  );
 
   // Animación del texto (solo cabecera)
   const animateIn = async (target, onComplete) => {
@@ -30,7 +37,7 @@ export default function StyleSlider9({ ready }) {
         duration: 1,
         ease: "power3.out",
         onComplete: () => {
-          split.revert(); // revert solo afecta a los chars animados
+          split.revert();
           if (onComplete) onComplete();
         }
       }
@@ -52,7 +59,6 @@ export default function StyleSlider9({ ready }) {
         let currentImg = 1;
         const totalSlides = 16;
 
-        // Preparamos previews
         prevSlides.forEach(prev => {
           const img = prev.querySelector('img');
           gsap.set(prev, { opacity: 0 });
@@ -61,7 +67,6 @@ export default function StyleSlider9({ ready }) {
           img.style.backfaceVisibility = 'hidden';
         });
 
-        // Preparamos header text: solo la cabecera
         const headerContent = textRef.current.querySelector('.header-content');
         gsap.set(headerContent, { opacity: 0 });
         headerContent.style.willChange = 'transform, opacity';
@@ -78,23 +83,17 @@ export default function StyleSlider9({ ready }) {
         }
 
         function animateSlide(direction) {
-          const currentSlide =
-            sliderImages.querySelectorAll('.img-slider-new')[
-              sliderImages.querySelectorAll('.img-slider-new').length - 1
-            ];
-        
-          // Creamos la nueva slide
           const slideImg = document.createElement('div');
           slideImg.classList.add('img-slider-new');
-        
+
           const slideImgElem = document.createElement('img');
           slideImgElem.src = `/stylesresized/img${currentImg}.webp`;
+
           gsap.set(slideImgElem, { x: direction === 'left' ? -500 : 500 });
-        
+
           slideImg.appendChild(slideImgElem);
           sliderImages.appendChild(slideImg);
-        
-          // Animación de la nueva slide
+
           gsap.fromTo(
             slideImg,
             {
@@ -109,18 +108,16 @@ export default function StyleSlider9({ ready }) {
               ease: 'hop',
             }
           );
-        
+
           gsap.to(slideImgElem, {
             x: 0,
             duration: 1.5,
             ease: 'hop',
           });
-        
-          // Limitar número de slides en el DOM
+
           const imgElements = sliderImages.querySelectorAll('.img-slider-new');
           if (imgElements.length > totalSlides) imgElements[0].remove();
         }
-        
 
         function handleClick(event) {
           if (!sliderRef.current) return;
@@ -156,7 +153,6 @@ export default function StyleSlider9({ ready }) {
 
         document.addEventListener('click', handleClick);
 
-        // Inicializamos previews y contador
         requestAnimationFrame(() => {
           updateActiveSlidePreview();
           updateCounterAndTitlePosition();
@@ -171,32 +167,37 @@ export default function StyleSlider9({ ready }) {
 
   return (
     <div className='container-styles-2 font-myfont2 text-xl tracking-wider'>
+
+      {/* ✅ Preload first slide image */}
+      {FirstSlidePreload}
+
       <div className="slider" ref={sliderRef}>
         <div className="slider-images" ref={sliderImagesRef}>
           <div className="img-slider-new">
-            <GridRevealImage
-              src="/styles/img1.webp"
-              alt="img1"
-              objectPosition="top"
-              className="w-full h-full"
-              rows={5}
-              cols={5}
-              order="diagonal"
-              start="top 85%"
-              onComplete={() => {
-                // Animamos el header-content al acabar el GridReveal
-                animateIn(textRef.current.querySelector('.header-content'), () => {
-                  const prevSlides = previewsRef.current.querySelectorAll('.preview');
-                  gsap.to(prevSlides, {
-                    opacity: 1,
-                    y: 0,
-                    duration: 0.6,
-                    stagger: 0.05,
-                    ease: 'power2.out'
+            {firstSlideSrc && (
+              <GridRevealImage
+                src={firstSlideSrc}
+                alt="img1"
+                objectPosition="top"
+                className="w-full h-full"
+                rows={5}
+                cols={5}
+                order="diagonal"
+                start="top 85%"
+                onComplete={() => {
+                  animateIn(textRef.current.querySelector('.header-content'), () => {
+                    const prevSlides = previewsRef.current.querySelectorAll('.preview');
+                    gsap.to(prevSlides, {
+                      opacity: 1,
+                      y: 0,
+                      duration: 0.6,
+                      stagger: 0.05,
+                      ease: 'power2.out'
+                    });
                   });
-                });
-              }}
-            />
+                }}
+              />
+            )}
           </div>
         </div>
       </div>

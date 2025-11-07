@@ -9,12 +9,13 @@ import Team2 from "@/components/Team/index2";
 import TeamMobile from "@/components/Team/index3";
 import TeamMobile2 from "@/components/Team/index4";
 import TeamMobile3 from "@/components/Team/index5";
+import TeamWrapper from "@/components/Team/TeamWrapper";
 
 export default function About() {
   return(
     <>
-      <Composition5 />
       <FlipSection3 FirstComponent={Quote2} SecondComponent={Composition4Wrapper}/>
+      <TeamWrapper />
     </>
   )
 }

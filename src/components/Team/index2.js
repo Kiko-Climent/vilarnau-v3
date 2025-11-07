@@ -24,6 +24,7 @@ const Team2 = () => {
           <GridRevealImage
             src={img1}
             className="w-full h-full grayscale object-cover"
+            start="top 60%"
           />
         </div>
       )}
@@ -34,6 +35,7 @@ const Team2 = () => {
           <GridRevealImage
             src={img2}
             className="w-full h-full object-cover aspect-[1/1]"
+            start="top 70%"
           />
         </div>
       )}
@@ -44,6 +46,7 @@ const Team2 = () => {
           <GridRevealImage
             src={img3}
             className="w-full h-full object-cover aspect-[3/4]"
+            start="top 70%"
           />
         </div>
       )}

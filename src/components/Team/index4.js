@@ -14,6 +14,7 @@ const TeamMobile2 = () => {
           <GridRevealImage 
             src="/assets/img12.jpg"
             className="w-full h-full object-cover"
+            start="top 65%"
           />
         </div>
         <p className="flex self-end text-[clamp(0.8rem,2vw,1rem)] translate-y-[clamp(2px,0.4vw,4px)] text-nowrap">( 1 )</p>
