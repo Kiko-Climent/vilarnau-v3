@@ -113,7 +113,7 @@ export default function PriceList4({ isOpen, onClose }) {
                    px-6 md:px-10 py-8 md:py-10 font-myfont2 tracking-widest leading-tight z-50"
       >
         <TextAnimation2>
-          <h1 className="text-xl mb-2 uppercase">salon vilarnau | pricelist</h1>
+          <h1 className="text-xl mb-2">salon vilarnau | pricelist</h1>
         </TextAnimation2>
 
         {/* Cabecera */}
@@ -135,11 +135,11 @@ export default function PriceList4({ isOpen, onClose }) {
           <div className="relative">
             <TextAnimation2>
               {sections.map((section, i) => (
-                <div key={i} className="flex flex-col pb-2">
+                <div key={i} className="flex flex-col">
                   {/* 🔹 Mostrar título solo a partir de la tercera sección */}
                   {i > 1 && (
-                    <TextAnimation2 scrollStart="top 80%" lineHeight="0.9">
-                      <h2 className="text-base font-medium uppercase mb-1 transition-all duration-300 md:hover:bg-black md:hover:text-white px-1">
+                    <TextAnimation2 scrollStart="top 80%">
+                      <h2 className="text-base font-medium uppercase mb-1 transition-all duration-300 md:hover:bg-black md:hover:text-white">
                         {section.title}
                       </h2>
                     </TextAnimation2>
@@ -183,7 +183,7 @@ export default function PriceList4({ isOpen, onClose }) {
         </div>
 
         {/* Notas */}
-        <div className="flex flex-col text-xs mt-4 leading-none">
+        <div className="flex flex-col text-xs mt-3 leading-none">
           <p>
             * Prices may vary depending on the amount of work involved / additional materials used.
           </p>

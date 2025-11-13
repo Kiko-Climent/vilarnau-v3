@@ -6,13 +6,7 @@ import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(); // Registrar sin plugins aún
 
-export default function TextAnimation2({
-  children,
-  animateOnScroll = true,
-  delay = 0,
-  scrollStart = "top 55%",
-  lineHeight, // 👈 prop para line-height dinámico
-}) {
+export default function TextAnimation2({ children, animateOnScroll = true, delay = 0, scrollStart = "top 55%" }) {
   const containerRef = useRef(null);
   const elementRefs = useRef([]);
   const splitRefs = useRef([]);
@@ -22,6 +16,7 @@ export default function TextAnimation2({
     () => {
       if (!containerRef.current) return;
 
+      // Dynamic import solo en cliente
       import("gsap/SplitText").then(({ SplitText }) => {
         import("gsap/ScrollTrigger").then(({ ScrollTrigger }) => {
           gsap.registerPlugin(SplitText, ScrollTrigger);
@@ -48,13 +43,6 @@ export default function TextAnimation2({
             });
 
             splitRefs.current.push(split);
-
-            // Aplicar line-height dinámico si se pasó como prop
-            if (lineHeight) {
-              split.lines.forEach((line) => {
-                line.style.lineHeight = lineHeight;
-              });
-            }
 
             const computedStyle = window.getComputedStyle(element);
             const textIndent = computedStyle.textIndent;
@@ -96,11 +84,13 @@ export default function TextAnimation2({
 
       return () => {
         splitRefs.current.forEach((split) => {
-          if (split) split.revert();
+          if (split) {
+            split.revert();
+          }
         });
       };
     },
-    { scope: containerRef, dependencies: [animateOnScroll, delay, lineHeight] }
+    { scope: containerRef, dependencies: [animateOnScroll, delay] }
   );
 
   if (React.Children.count(children) === 1) {
