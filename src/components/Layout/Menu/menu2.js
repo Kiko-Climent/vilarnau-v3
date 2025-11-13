@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useRouter } from "next/router"; // 👈
 
 import PriceList2 from "@/components/Prices/index2";
+import PriceList4 from "@/components/Prices/index4";
 
 const Menu2 = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -34,7 +35,7 @@ const Menu2 = () => {
       </nav>
 
       {isModalOpen && (
-        <PriceList2 isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+        <PriceList4 isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
       )}
     </>
   )
