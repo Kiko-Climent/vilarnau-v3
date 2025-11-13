@@ -138,7 +138,7 @@ export default function PriceList4({ isOpen, onClose }) {
                 <div key={i} className="flex flex-col pb-2">
                   {/* 🔹 Mostrar título solo a partir de la tercera sección */}
                   {i > 1 && (
-                    <TextAnimation2 scrollStart="top 80%">
+                    <TextAnimation2 scrollStart="top 80%" lineHeight="0.9">
                       <h2 className="text-base font-medium uppercase mb-1 transition-all duration-300 md:hover:bg-black md:hover:text-white px-1">
                         {section.title}
                       </h2>
