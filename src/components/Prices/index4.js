@@ -37,7 +37,7 @@ export default function PriceList4({ isOpen, onClose }) {
           { scaleX: 0, transformOrigin: "left center" },
           {
             scaleX: 1,
-            duration: 2.5,
+            duration: 2.5, // más despacio
             ease: "power3.out",
             stagger: 0.25,
           }
@@ -112,18 +112,14 @@ export default function PriceList4({ isOpen, onClose }) {
                    px-6 md:px-10 py-8 md:py-10 font-myfont2 tracking-widest leading-tight z-50"
       >
         <TextAnimation2>
-          <LocalizedText
-            text="salon vilarnau | pricelist / salon vilarnau | preisliste"
-            className="text-xl mb-2"
-          />
+          <h1 className="text-xl mb-2">salon vilarnau | pricelist</h1>
         </TextAnimation2>
 
         {/* Cabecera */}
         <div className="grid grid-cols-[2fr_1fr_1fr_1fr] text-right items-center">
-          <LocalizedText
-            text="Service / Leistung *"
-            className="text-left"
-          />
+          <p className="text-left">
+            Service <span className="hidden md:inline">/ Leistung</span> *
+          </p>
           <p>short</p>
           <p>mid</p>
           <p>long</p>
@@ -141,6 +137,7 @@ export default function PriceList4({ isOpen, onClose }) {
             <TextAnimation2>
               {sections.map((section, i) => (
                 <div key={i} className="flex flex-col pb-2">
+                  {/* 🔹 Mostrar título solo a partir de la tercera sección */}
                   {i > 1 && (
                     <TextAnimation2 scrollStart="top 80%">
                       <h2 className="text-base font-medium uppercase transition-all duration-300 md:hover:bg-black md:hover:text-white">
@@ -188,9 +185,12 @@ export default function PriceList4({ isOpen, onClose }) {
 
         {/* Notas */}
         <div className="flex flex-col text-xs mt-3 leading-none">
-          <LocalizedText
-            text="* Prices may vary depending on the amount of work involved / additional materials used. / * Je nach Aufwand / Mehrverbrauch an Materialien, können die Preise abweichen."
-          />
+          <p>
+            * Prices may vary depending on the amount of work involved / additional materials used.
+          </p>
+          <p className="hidden md:block">
+            * Je nach Aufwand / Mehrverbrauch an Materialien, können die Preise abweichen.
+          </p>
         </div>
 
         {/* Footer */}
