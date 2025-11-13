@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import TextAnimation2 from "../Tools/AnimatedText2";
 
-// 🔹 Componente para mostrar solo inglés en móvil y ambos idiomas en desktop
+// 🔹 Texto que muestra solo inglés en móvil y ambos idiomas en desktop
 function LocalizedText({ text, className = "" }) {
   const [en, de] = text.split("/");
   return (
@@ -28,8 +28,8 @@ export default function PriceList4({ isOpen, onClose }) {
         { scale: 1, opacity: 1, duration: 0.6, ease: "power3.out" }
       );
 
-      // ⏳ Esperar a que termine la animación de texto antes de dibujar líneas
-      const delayBeforeLines = 1.6; // segundos
+      // ⏳ Espera antes de dibujar líneas (para sincronizar con texto)
+      const delayBeforeLines = 1.6;
 
       const timer = setTimeout(() => {
         gsap.fromTo(
@@ -37,9 +37,9 @@ export default function PriceList4({ isOpen, onClose }) {
           { scaleX: 0, transformOrigin: "left center" },
           {
             scaleX: 1,
-            duration: 2.5, // 👈 más despacio
+            duration: 2.5, // más despacio
             ease: "power3.out",
-            stagger: 0.25, // 👈 separación entre líneas
+            stagger: 0.25,
           }
         );
       }, delayBeforeLines * 1000);
@@ -101,10 +101,10 @@ export default function PriceList4({ isOpen, onClose }) {
 
   return (
     <div className="fixed inset-0 z-40" onClick={onClose}>
-      {/* Overlay opaco con blur */}
+      {/* Overlay */}
       <div className="absolute inset-0 bg-[#f5f6f7]/90 backdrop-blur-2xl" />
 
-      {/* Modal centrado */}
+      {/* Modal */}
       <div
         ref={modalRef}
         onClick={(e) => e.stopPropagation()}
@@ -113,10 +113,10 @@ export default function PriceList4({ isOpen, onClose }) {
                    px-6 md:px-10 py-8 md:py-10 font-myfont2 tracking-widest leading-tight z-50"
       >
         <TextAnimation2>
-          <h1 className="text-xl mb-2">salon vilarnau | pricelist</h1>
+          <h1 className="text-xl mb-2 uppercase">salon vilarnau | pricelist</h1>
         </TextAnimation2>
 
-        {/* Cabecera de columnas */}
+        {/* Cabecera */}
         <div className="grid grid-cols-[2fr_1fr_1fr_1fr] text-right items-center">
           <p className="text-left">Service / Leistung *</p>
           <p>short</p>
@@ -124,7 +124,7 @@ export default function PriceList4({ isOpen, onClose }) {
           <p>long</p>
         </div>
 
-        {/* Línea animada superior */}
+        {/* Línea inicial */}
         <div
           ref={(el) => (lineRefs.current[0] = el)}
           className="h-[1px] w-full bg-black origin-left scale-x-0 mb-4"
@@ -139,7 +139,7 @@ export default function PriceList4({ isOpen, onClose }) {
                   {/* 🔹 Mostrar título solo a partir de la tercera sección */}
                   {i > 1 && (
                     <TextAnimation2 scrollStart="top 80%">
-                      <h2 className="text-base font-medium uppercase mb-1">
+                      <h2 className="text-base font-medium uppercase mb-1 transition-all duration-300 md:hover:bg-black md:hover:text-white px-1">
                         {section.title}
                       </h2>
                     </TextAnimation2>
@@ -149,7 +149,7 @@ export default function PriceList4({ isOpen, onClose }) {
                     row.type === "grid" ? (
                       <div
                         key={j}
-                        className={`grid grid-cols-[2fr_1fr_1fr_1fr] text-right items-center ${
+                        className={`group grid grid-cols-[2fr_1fr_1fr_1fr] text-right items-center transition-all duration-300 md:hover:bg-black md:hover:text-white ${
                           row.indent ? "pl-6" : ""
                         }`}
                       >
@@ -161,7 +161,7 @@ export default function PriceList4({ isOpen, onClose }) {
                     ) : (
                       <div
                         key={j}
-                        className={`flex justify-between items-center ${
+                        className={`group flex justify-between items-center transition-all duration-300 md:hover:bg-black md:hover:text-white ${
                           row.indent ? "pl-6" : ""
                         }`}
                       >
@@ -171,7 +171,7 @@ export default function PriceList4({ isOpen, onClose }) {
                     )
                   )}
 
-                  {/* Línea animada después de cada sección */}
+                  {/* Línea final de cada sección */}
                   <div
                     ref={(el) => (lineRefs.current[i + 1] = el)}
                     className="h-[1px] w-full bg-black origin-left scale-x-0"
@@ -183,7 +183,7 @@ export default function PriceList4({ isOpen, onClose }) {
         </div>
 
         {/* Notas */}
-        <div className="flex flex-col text-xs mt-4 leading-none ">
+        <div className="flex flex-col text-xs mt-4 leading-none">
           <p>
             * Prices may vary depending on the amount of work involved / additional materials used.
           </p>
