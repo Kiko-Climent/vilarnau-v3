@@ -85,10 +85,10 @@ export default function AlmodovarQuoteNew() {
 
       {/* Texto en medio */}
       <TextAnimation start="top 90%">
-        <div className="absolute bottom-[39%] md:bottom-[35%] left-[2%] md:left-[11%] w-screen md:w-[55%] mix-blend-difference">
+        <div className="absolute bottom-[39%] md:bottom-[35%] pl-2 left-[0%] md:left-[11%] w-full md:w-[50%] mix-blend-difference">
           <p className="text-gray-300 text-base md:text-[clamp(0.95rem,2vw,1.45rem)] tracking-wider leading-none md:leading-5">
-          &quot;well, as i was saying it costs a lot to be authentic, madam
-            And one can&apos;t be stingy with these things,
+          &quot;well, as i was saying it costs a lot to be authentic,
+            and one can&apos;t be stingy with these things,
             because you are more authentic the more you
             resemble what you&apos;ve dreamed you are&quot;
           </p>

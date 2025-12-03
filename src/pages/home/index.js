@@ -15,7 +15,6 @@ import Triptico5 from "@/components/Triptico/index5";
 import Composition3 from "@/components/Composition/index3";
 import Test4 from "@/components/NewHero/test4";
 import Composition4Wrapper from "@/components/CompositionWrapper";
-import AlmodovarQuoteWrapper from "@/components/AlmodovarQuote/AlmodovarQuoteWrapper";
 import Quote2 from "@/components/Other/index3";
 import Triptico6 from "@/components/Triptico/index6";
 import Quote1 from "@/components/Other/index2";

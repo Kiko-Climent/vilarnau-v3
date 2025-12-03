@@ -112,7 +112,7 @@ export default function PriceList4({ isOpen, onClose }) {
                    px-6 md:px-10 py-8 md:py-10 font-myfont2 tracking-widest leading-tight z-50"
       >
         <TextAnimation2>
-          <h1 className="text-xl mb-2">salon vilarnau | pricelist</h1>
+          <h1 className="text-xl mb-2">vilarnau | pricelist</h1>
         </TextAnimation2>
 
         {/* Cabecera */}
