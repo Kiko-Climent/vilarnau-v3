@@ -22,44 +22,53 @@ export default function AlmodovarQuoteNew() {
   useEffect(() => {
     if (!allLoaded) return;
     let ctx;
-
+  
     async function runAnimation() {
       const { ScrollTrigger } = await import("gsap/ScrollTrigger");
       gsap.registerPlugin(ScrollTrigger);
-
+  
       const images = sectionRef.current?.querySelectorAll(".reveal-img");
       if (!images?.length) return;
-
+  
+      // ---- SOLUCIÓN 3: warm-up GPU layer ----
+      images.forEach(img => {
+        img.style.willChange = "clip-path, transform";
+        img.style.transform = "translateZ(0.001px)"; // fuerza composición suave
+        img.style.backfaceVisibility = "hidden";
+        img.style.contain = "layout paint";
+      });
+  
       ctx = gsap.context(() => {
         gsap.set(images, {
           clipPath: "polygon(0 0, 0 0, 0 100%, 0 100%)",
-          willChange: "clip-path, transform",
-          transform: "translateZ(0)",
-          backfaceVisibility: "hidden",
         });
-
-        // 🧈 tiny micro-rest to allow browser to paint GPU layer BEFORE animation
+  
+        // ---- SOLUCIÓN 1: doble rAF + 1 frame extra ----
         requestAnimationFrame(() => {
-          gsap.to(images, {
-            clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
-            duration: 1.25,
-            ease: "power4.out",
-            stagger: 0.22,
-            delay: 0.02,
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: "center-=150 center",
-              toggleActions: "play none none reverse",
-              once: true,
-            },
+          requestAnimationFrame(() => {
+            setTimeout(() => {
+              gsap.to(images, {
+                clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
+                duration: 1.25,
+                ease: "power4.out",
+                stagger: 0.22,
+                scrollTrigger: {
+                  trigger: sectionRef.current,
+                  start: "center-=150 center",
+                  toggleActions: "play none none reverse",
+                  once: true,
+                }
+              });
+            }, 16); // un frame (~16ms)
           });
         });
       }, sectionRef);
     }
-
+  
     runAnimation();
     return () => ctx?.revert();
   }, [allLoaded]);
+  
 
   return (
     <div
