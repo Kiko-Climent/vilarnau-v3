@@ -1,10 +1,10 @@
 "use client";
 
-import TextAnimation from "../Tools";
 import GridRevealImage from "../Tools/GridRevealAnimation";
 import { useNavbar } from "../Layout/Context/NavbarProvider";
 
 const PADDING = 16;
+const SHY = "\u00AD"; // soft hyphen: permite partir palabras por sílabas
 
 const TeamMobile4 = () => {
   const { measures } = useNavbar();
@@ -39,42 +39,41 @@ const TeamMobile4 = () => {
       </div>
 
       {/* === Fila inferior — img2 + texto, sin gap (el espacio styles→prices lo da) === */}
+      {/* La altura de la fila la define el texto; la imagen se ajusta con position absolute para no crear espacios en blanco */}
       <div
-        className="flex flex-row items-stretch"
+        className="flex flex-row items-stretch min-h-0"
         style={{ paddingLeft: `${PADDING}px`, paddingRight: `${PADDING}px`, marginTop: `${PADDING}px` }}
       >
-        {/* img2: hasta el final de "styles" */}
+        {/* img2: contenedor sin altura intrínseca para que la fila tome la altura del texto */}
         <div
-          className="flex-shrink-0 overflow-hidden"
+          className="relative flex-shrink-0 overflow-hidden"
           style={{ width: img2Width > 0 ? `${img2Width}px` : "45%" }}
         >
-          <GridRevealImage
-            src="/assets/img2.jpg"
-            className="w-full h-full object-cover"
-          />
+          <div className="absolute inset-0">
+            <GridRevealImage
+              src="/assets/img2.jpg"
+              className="w-full h-full object-cover"
+            />
+          </div>
         </div>
 
         {/* Spacer natural entre styles y prices */}
-        <div className="flex-1" />
+        <div className="flex-1 min-w-0" />
 
-        {/* Texto: desde "p" de prices hasta padding derecho */}
+        {/* Texto: define la altura de la fila — sin justify-center para evitar espacios en blanco */}
         <div
-          className="flex flex-shrink-0 flex-col justify-center gap-3"
+          className="flex flex-shrink-0 flex-col justify-start gap-3"
           style={{ width: textWidth > 0 ? `${textWidth}px` : "55%" }}
         >
-          <TextAnimation>
-            <p className="text-lg leading-none tracking-wider">
-              At Salon Vilarnau, Sergi and Damian bring warmth, care, and genuine connection to every visit.
-            </p>
-          </TextAnimation>
+          <p className="text-base leading-none tracking-wider hyphens-manual" lang="en">
+            A{SHY}t Sa{SHY}lon Vi{SHY}lar{SHY}nau, Ser{SHY}gi and Da{SHY}mi{SHY}an bring warm{SHY}th, ca{SHY}re, and gen{SHY}u{SHY}ine con{SHY}nec{SHY}tion to eve{SHY}ry vi{SHY}sit.
+          </p>
 
           <hr className="border-black border-t w-full" />
 
-          <TextAnimation>
-            <p className="text-lg leading-none tracking-wider">
-              Their calm energy and attention to detail create a space where you can relax, feel understood, and leave refreshed — inside and out.
-            </p>
-          </TextAnimation>
+          <p className="text-base leading-none tracking-wider hyphens-manual" lang="en">
+            Thei{SHY}r calm en{SHY}er{SHY}gy and at{SHY}ten{SHY}tion to de{SHY}tail cre{SHY}ate a spa{SHY}ce where you can re{SHY}lax, feel un{SHY}der{SHY}stood, and leave re{SHY}freshed — in{SHY}side and out.
+          </p>
         </div>
       </div>
 
