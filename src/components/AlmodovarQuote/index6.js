@@ -1,9 +1,10 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
-import TextAnimation from "../Tools";
 import usePreloadImage from "../Tools/usePreloadImage";
 import { useNavbar } from "../Layout/Context/NavbarProvider";
+
+const SHY = "\u00AD"; // soft hyphen: permite partir palabras por sílabas
 
 const imgs = [
   "/images/Vilarnau_analog_04.webp",
@@ -90,7 +91,10 @@ export default function AlmodovarQuoteNew() {
   
 
   return (
-    <div ref={sectionRef} className="relative h-screen w-screen flex flex-col justify-center items-start overflow-hidden gap-2 pl-4 md:pl-60 bg-white">
+    <div
+      ref={sectionRef}
+      className="relative h-screen w-screen flex flex-col justify-center items-start overflow-hidden gap-4 md:gap-2 pl-4 pr-4 md:pl-60 md:pr-4 bg-white"
+    >
       {Pre1}{Pre2}{Pre3}
 
       {[img1, img2, img3].map((src, i) => (
@@ -114,28 +118,25 @@ export default function AlmodovarQuoteNew() {
         </div>
       ))}
 
-      <TextAnimation start="top 90%">
-        <div
-          className="absolute pl-4 md:pl-2 left-[0%] md:left-[11%] w-full md:w-[50%] mix-blend-difference"
-          style={{
-            bottom: secondImgBottom !== null && measures.navbarWidth < 768
-              ? `${secondImgBottom}px`
-              : undefined
-          }}
-          // en desktop sigue con la clase original
-          {...(measures.navbarWidth >= 768 || secondImgBottom === null
-            ? { className: "absolute bottom-[35%] pl-2 left-[11%] w-full mix-blend-difference" }
-            : {}
-          )}
-        >
-          <p className="text-white text-lg md:text-[clamp(0.95rem,2vw,1.45rem)] tracking-wider leading-none md:leading-5">
-            &quot;well, as i was saying it costs a lot to be authentic,
-            and one can&apos;t be stingy with these things,
-            because you are more authentic the more you
-            resemble what you&apos;ve dreamed you are&quot;
-          </p>
-        </div>
-      </TextAnimation>
+      <div
+        className="absolute pl-4 pr-4 md:pl-4 md:pr-4 left-[0%] md:left-[11%] w-full md:w-[50%] mix-blend-difference"
+        style={{
+          bottom: secondImgBottom !== null && measures.navbarWidth < 768
+            ? `${secondImgBottom}px`
+            : undefined
+        }}
+        {...(measures.navbarWidth >= 768 || secondImgBottom === null
+          ? { className: "absolute bottom-[35%] pl-4 pr-4 left-[11%] w-full mix-blend-difference" }
+          : {}
+        )}
+      >
+        <p className="text-white text-lg md:text-[clamp(0.95rem,2vw,1.45rem)] tracking-wider leading-none md:leading-5 hyphens-manual" lang="en">
+          &quot;wel{SHY}l, as i was say{SHY}ing it cost{SHY}s a lot to be au{SHY}then{SHY}tic,
+          and on{SHY}e can&apos;t be stin{SHY}gy with the{SHY}se thin{SHY}gs,
+          be{SHY}cause you are mo{SHY}re au{SHY}then{SHY}tic the mo{SHY}re you
+          re{SHY}sem{SHY}ble what you&apos;ve dream{SHY}ed you are&quot;
+        </p>
+      </div>
     </div>
   );
 }
