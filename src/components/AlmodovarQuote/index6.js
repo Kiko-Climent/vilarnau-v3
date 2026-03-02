@@ -124,7 +124,7 @@ export default function AlmodovarQuoteNew() {
           }}
           // en desktop sigue con la clase original
           {...(measures.navbarWidth >= 768 || secondImgBottom === null
-            ? { className: "absolute bottom-[35%] pl-2 left-[11%] w-[50%] mix-blend-difference" }
+            ? { className: "absolute bottom-[35%] pl-2 left-[11%] w-full mix-blend-difference" }
             : {}
           )}
         >
