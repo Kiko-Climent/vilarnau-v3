@@ -19,46 +19,50 @@ export default function TextAnimation({ children, animateOnScroll = true, delay 
       // Dynamic import solo en cliente
       import("gsap/SplitText").then(({ SplitText }) => {
         import("gsap/ScrollTrigger").then(({ ScrollTrigger }) => {
+          const container = containerRef.current;
+          if (!container) return; // 🛑 PROTECCIÓN
+      
           gsap.registerPlugin(SplitText, ScrollTrigger);
-
+      
           splitRefs.current = [];
           lines.current = [];
           elementRefs.current = [];
-
+      
           let elements = [];
-          if (containerRef.current.hasAttribute("data-copy-wrapper")) {
-            elements = Array.from(containerRef.current.children);
+      
+          if (container.hasAttribute("data-copy-wrapper")) {
+            elements = Array.from(container.children);
           } else {
-            elements = [containerRef.current];
+            elements = [container];
           }
-
+      
           elements.forEach((element) => {
             elementRefs.current.push(element);
-
+      
             const split = SplitText.create(element, {
               type: "lines",
               mask: "lines",
               linesClass: "line-line",
               lineThreshold: 0.1,
             });
-
+      
             splitRefs.current.push(split);
-
+      
             const computedStyle = window.getComputedStyle(element);
             const textIndent = computedStyle.textIndent;
-
+      
             if (textIndent && textIndent !== "0px") {
               if (split.lines.length > 0) {
                 split.lines[0].style.paddingLeft = textIndent;
               }
               element.style.textIndent = "0";
             }
-
+      
             lines.current.push(...split.lines);
           });
-
+      
           gsap.set(lines.current, { y: "100%" });
-
+      
           const animationProps = {
             y: "0%",
             duration: 1,
@@ -66,15 +70,14 @@ export default function TextAnimation({ children, animateOnScroll = true, delay 
             ease: "power4.out",
             delay: delay,
           };
-
+      
           if (animateOnScroll) {
             gsap.to(lines.current, {
               ...animationProps,
               scrollTrigger: {
-                trigger: containerRef.current,
+                trigger: container,
                 start,
                 once: true,
-                // markers: true,
               },
             });
           } else {

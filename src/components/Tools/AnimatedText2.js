@@ -21,6 +21,8 @@ export default function TextAnimation2({ children, animateOnScroll = true, delay
         import("gsap/ScrollTrigger").then(({ ScrollTrigger }) => {
           gsap.registerPlugin(SplitText, ScrollTrigger);
 
+          if (!containerRef.current) return;
+
           splitRefs.current = [];
           lines.current = [];
           elementRefs.current = [];

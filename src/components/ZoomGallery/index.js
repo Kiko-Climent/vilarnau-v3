@@ -6,6 +6,7 @@ import Pic5 from "../../../public/zoomgallery/zoom3.webp"
 import Pic6 from "../../../public/zoomgallery/zoom4.webp"
 import Pic7 from "../../../public/zoomgallery/zoom6.webp"
 
+import { useNavbar } from "@/components/Layout/Context/NavbarProvider"; // ajusta el path si es necesario
 import TextAnimation from "../Tools"
 import { useScroll, useTransform, useMotionValueEvent, motion } from 'framer-motion';
 import Image from 'next/image';
@@ -16,7 +17,7 @@ export default function ZoomGallery() {
 
   const container = useRef(null);
   const [showText, setShowText] = useState(false);
-
+  const { measures } = useNavbar();
     const { scrollYProgress } = useScroll({
         target: container,
         offset: ['start start', 'end end']
@@ -74,7 +75,7 @@ export default function ZoomGallery() {
     });
 
   return(
-    <div ref={container} className="container-zoom">
+    <div ref={container} className="container-zoom px-4 md:px-0">
       <div className="sticky-zoom">
         {
           pics.map(({ src, scale }, index) => {
@@ -117,21 +118,39 @@ export default function ZoomGallery() {
               </div>
             </div>
             {/* layout for mobiles */}
-            <div className="zoom-text-overlay text-6xl blur-[0.2px] tracking-wide w-full font-myfont2 flex md:hidden flex-col pl-2 -space-y-3">
-              <div className="flex flex-col -space-y-3">
-                <p className="">elevating</p>
+            <div
+              className="zoom-text-overlay 
+                        text-xl 
+                        blur-[0.2px] 
+                        tracking-wide 
+                        font-myfont2 
+                        flex md:hidden 
+                        flex-col 
+                        -space-y-2
+                        items-center 
+                        justify-center
+                        text-center"
+              style={{
+                width: "100%",
+                height: "100%",
+              }}
+            >
+              {/* <div className="flex flex-col -space-y-3">
+                <p>elevating</p>
                 <div className="flex flex-row gap-3">
-                  <p className="flex">the</p>
-                  <p className="flex">craft</p>                
-                  <p className="flex">of</p>                
+                  <p>the</p>
+                  <p>craft</p>
+                  <p>of</p>
                 </div>
-              </div>
-              <div className="flex flex-col justify-center  -space-y-3">
                 <p>hairstyling</p>
-                <div className="flex flex-row gap-3 ">
+                <div className="flex flex-row gap-3 w-full justify-end">
                   <p>since</p>
                   <p>2018</p>
                 </div>
+              </div> */}
+              <div className="flex flex-col -space-y-2">
+                <p>Elevating the craft of</p>
+                <p>hairstyling since 2018</p>
               </div>
             </div>
           </TextAnimation>

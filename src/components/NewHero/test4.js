@@ -71,7 +71,7 @@ export default function Test4() {
   return (
     <div
       ref={containerRef}
-      className="w-screen h-screen flex flex-col md:flex-row gap-1 md:gap-2 bg-white text-base md:text-[clamp(0.8rem,1.4vw,1rem)] px-2 md:px-0 py-2 md:py-0 font-myfont2"
+      className="w-screen h-screen flex flex-col md:flex-row gap-1 md:gap-2 bg-white text-lg md:text-[clamp(0.8rem,1.4vw,1rem)] px-4 md:px-0 py-8 md:py-0 font-myfont2"
       style={{
         letterSpacing: 'clamp(0.05em, 0.2vw, 0.1em)',
       }}

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
 import Team2 from "./index2";
 import TeamMobile2 from "./index4";
+import TeamMobile4 from "./index6";
 
 const TeamWrapper = () => {
   const [mounted, setMounted] = useState(false);
@@ -18,7 +19,7 @@ const TeamWrapper = () => {
     return null;
   }
 
-  return isDesktop ? <Team2 /> : <TeamMobile2 />;
+  return isDesktop ? <Team2 /> : <TeamMobile4 />;
 }
 
 export default TeamWrapper;

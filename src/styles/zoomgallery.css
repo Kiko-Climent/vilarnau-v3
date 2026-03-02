@@ -154,4 +154,9 @@
     width: 22vw;
     height: 15vh;
   }
+  .zoom-text-overlay {
+    text-transform: lowercase;
+  }
+  
 }
+
