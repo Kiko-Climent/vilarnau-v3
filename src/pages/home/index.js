@@ -84,7 +84,9 @@ export default function Home() {
           <Composition3Mobile />
         )}
         <FlipSection3 FirstComponent={AlmodovarQuoteNew} SecondComponent={AnimatedBoxComponent} />
-        <Footer />
+        <div id="contact">
+          <Footer />
+        </div>
       </div>
     </>
   );

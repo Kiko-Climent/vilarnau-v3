@@ -39,7 +39,7 @@
                     <Link ref={stylesRef}  href="/styles">styles</Link>
                     <div ref={pricesRef} onClick={() => setIsModalOpen(true)}>prices</div>
                     <Link ref={aboutRef} href="#about">about</Link>
-                    <div  ref={contactRef}>contact</div>
+                    <Link href="#contact">contact</Link>
                 </div>
             </div>
             </>
