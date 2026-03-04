@@ -104,8 +104,8 @@ export default function AlmodovarQuoteNew() {
           className="flex h-[25%] md:h-[31%] md:w-[38%]"
           style={{
             width: measures.navbarWidth > 0 && measures.navbarWidth < 768
-              ? `${measures.contactX - 16}px`
-              : undefined
+            ? `${measures.aboutX + measures.aboutWidth - 16}px`
+            : undefined
           }}
         >
           {src && (
