@@ -4,6 +4,9 @@ import { useRef, useEffect, useState, useCallback } from "react";
 import Image from "next/image";
 import { useNavbar } from "../Layout/Context/NavbarProvider"; // ajusta el path si es necesario
 
+import img2 from "../../../public/images/img2.jpg";
+import img4 from "../../../public/images/img4.jpeg";
+
 export default function Triptico5Mobile() {
     const { measures } = useNavbar();
 
@@ -74,12 +77,13 @@ export default function Triptico5Mobile() {
                                 }}
                             >
                                 <Image
-                                    src="/images/img2.jpg"
-                                    alt=""
-                                    fill
-                                    sizes="100vw"
-                                    style={{ objectFit: "contain", objectPosition: "bottom" }}
-                                    priority
+                                src={img2}              // 👈 el objeto importado, no el string
+                                alt=""
+                                fill
+                                sizes="100vw"
+                                style={{ objectFit: "contain", objectPosition: "bottom" }}
+                                priority
+                                placeholder="blur"      // 👈 esto es todo, Next.js hace el resto
                                 />
                             </div>
 
@@ -119,11 +123,12 @@ export default function Triptico5Mobile() {
                             }}
                         >
                             <Image
-                                src="/images/img4.jpeg"
-                                alt=""
-                                fill
-                                sizes="100vw"
-                                style={{ objectFit: "cover", objectPosition: "center" }}
+                            src={img4}
+                            alt=""
+                            fill
+                            sizes="100vw"
+                            style={{ objectFit: "cover", objectPosition: "center" }}
+                            placeholder="blur"
                             />
                         </div>
                     </>

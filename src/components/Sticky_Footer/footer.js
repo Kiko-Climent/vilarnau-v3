@@ -4,7 +4,7 @@ export default function Footer() {
       className="relative h-[300px] md:h-[375px] bg-[#0f0f0f]"
       style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)" }}
     >
-      <div className="fixed bottom-0 h-[300px] md:h-[375px] w-full flex flex-col justify-between text-white px-2 py-4 font-myfont2 tracking-wider">
+      <div className="fixed bottom-0 h-[300px] md:h-[375px] w-full flex flex-col justify-between text-white px-4 md:px-2 py-4 font-myfont2 tracking-wider">
         <div className="flex flex-row justify-between items-start">
           {/* Address */}
           <div className="flex flex-col text-base md:text-[clamp(0.95rem,2vw,1.45rem)] leading-none">

@@ -1,6 +1,5 @@
 "use client";
 
-import GridRevealImage from "../Tools/GridRevealAnimation";
 import { useNavbar } from "../Layout/Context/NavbarProvider";
 
 const PADDING = 16;
@@ -30,9 +29,9 @@ const TeamMobile4 = () => {
         }}
       >
         <div className="w-full aspect-[3/4] overflow-hidden">
-          <GridRevealImage
+          <img
             src="/assets/img12.jpg"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-contain"
             start="top 65%"
           />
         </div>
@@ -50,9 +49,10 @@ const TeamMobile4 = () => {
           style={{ width: img2Width > 0 ? `${img2Width}px` : "45%" }}
         >
           <div className="absolute inset-0">
-            <GridRevealImage
+            <img
               src="/assets/img2.jpg"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain"
+              alt="img2"
             />
           </div>
         </div>
@@ -65,13 +65,13 @@ const TeamMobile4 = () => {
           className="flex flex-shrink-0 flex-col justify-start gap-3"
           style={{ width: textWidth > 0 ? `${textWidth}px` : "55%" }}
         >
-          <p className="text-base leading-none tracking-wider hyphens-manual" lang="en">
+          <p className="text-lg leading-none tracking-wider hyphens-manual" lang="en">
             A{SHY}t Sa{SHY}lon Vi{SHY}lar{SHY}nau, Ser{SHY}gi and Da{SHY}mi{SHY}an bring warm{SHY}th, ca{SHY}re, and gen{SHY}u{SHY}ine con{SHY}nec{SHY}tion to eve{SHY}ry vi{SHY}sit.
           </p>
 
           <hr className="border-black border-t w-full" />
 
-          <p className="text-base leading-none tracking-wider hyphens-manual" lang="en">
+          <p className="text-lg leading-none tracking-wider hyphens-manual" lang="en">
             Thei{SHY}r calm en{SHY}er{SHY}gy and at{SHY}ten{SHY}tion to de{SHY}tail cre{SHY}ate a spa{SHY}ce where you can re{SHY}lax, feel un{SHY}der{SHY}stood, and leave re{SHY}freshed — in{SHY}side and out.
           </p>
         </div>

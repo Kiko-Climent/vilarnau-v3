@@ -27,7 +27,7 @@ const Composition3Mobile = () => {
           }}
         >
           {/* Texto */}
-          <div className="text-l leading-tight tracking-wider flex-shrink-0">
+          <div className="text-lg leading-tight tracking-wider flex-shrink-0">
             <TextAnimation2>
               <p>vilarnau opens:</p>
               <p>tuesday 12 — 20</p>
@@ -43,7 +43,7 @@ const Composition3Mobile = () => {
           {/* img5 — foto nueva en el medio */}
           <div className="flex-1 min-h-0">
             <GridRevealImage
-              src="/images/img10.jpg"
+              src="/images/img5.jpeg"
               className="w-full h-full object-contain"
               alt="img5"
             />

@@ -1,8 +1,5 @@
 "use client";
 
-import TextAnimation2 from "../Tools/AnimatedText2";
-import TextAnimation from "../Tools";
-import GridRevealImage from "../Tools/GridRevealAnimation";
 import usePreloadImage from "../Tools/usePreloadImage";
 import { useNavbar } from "../Layout/Context/NavbarProvider";
 
@@ -25,7 +22,6 @@ const Composition4MobileFlex3 = () => {
       {Pre2}
 
       {/* Texto superior */}
-      <TextAnimation2>
         <div className="w-full flex-col leading-none space-y-2">
             <div className="flex">
                 <p>Welcome to salon vilarnau.</p>
@@ -39,40 +35,44 @@ const Composition4MobileFlex3 = () => {
             leaving our salon feeling seen, understood, and phenomenal.
           </p>
         </div>
-      </TextAnimation2>
 
-      {/* Composición en dos columnas */}
-      <div className="flex" style={{ gap: "16px" }}>
+        {/* Composición en dos columnas */}
+        <div className="flex items-stretch" style={{ gap: "16px" }}>
 
-        {/* Columna izquierda — hasta la "s" de styles */}
+        {/* Columna izquierda — sin cambios */}
         <div
-          className="flex flex-col gap-2 flex-shrink-0"
-          style={{ width: img1Width > 0 ? `${img1Width}px` : "40%" }}
+        className="flex flex-col gap-2 flex-shrink-0"
+        style={{ width: img1Width > 0 ? `${img1Width}px` : "40%" }}
         >
-          {img1 && (
+        {img1 && (
             <div className="relative aspect-[3/4]">
-              <GridRevealImage src={img1} className="w-full h-full object-contain" alt="img17" />
+                <img src={img1} className="w-full h-full object-contain" alt="img17" />
             </div>
-          )}
-          <div className="flex flex-col h-full justify-start">
+        )}
+        <div className="flex flex-col h-full justify-start">
             <div className="flex flex-col leading-none">
-              <p>Open in the heart of Berlin-Kreuzberg since 2018.</p>
-              <p>Come and say hello</p>
+            <p>Open in the heart of Berlin-Kreuzberg since 2018.</p>
+            <p>Come and say hello</p>
             </div>
             <p className="flex text-lg mt-auto">©vilarnau 2026</p>
-          </div>
+        </div>
         </div>
 
-        {/* Columna derecha — desde "s" de styles hasta padding der */}
+        {/* Columna derecha */}
         <div
-          className="relative aspect-[3/4] flex-shrink-0"
-          style={{ width: img2Width > 0 ? `${img2Width}px` : "60%" }}
+        className="flex-shrink-0 flex flex-col"   // 👈 flex container
+        style={{ width: img2Width > 0 ? `${img2Width}px` : "60%" }}
         >
-          {img2 && (
-            <GridRevealImage src={img2} className="w-full h-full object-contain" alt="img9" />
-          )}
+        {img2 && (
+            <img
+            src={img2}
+            className="flex-1 min-h-0 w-full object-cover"   // 👈 flex-1 + min-h-0
+            alt="img9"
+            />
+        )}
         </div>
-      </div>
+
+        </div>
     </div>
   );
 };

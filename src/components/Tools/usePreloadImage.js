@@ -23,7 +23,7 @@ export default function usePreloadImage(
         width={width}
         height={height}
         priority={priority}
-        onLoadingComplete={(img) => setRealSrc(img.src)}
+        onLoad={(e) => setRealSrc(e.target.currentSrc || e.target.src)}
       />
     </div>
   );

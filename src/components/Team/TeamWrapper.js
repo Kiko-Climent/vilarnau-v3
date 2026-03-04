@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
 import Team2 from "./index2";
-import TeamMobile2 from "./index4";
 import TeamMobile4 from "./index6";
 
 const TeamWrapper = () => {

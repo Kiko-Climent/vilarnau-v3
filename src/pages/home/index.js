@@ -55,6 +55,8 @@ export default function Home() {
         <link rel="preload" as="image" href="/newhero/img10.webp" />
         <link rel="preload" as="image" href="/images/img1.jpeg" />
         <link rel="preload" as="image" href="/images/img17.jpeg" />
+        <link rel="preload" as="image" href="/images/img2.jpg" />    {/* 👈 */}
+        <link rel="preload" as="image" href="/images/img4.jpeg" />    {/* 👈 */}
         <link rel="preload" as="image" href={Pic1.src} />
       </Head>
       <div className="w-screen relative">
