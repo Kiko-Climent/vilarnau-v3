@@ -38,8 +38,8 @@
                 <div ref={rightColRef} className="flex justify-between w-2/3">
                     <Link ref={stylesRef}  href="/styles">styles</Link>
                     <div ref={pricesRef} onClick={() => setIsModalOpen(true)}>prices</div>
-                    <Link ref={aboutRef} href="#about">about</Link>
-                    <Link href="#contact">contact</Link>
+                    <Link ref={aboutRef} href="/home#about">about</Link>
+                    <Link ref={contactRef} href="/home">contact</Link>
                 </div>
             </div>
             </>

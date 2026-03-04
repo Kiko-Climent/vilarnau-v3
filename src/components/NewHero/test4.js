@@ -85,7 +85,7 @@ export default function Test4() {
           width={1200}
           height={1600}
           priority
-          onLoadingComplete={(img) => setHeroImg(img.src)}
+          onLoad={(e) => setHeroImg(e.target.currentSrc)}
         />
         <Image
           src="/images/img17.webp"
@@ -93,7 +93,7 @@ export default function Test4() {
           width={1200}
           height={1600}
           priority
-          onLoadingComplete={(img) => setSideImg(img.src)}
+          onLoad={(e) => setSideImg(e.target.currentSrc)}
         />
       </div>
 

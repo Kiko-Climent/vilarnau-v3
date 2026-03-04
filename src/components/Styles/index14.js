@@ -168,6 +168,9 @@ export default function StyleSliderMobile3New({ ready }) {
 
         function handleClick(event) {
           if (!sliderRef.current) return;
+
+          if (event.target.closest('a')) return;
+          
           const sliderW       = sliderRef.current.clientWidth;
           const clickPosition = event.clientX;
 
