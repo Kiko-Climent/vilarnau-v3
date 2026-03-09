@@ -1,6 +1,6 @@
 import { AnimatePresence } from "framer-motion";
 import Head from "next/head";
-import Menu2 from "@/components/Layout/Menu/menu2";
+import MenuDesktopNew from "@/components/Layout/Menu/MenuDesktopNew";
 import MenuMobileNew from "@/components/Layout/Menu/MenuMobileNew";
 import "@/styles/globals.css";
 import "@/styles/hero.css";
@@ -11,6 +11,8 @@ import { useNavbar, NavbarProvider } from "@/components/Layout/Context/NavbarPro
 import useMediaQuery from "@/components/Hooks/useMediaQuery"; // ajusta el path según tu estructura
 import { ReactLenis, useLenis } from "lenis/react";
 import { useEffect } from "react";
+import MenuDesktopNew2 from "@/components/Layout/Menu/MenuDesktopNew2";
+import Menu2 from "@/components/Layout/Menu/menu2";
 
 function Layout({ Component, pageProps, router }) {
   const { showNavbar } = useNavbar();

@@ -83,7 +83,7 @@ export default function PriceList({ isOpen, onClose }) {
 
         <div className="flex flex-row-reverse justify-between text-base tracking-wider leading-none">
           <div className="flex flex-col">
-            <h2 className="flex">manteufelstr.35</h2>
+            <h2 className="flex">manteuffelstr.35</h2>
             <h2 className="flex">10247 · berlin</h2>
           </div>
           <div className="flex flex-col">

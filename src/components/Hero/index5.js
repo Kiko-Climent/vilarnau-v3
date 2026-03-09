@@ -93,7 +93,7 @@ const Hero5 = () => {
 
       setTimeout(() => {
         animateOut(textRef.current, () => {
-          setCurrentText("manteufelstr.55");
+          setCurrentText("manteuffelstr.55");
         });
       }, 1000);
     };
@@ -103,7 +103,7 @@ const Hero5 = () => {
 
   // Animar entrada del segundo texto
   useEffect(() => {
-    if (currentText === "manteufelstr.55" && textRef.current) {
+    if (currentText === "manteuffelstr.55" && textRef.current) {
       animateIn(textRef.current, () => {
         setTimeout(() => {
           setStartSlideshow(true);
@@ -216,7 +216,7 @@ const Hero5 = () => {
               <div className="text-white text-xs md:text-base flex flex-col absolute bottom-1 right-4 md:right-2 items-end -space-y-[4px] md:-space-y-[6px]"
                   ref={addressRef}
                   style={{ opacity: 0, transform: "translateY(20px)", filter: "blur(10px)" }}>
-                <h2 className="font-semibold blur-[0.5px] tracking-tight">manteufelstr.55</h2>
+                <h2 className="font-semibold blur-[0.5px] tracking-tight">manteuffelstr.55</h2>
                 <h2 className="font-semibold blur-[0.5px] tracking-tight">10247 · kreuzberg</h2>
               </div>
             )}

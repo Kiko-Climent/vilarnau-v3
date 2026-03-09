@@ -115,7 +115,7 @@ export default function NewHero() {
         <div className="img-newhero"><img src="/hero/img6.jpeg" alt="" /></div>
       </div>
       <div className="header">
-        {/* <h1>manteufelstr.55</h1> */}
+        {/* <h1>manteuffelstr.55</h1> */}
         <h1>salon vilarnau</h1>
       </div>
     </div>

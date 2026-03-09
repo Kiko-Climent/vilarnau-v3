@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 
 const titles = {
   title1: "salon vilarnau",
-  title2: "manteufelstr.55",
+  title2: "manteuffelstr.55",
 };
 
 const animateText = (element, text) => {

@@ -30,7 +30,7 @@ const Composition3_1 = () => {
             <p>wednesday 12 — 20</p>
             <p>thursday 12 — 20</p>
             <p>friday 12 — 20</p>
-            <p>saturday 13 — 20</p>
+            <p>saturday 10 — 18</p>
             <p>sunday - closed</p>
             <p>monday - closed</p>
             </div>

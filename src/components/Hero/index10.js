@@ -50,7 +50,7 @@ const animateOut = async (target, onComplete) => {
 export default function Hero10({}) {
   const galleryRef = useRef(null);
   const text1Ref = useRef(null); // salon vilarnau
-  const text2Ref = useRef(null); // manteufelstr.55
+  const text2Ref = useRef(null); // manteuffelstr.55
   const text3Ref = useRef(null); // info@vilarnau.de
 
   useEffect(() => {
@@ -116,12 +116,12 @@ export default function Hero10({}) {
       animateOut(text1Ref.current);
     }, '+=2');
 
-    // 3. Aparece "manteufelstr.55"
+    // 3. Aparece "manteuffelstr.55"
     tl.add(() => {
       animateIn(text2Ref.current);
     }, '+=0.2');
 
-    // 4. Aparecen imágenes con "manteufelstr.55" aún visible
+    // 4. Aparecen imágenes con "manteuffelstr.55" aún visible
     tl.to(imgs, {
       scale: 1,
       width: `${largeWidth}px`,
@@ -151,7 +151,7 @@ export default function Hero10({}) {
       ease: 'power2.inOut',
     }, '+=0.2');
 
-    // 6. Desaparece "manteufelstr.55" y aparece imagen final
+    // 6. Desaparece "manteuffelstr.55" y aparece imagen final
     tl.add(() => {
       animateOut(text2Ref.current);
     });
@@ -205,7 +205,7 @@ export default function Hero10({}) {
         ref={text2Ref}
         className="absolute text-4xl md:text-5xl blur-[0.5px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white mix-blend-difference font-medium z-50 opacity-0"
       >
-        manteufelstr.55
+        manteuffelstr.55
       </p>
 
       <p
@@ -221,7 +221,7 @@ export default function Hero10({}) {
         <img src="images/img2.jpg" alt="Final large image" />
         <div className="text-white text-sm md:text-base flex flex-col absolute top-1 left-2 md:right-2 items-end -space-y-[4px] md:-space-y-[6px]">
           <h2 className="font-medium blur-[0.5px] tracking-tight">salon vilarnau</h2>
-          <h2 className="font-medium blur-[0.5px] tracking-tight">manteufelstr.55</h2>
+          <h2 className="font-medium blur-[0.5px] tracking-tight">manteuffelstr.55</h2>
           <h2 className="font-medium blur-[0.5px] tracking-tight">10999 · kreuzberg</h2>
         </div>
       </div>

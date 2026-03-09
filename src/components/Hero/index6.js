@@ -102,7 +102,7 @@ const Hero6 = () => {
 
       setTimeout(() => {
         animateOut(textRef.current, () => {
-          setCurrentText("manteufelstr.55");
+          setCurrentText("manteuffelstr.55");
         });
       }, 1000);
     };
@@ -112,7 +112,7 @@ const Hero6 = () => {
 
   // Animar entrada del segundo texto
   useEffect(() => {
-    if (currentText === "manteufelstr.55" && textRef.current) {
+    if (currentText === "manteuffelstr.55" && textRef.current) {
       animateIn(textRef.current, () => {
         setTimeout(() => {
           setStartSlideshow(true);
@@ -228,7 +228,7 @@ const Hero6 = () => {
                   ref={addressRef}
                   style={{ opacity: 0, transform: "translateY(20px)", filter: "blur(10px)" }}>
                 <h2 className="font-medium blur-[0.5px] tracking-tight">salon vilarnau</h2>
-                <h2 className="font-medium blur-[0.5px] tracking-tight">manteufelstr.55</h2>
+                <h2 className="font-medium blur-[0.5px] tracking-tight">manteuffelstr.55</h2>
                 <h2 className="font-medium blur-[0.5px] tracking-tight">10999 · kreuzberg</h2>
               </div>
             )}

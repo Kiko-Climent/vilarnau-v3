@@ -9,7 +9,7 @@ export default function Footer() {
           {/* Address */}
           <div className="flex flex-col text-base md:text-[clamp(0.95rem,2vw,1.45rem)] leading-none">
             <h3>address</h3>
-            <h3>manteufelstr.55</h3>
+            <h3>manteuffelstr.55</h3>
             <h3>10999 berlin-kreuzberg</h3>
           </div>
 

@@ -48,7 +48,7 @@ export default function Test() {
       <div className="test-info flex flex-col w-1/2 justify-center text-center items-center px-2">
         <div className="flex flex-col -space-y-2">
           <h1 className="text-black ">salon vilarnau</h1>
-          <p>manteufelstr.55</p>
+          <p>manteuffelstr.55</p>
           <p>10999 · kreuzberg</p>
         </div>
         <div className="flex flex-col -space-y-2">
@@ -61,9 +61,9 @@ export default function Test() {
           <p className="">hello@vilarnau.com</p>
         </div> */}
         <div className="flex flex-col -space-y-2" >
-          {/* <p>oppening times /</p> */}
+          {/* <p>opening times /</p> */}
           <p>tue — fri from 12 to 20</p>
-          <p>saturdays from 13 to 19</p>
+          <p>saturdays from 10 to 18</p>
           {/* <p>sun — mon closed</p>           */}
         </div>
       </div>

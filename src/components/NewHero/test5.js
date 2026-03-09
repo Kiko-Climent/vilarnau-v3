@@ -32,7 +32,7 @@ export default function Test5() {
         {/* Inferior izquierda */}
         <div className="absolute bottom-0 left-2 flex flex-col items-start">
           <h1 className="text-8xl font-bold origin-left -rotate-90 translate-x-[calc(100%-0.2em)]">
-            manteufelstr.55
+            manteuffelstr.55
           </h1>
           <h1 className="text-8xl font-bold">(030) 61202363</h1>
         </div>

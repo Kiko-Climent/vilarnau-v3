@@ -49,7 +49,7 @@ const animateOut = async (target, onComplete) => {
 export default function Hero11({}) {
   const galleryRef = useRef(null);
   const text1Ref = useRef(null); // salon vilarnau
-  const text2Ref = useRef(null); // manteufelstr.55
+  const text2Ref = useRef(null); // manteuffelstr.55
   const text3Ref = useRef(null); // info@vilarnau.de
 
   useEffect(() => {
@@ -115,12 +115,12 @@ export default function Hero11({}) {
       animateOut(text1Ref.current);
     }, '+=2');
 
-    // 3. Aparece "manteufelstr.55"
+    // 3. Aparece "manteuffelstr.55"
     tl.add(() => {
       animateIn(text2Ref.current);
     }, '+=0.2');
 
-    // 4. Aparecen imágenes con "manteufelstr.55" aún visible
+    // 4. Aparecen imágenes con "manteuffelstr.55" aún visible
     tl.to(imgs, {
       scale: 1,
       width: `${largeWidth}px`,
@@ -150,7 +150,7 @@ export default function Hero11({}) {
       ease: 'power2.inOut',
     }, '+=0.2');
 
-    // 6. Desaparece "manteufelstr.55" y aparece imagen final
+    // 6. Desaparece "manteuffelstr.55" y aparece imagen final
     tl.add(() => {
       animateOut(text2Ref.current);
     });
@@ -204,7 +204,7 @@ export default function Hero11({}) {
         ref={text2Ref}
         className="absolute text-4xl md:text-5xl blur-[0.5px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white mix-blend-difference z-50 opacity-0"
       >
-        manteufelstr.55
+        manteuffelstr.55
       </p>
 
       {/* Imagen final más grande */}
@@ -216,7 +216,7 @@ export default function Hero11({}) {
         className="text-white justify-between inset-0 flex flex-col absolute left-2 md:right-2 items-start font-medium blur-[0.5px] tracking-tight">
         <h2 className="flex text-5xl">salon vilarnau</h2>
           <div className='flex flex-col -space-y-2'>
-            <h2 className="text-5xl">manteufelstr.55</h2>
+            <h2 className="text-5xl">manteuffelstr.55</h2>
             <h2 className="text-5xl">10999 · kreuzberg</h2>
           </div>
           <div className='flex flex-col -space-y-2'>
@@ -230,7 +230,7 @@ export default function Hero11({}) {
           <div className='flex flex-col -space-y-2 text-5xl'>
           <h2 className='text-base'>opening times</h2>
             <p>tue — fri from 12 to 20</p>
-            <p>saturdays from 13 to 19</p>
+            <p>saturdays from 10 to 18</p>
             <p>sun — mon closed</p>
           </div>
         </div>

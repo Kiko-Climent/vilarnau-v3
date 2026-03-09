@@ -5,7 +5,7 @@ const Hero = () => {
         <img src="/images/img1.jpeg"
         className="w-full min-h-[60vh] aspect-[5/4] object-cover rounded-xl"/>
         <div className="text-white text-xs md:text-base flex flex-col absolute bottom-1 right-4 md:right-2 items-end -space-y-[4px] md:-space-y-[6px]">
-          < h2 className="font-semibold blur-[0.5px] tracking-tight">manteufelstr.55</h2>
+          < h2 className="font-semibold blur-[0.5px] tracking-tight">manteuffelstr.55</h2>
           < h2 className="font-semibold blur-[0.5px] tracking-tight">10247 · kreuzberg</h2>
         </div>
       </div>

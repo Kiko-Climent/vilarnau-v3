@@ -169,9 +169,9 @@ export default function StyleSlider7() {
       <div className="slider-title">
         <div className="slider-title-wrapper" ref={titlesRef}>
           <p>Salon Vilarnau</p>
-          <p>Manteufelstr.22</p>
+          <p>manteuffelstr.22</p>
           <p>Salon Vilarnau</p>
-          <p>Manteufelstr.22</p>
+          <p>manteuffelstr.22</p>
           <p>Salon Vilarnau</p>
         </div>
       </div>

@@ -65,14 +65,14 @@ export default function PriceList4({ isOpen, onClose }) {
     {
       title: "SEMI & PERMANENT COLOUR",
       rows: [
-        { service: "Regrowth / Ansatz", prices: ["from 10.-"], type: "flex" },
-        { service: "Full Head / Ganzen Kopf", prices: ["43.-", "48.-", "55.-"], type: "grid" },
+        { service: "Regrowth / Ansatz", prices: ["from 60.-"], type: "flex" },
+        { service: "Full Head / Ganzen Kopf", prices: ["80.-", "90.-", "100.-"], type: "grid" },
       ],
     },
     {
       title: "HIGHLIGHTS, BALAYAGE, PAINTINGS",
       rows: [
-        { service: "T-Section & Touch-Up", prices: ["80.-", "90.-", "100.-"], type: "grid" },
+        { service: "T-Section & Touch-Up", prices: ["from 80.-"], type: "flex" },,
         { service: "Half Head / Halben Kopf", prices: ["100.-", "110.-", "120.-"], type: "grid" },
         { service: "Full Head / Ganzen Kopf", prices: ["120.-", "130.-", "140.-"], type: "grid" },
         { service: "Toner / Abmatierung", prices: ["from 30.-"], type: "flex" },
@@ -89,18 +89,14 @@ export default function PriceList4({ isOpen, onClose }) {
       title: "PACKAGES",
       rows: [
         { service: "Cut & Styling", prices: ["60.-", "70.-", "80.-"], type: "grid" },
-        { service: "Cut & Regrowth Colour", prices: ["98.-"], type: "flex" },
+        { service: "Cut & Regrowth Colour", prices: ["98.-", "103.-", "110.-"], type: "grid" },
         { service: "Cut & Full Head Colour", prices: ["113.-", "128.-", "145.-"], type: "grid" },
-        { service: "Cut & Highlights", prices: [], type: "flex" },
-        { service: "— T-Zone", prices: ["from 120.-"], type: "flex", indent: true },
-        { service: "— Half Head / Halben Kopf", prices: ["from 140.-"], type: "flex", indent: true },
-        { service: "— Full Head / Ganzen Kopf", prices: ["from 150.-"], type: "flex", indent: true },
       ],
     },
   ];
 
   return (
-    <div className="fixed inset-0 z-40" onClick={onClose}>
+    <div className="fixed inset-0 z-60" onClick={onClose}>
       {/* Overlay */}
       <div className="absolute inset-0 bg-[#f5f6f7]/90 backdrop-blur-2xl" />
 
@@ -109,7 +105,7 @@ export default function PriceList4({ isOpen, onClose }) {
         ref={modalRef}
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
                    w-[100vw] md:w-[60vw] bg-transparent text-black 
-                   px-6 md:px-10 py-8 md:py-10 font-myfont2 tracking-widest leading-tight z-50"
+                   px-6 md:px-10 py-8 md:py-10 font-myfont2 tracking-widest text-[0.78rem] md:text-[0.95rem] leading-snug md:leading-tight z-50"
       >
         <TextAnimation2>
           <h1 className="text-xl mb-2">vilarnau | pricelist</h1>
@@ -136,7 +132,7 @@ export default function PriceList4({ isOpen, onClose }) {
           <div className="relative">
             <TextAnimation2>
               {sections.map((section, i) => (
-                <div key={i} className="flex flex-col pb-2">
+                <div key={i} className="flex flex-col pb-4">
                   {/* 🔹 Mostrar título solo a partir de la tercera sección */}
                   {i > 1 && (
                     <TextAnimation2 scrollStart="top 80%">
@@ -146,31 +142,30 @@ export default function PriceList4({ isOpen, onClose }) {
                     </TextAnimation2>
                   )}
 
-                  {section.rows.map((row, j) =>
-                    row.type === "grid" ? (
-                      <div
-                        key={j}
-                        className={`group grid grid-cols-[2fr_1fr_1fr_1fr] text-right items-center transition-all duration-300 md:hover:bg-black md:hover:text-white ${
-                          row.indent ? "pl-6" : ""
-                        }`}
-                      >
-                        <LocalizedText text={row.service} className="font-medium" />
-                        {row.prices.map((price, idx) => (
-                          <p key={idx}>{price}</p>
-                        ))}
-                      </div>
-                    ) : (
-                      <div
-                        key={j}
-                        className={`group flex justify-between items-center transition-all duration-300 md:hover:bg-black md:hover:text-white ${
-                          row.indent ? "pl-6" : ""
-                        }`}
-                      >
-                        <LocalizedText text={row.service} />
-                        {row.prices.length > 0 && <p>{row.prices[0]}</p>}
-                      </div>
-                    )
-                  )}
+                  {section.rows.map((row, j) => (
+                    <div
+                      key={j}
+                      className={`group grid grid-cols-[2fr_1fr_1fr_1fr] text-right items-center py-[0.15em] md:py-[0.15em] transition-all duration-300 md:hover:bg-black md:hover:text-white ${
+                        row.indent ? "pl-6" : ""
+                      }`}
+                    >
+                      <LocalizedText text={row.service} className="font-medium" />
+
+                      {row.type === "grid" ? (
+                        <>
+                          <p>{row.prices[0]}</p>
+                          <p>{row.prices[1]}</p>
+                          <p>{row.prices[2]}</p>
+                        </>
+                      ) : (
+                        <>
+                          <p className="text-right">{row.prices[0]}</p>
+                          <p></p>
+                          <p></p>
+                        </>
+                      )}
+                    </div>
+                  ))}
 
                   {/* Línea final de cada sección */}
                   <div
@@ -196,7 +191,7 @@ export default function PriceList4({ isOpen, onClose }) {
         {/* Footer */}
         <div className="flex flex-row-reverse justify-between text-base mt-4">
           <div className="flex flex-col items-end leading-none">
-            <h2>manteufelstr.55</h2>
+            <h2>manteuffelstr.55</h2>
             <h2>10999 · berlin</h2>
           </div>
           <div className="flex flex-col leading-none">

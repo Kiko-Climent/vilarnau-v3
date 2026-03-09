@@ -75,7 +75,7 @@ const Hero4 = () => {
 
       setTimeout(() => {
         animateOut(textRef.current, () => {
-          setCurrentText("manteufelstr.55");
+          setCurrentText("manteuffelstr.55");
         });
       }, 1000); // espera 1 segundo antes de empezar la salida
     };
@@ -85,7 +85,7 @@ const Hero4 = () => {
 
   // Animar entrada del segundo texto
   useEffect(() => {
-    if (currentText === "manteufelstr.55" && textRef.current) {
+    if (currentText === "manteuffelstr.55" && textRef.current) {
       animateIn(textRef.current, () => {
         // Cuando termina la animación de entrada del segundo texto
         setTimeout(() => {

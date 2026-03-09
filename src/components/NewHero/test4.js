@@ -138,7 +138,7 @@ export default function Test4() {
         >
           <div className="flex flex-col -space-y-2 md:-space-y-2">
             <h1 className="text-black">salon vilarnau</h1>
-            <p>manteufelstr.55</p>
+            <p>manteuffelstr.55</p>
             <p>10999 · kreuzberg</p>
           </div>
           <div className="hidden md:flex flex-col -space-y-2 md:-space-y-2">
@@ -147,9 +147,9 @@ export default function Test4() {
             <a href="tel:+493061202363">(030) 61202363</a>
           </div>
           <div className="hidden md:flex flex-col -space-y-2 md:-space-y-2">
-            <p>oppening hours /</p>
+            <p>opening hours /</p>
             <p>tue — fri from 12 to 20</p>
-            <p>saturdays from 13 to 19</p>
+            <p>saturdays from 10 to 18</p>
           </div>
           <div className="flex md:hidden flex-col text-right -space-y-2 md:-space-y-2">
             <p>info & appointments /</p>
