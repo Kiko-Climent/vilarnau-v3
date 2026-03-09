@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import usePreloadImage from "../Tools/usePreloadImage";
-import { useNavbar } from "../Layout/Context/NavbarProvider";
+import { useNavbarDesktop } from "@/components/Layout/Context/NavbarDesktopContext";
 
 const SHY = "\u00AD"; // soft hyphen: permite partir palabras por sílabas
 
@@ -12,11 +12,14 @@ const imgs = [
   "/images/Vilarnau_analog_13.webp",
 ];
 
-export default function AlmodovarQuoteNew() {
+export default function Almodovar() {
   const sectionRef = useRef(null);
   const secondImgRef = useRef(null);
   const [secondImgBottom, setSecondImgBottom] = useState(null);
-  const { measures } = useNavbar();
+  const { measures } = useNavbarDesktop();
+
+  // Ancho desktop: desde el FINAL de vilarnau (la "u") hasta la "a" de about
+  const desktopImgWidth = measures.aboutX - measures.vilarnauRight;
 
   // ✅ Preload images first
   const [img1, Pre1] = usePreloadImage(imgs[0]);
@@ -93,19 +96,22 @@ export default function AlmodovarQuoteNew() {
   return (
     <div
       ref={sectionRef}
-      className="relative h-screen w-screen flex flex-col justify-center items-start overflow-hidden gap-4 md:gap-2 pl-4 pr-4 md:pl-60 md:pr-4 bg-white"
+      className="relative h-screen w-screen flex flex-col justify-center items-start overflow-hidden gap-4 md:gap-2 pr-4 md:pr-0 bg-white"
     >
       {Pre1}{Pre2}{Pre3}
 
       {[img1, img2, img3].map((src, i) => (
         <div
           key={i}
-          ref={i === 1 ? secondImgRef : null}  // ref solo en la segunda
-          className="flex h-[25%] md:h-[33%] md:w-[38%]"
+          ref={i === 1 ? secondImgRef : null}
+          className="flex h-[25%] md:h-[33%]"
           style={{
-            width: measures.navbarWidth > 0 && measures.navbarWidth < 768
-            ? `${measures.aboutX + measures.aboutWidth - 16}px`
-            : undefined
+            marginLeft: measures.navbarWidth >= 768 ? `${measures.vilarnauRight}px` : undefined,
+            width: measures.navbarWidth >= 768 && measures.aboutX > 0
+              ? `${desktopImgWidth}px`
+              : measures.navbarWidth > 0 && measures.navbarWidth < 768
+              ? `${measures.aboutX + measures.aboutWidth - 16}px`
+              : undefined
           }}
         >
           {src && (
@@ -119,16 +125,13 @@ export default function AlmodovarQuoteNew() {
       ))}
 
       <div
-        className="absolute pl-4 pr-4 md:pl-4 md:pr-4 left-[0%] md:left-[11%] w-full md:w-[50%] mix-blend-difference"
+        className="absolute pl-4 pr-4 md:pr-4 w-full md:w-[50%] mix-blend-difference"
         style={{
+          left: 0,
           bottom: secondImgBottom !== null && measures.navbarWidth < 768
             ? `${secondImgBottom}px`
-            : undefined
+            : '35%'
         }}
-        {...(measures.navbarWidth >= 768 || secondImgBottom === null
-          ? { className: "absolute bottom-[35%] pl-4 pr-4 left-[11%] w-full mix-blend-difference" }
-          : {}
-        )}
       >
         <p className="text-white text-lg md:text-[clamp(0.95rem,2vw,1.45rem)] tracking-wider leading-none md:leading-5 hyphens-manual" lang="en">
           &quot;wel{SHY}l, as i was say{SHY}ing it cost{SHY}s a lot to be au{SHY}then{SHY}tic,

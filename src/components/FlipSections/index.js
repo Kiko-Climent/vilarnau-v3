@@ -2,20 +2,18 @@
 
 import { useScroll, useTransform, motion, useMotionValueEvent } from "framer-motion";
 import { useNavbar } from "../Layout/Context/NavbarProvider";
+import { useNavbarDesktop } from "../Layout/Context/NavbarDesktopContext"; // 👈
 import { useRef, useEffect, useState } from "react";
 
 export default function FlipSection({ FirstComponent, SecondComponent }) {
   const containerRef = useRef(null);
   const [navbarVisible, setNavbarVisible] = useState(false);
   const { setShowNavbar } = useNavbar();
+  const { setShowNavbar: setShowNavbarDesktop } = useNavbarDesktop(); // 👈
   const [isMobile, setIsMobile] = useState(false);
 
-  // Detectar móvil
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
@@ -30,43 +28,29 @@ export default function FlipSection({ FirstComponent, SecondComponent }) {
     if (progress > 0.5 && !navbarVisible) {
       setNavbarVisible(true);
       setShowNavbar(true);
+      setShowNavbarDesktop(true);        // 👈
     } else if (progress <= 0.5 && navbarVisible) {
       setNavbarVisible(false);
       setShowNavbar(false);
+      setShowNavbarDesktop(false);       // 👈
     }
   });
 
-  // Animaciones SIEMPRE calculadas (para no romper desktop)
-  const scaleFirst = useTransform(scrollYProgress, [0, 1], [1, 0.8]);
+  const scaleFirst  = useTransform(scrollYProgress, [0, 1], [1, 0.8]);
   const rotateFirst = useTransform(scrollYProgress, [0, 1], [0, -5]);
-
-  const scaleSecond = useTransform(scrollYProgress, [0, 1], [0.8, 1]);
+  const scaleSecond  = useTransform(scrollYProgress, [0, 1], [0.8, 1]);
   const rotateSecond = useTransform(scrollYProgress, [0, 1], [5, 0]);
 
   return (
-    <main
-      ref={containerRef}
-      className="relative h-[200vh]"
-    >
-      {/* FIRST */}
+    <main ref={containerRef} className="relative h-[200vh]">
       <motion.div
-        style={
-          isMobile
-            ? {} // sin animación en móvil
-            : { scale: scaleFirst, rotate: rotateFirst }
-        }
+        style={isMobile ? {} : { scale: scaleFirst, rotate: rotateFirst }}
         className="sticky top-0 h-screen z-10"
       >
         <FirstComponent />
       </motion.div>
-
-      {/* SECOND */}
       <motion.div
-        style={
-          isMobile
-            ? {} // sin animación en móvil
-            : { scale: scaleSecond, rotate: rotateSecond }
-        }
+        style={isMobile ? {} : { scale: scaleSecond, rotate: rotateSecond }}
         className="relative h-screen z-20"
       >
         <SecondComponent />

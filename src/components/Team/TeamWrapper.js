@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
 import Team2 from "./index2";
+import TeamDesktop from "../NewDesktop/TeamDesktop";
 import TeamMobile4 from "./index6";
 
 const TeamWrapper = () => {
@@ -18,7 +19,7 @@ const TeamWrapper = () => {
     return null;
   }
 
-  return isDesktop ? <Team2 /> : <TeamMobile4 />;
+  return isDesktop ? <TeamDesktop /> : <TeamMobile4 />;
 }
 
 export default TeamWrapper;

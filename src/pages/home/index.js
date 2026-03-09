@@ -22,6 +22,9 @@ import AlmodovarQuoteNew from "@/components/AlmodovarQuote/index6";
 import AnimatedBoxComponent from "@/components/Other/AnimatedBoxComponent";
 import Composition4MobileFlex3 from "@/components/Composition/index11";
 import Composition3Mobile from "@/components/Composition/index12";
+import Triptico6Desktop from "@/components/NewDesktop/Triptico6Desktop";
+import OpeningDesktop from "@/components/NewDesktop/Opening";
+import Almodovar from "@/components/NewDesktop/Almodovar";
 
 export default function Home() {
   const [isDesktop, setIsDesktop] = useState(false);
@@ -72,14 +75,14 @@ export default function Home() {
         {isDesktop && (
           <FlipSection2
             FirstComponent={Quote1}
-            SecondComponent={Triptico6}
+            SecondComponent={Triptico6Desktop}
           />
         )}
         <div className="my-12 md:my-32">
           <TeamWrapper />
         </div>
         {isDesktop ? (
-          <Composition3 />
+          <OpeningDesktop />
         ) : (
           <Composition3Mobile />
         )}
