@@ -196,7 +196,7 @@ export default function PriceList4({ isOpen, onClose }) {
           </div>
           <div className="flex flex-col leading-none">
             <h2>T: (030) 61202363</h2>
-            <h2>E: hello@vilarnau.com</h2>
+            <h2>E: hello@vilarnau.de</h2>
           </div>
         </div>
       </div>

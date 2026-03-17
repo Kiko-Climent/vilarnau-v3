@@ -64,8 +64,8 @@ const MenuDesktopNew2 = () => {
                     {/* ── Mitad derecha (oculta en /styles) ── */}
                     {router.pathname !== "/styles" && (
                         <div ref={rightHalfRef} className="flex justify-end items-end w-1/2 gap-8">
-                            <a ref={emailRef} href="mailto:hello@vilarnau.com" className="flex pb-0">
-                                hello@vilarnau.com
+                            <a ref={emailRef} href="mailto:hello@vilarnau.de" className="flex pb-0">
+                                hello@vilarnau.de
                             </a>
                             <a href="tel:+493061202363" className="flex">
                                 (030) 61202363

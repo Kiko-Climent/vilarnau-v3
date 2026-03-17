@@ -143,7 +143,7 @@ export default function Test4() {
           </div>
           <div className="hidden md:flex flex-col -space-y-2 md:-space-y-2">
             <p>info & appointments /</p>
-            <a href="mailto:hello@vilarnau.com">hello@vilarnau.com</a>
+            <a href="mailto:hello@vilarnau.de">hello@vilarnau.de</a>
             <a href="tel:+493061202363">(030) 61202363</a>
           </div>
           <div className="hidden md:flex flex-col -space-y-2 md:-space-y-2">
@@ -153,7 +153,7 @@ export default function Test4() {
           </div>
           <div className="flex md:hidden flex-col text-right -space-y-2 md:-space-y-2">
             <p>info & appointments /</p>
-            <a href="mailto:hello@vilarnau.com">hello@vilarnau.com</a>
+            <a href="mailto:hello@vilarnau.de">hello@vilarnau.de</a>
             <a href="tel:+493061202363">(030) 61202363</a>
           </div>
         </div>

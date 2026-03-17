@@ -19,8 +19,8 @@ export default function Footer() {
             <a href="tel:+493061202363" className="flex">
               (030) - 61202363
             </a>
-            <a href="mailto:hello@vilarnau.com" className="flex">
-              hello@vilarnau.com
+            <a href="mailto:hello@vilarnau.de" className="flex">
+              hello@vilarnau.de
             </a>
           </div>
         </div>
