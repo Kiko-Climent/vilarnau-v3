@@ -55,7 +55,7 @@ export default function PriceList4({ isOpen, onClose }) {
       title: "CUTS",
       rows: [
         { service: "CUTS", prices: ["43.-", "48.-", "55.-"], type: "grid" },
-        { service: "fringe, beard trim, contour", prices: ["from 10.-"], type: "flex" },
+        { service: "fringe, beard trim, contour", prices: ["10.-"], type: "flex" },
       ],
     },
     {
@@ -65,23 +65,23 @@ export default function PriceList4({ isOpen, onClose }) {
     {
       title: "SEMI & PERMANENT COLOUR",
       rows: [
-        { service: "Regrowth / Ansatz", prices: ["from 60.-"], type: "flex" },
+        { service: "Regrowth / Ansatz", prices: ["60.-"], type: "flex" },
         { service: "Full Head / Ganzen Kopf", prices: ["80.-", "90.-", "100.-"], type: "grid" },
       ],
     },
     {
       title: "HIGHLIGHTS, BALAYAGE, PAINTINGS",
       rows: [
-        { service: "T-Section & Touch-Up", prices: ["from 80.-"], type: "flex" },,
+        { service: "T-Section & Touch-Up", prices: ["80.-"], type: "flex" },,
         { service: "Half Head / Halben Kopf", prices: ["100.-", "110.-", "120.-"], type: "grid" },
         { service: "Full Head / Ganzen Kopf", prices: ["120.-", "130.-", "140.-"], type: "grid" },
-        { service: "Toner / Abmatierung", prices: ["from 30.-"], type: "flex" },
+        { service: "Toner / Abmatierung", prices: ["30.-"], type: "flex" },
       ],
     },
     {
       title: "BLEACH",
       rows: [
-        { service: "Regrowth / Ansatz", prices: ["from 80.-"], type: "flex" },
+        { service: "Regrowth / Ansatz", prices: ["80.-"], type: "flex" },
         { service: "Full Head / Ganzen Kopf", prices: ["120.-", "140.-", "160.-"], type: "grid" },
       ],
     },
@@ -158,11 +158,9 @@ export default function PriceList4({ isOpen, onClose }) {
                           <p>{row.prices[2]}</p>
                         </>
                       ) : (
-                        <>
-                          <p className="text-right">{row.prices[0]}</p>
-                          <p></p>
-                          <p></p>
-                        </>
+                        <p className="text-right opacity-50">
+                          {row.prices[0]}
+                        </p>
                       )}
                     </div>
                   ))}

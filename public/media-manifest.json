@@ -1,0 +1,164 @@
+{
+  "images": [
+    {
+      "name": "img1",
+      "original": "/styles/img1.jpg",
+      "desktop_webp": "/stylesoptimized/img1.desktop.webp",
+      "desktop_jpg": "/stylesoptimized/img1.desktop.jpg",
+      "mobile_webp": "/stylesoptimized/img1.mobile.webp",
+      "mobile_jpg": "/stylesoptimized/img1.mobile.jpg",
+      "thumb_webp": "/stylesoptimized/img1.thumb.webp",
+      "thumb_jpg": "/stylesoptimized/img1.thumb.jpg"
+    },
+    {
+      "name": "img2",
+      "original": "/styles/img2.jpg",
+      "desktop_webp": "/stylesoptimized/img2.desktop.webp",
+      "desktop_jpg": "/stylesoptimized/img2.desktop.jpg",
+      "mobile_webp": "/stylesoptimized/img2.mobile.webp",
+      "mobile_jpg": "/stylesoptimized/img2.mobile.jpg",
+      "thumb_webp": "/stylesoptimized/img2.thumb.webp",
+      "thumb_jpg": "/stylesoptimized/img2.thumb.jpg"
+    },
+    {
+      "name": "img3",
+      "original": "/styles/img3.jpg",
+      "desktop_webp": "/stylesoptimized/img3.desktop.webp",
+      "desktop_jpg": "/stylesoptimized/img3.desktop.jpg",
+      "mobile_webp": "/stylesoptimized/img3.mobile.webp",
+      "mobile_jpg": "/stylesoptimized/img3.mobile.jpg",
+      "thumb_webp": "/stylesoptimized/img3.thumb.webp",
+      "thumb_jpg": "/stylesoptimized/img3.thumb.jpg"
+    },
+    {
+      "name": "img4",
+      "original": "/styles/img4.jpg",
+      "desktop_webp": "/stylesoptimized/img4.desktop.webp",
+      "desktop_jpg": "/stylesoptimized/img4.desktop.jpg",
+      "mobile_webp": "/stylesoptimized/img4.mobile.webp",
+      "mobile_jpg": "/stylesoptimized/img4.mobile.jpg",
+      "thumb_webp": "/stylesoptimized/img4.thumb.webp",
+      "thumb_jpg": "/stylesoptimized/img4.thumb.jpg"
+    },
+    {
+      "name": "img5",
+      "original": "/styles/img5.jpg",
+      "desktop_webp": "/stylesoptimized/img5.desktop.webp",
+      "desktop_jpg": "/stylesoptimized/img5.desktop.jpg",
+      "mobile_webp": "/stylesoptimized/img5.mobile.webp",
+      "mobile_jpg": "/stylesoptimized/img5.mobile.jpg",
+      "thumb_webp": "/stylesoptimized/img5.thumb.webp",
+      "thumb_jpg": "/stylesoptimized/img5.thumb.jpg"
+    },
+    {
+      "name": "img6",
+      "original": "/styles/img6.jpg",
+      "desktop_webp": "/stylesoptimized/img6.desktop.webp",
+      "desktop_jpg": "/stylesoptimized/img6.desktop.jpg",
+      "mobile_webp": "/stylesoptimized/img6.mobile.webp",
+      "mobile_jpg": "/stylesoptimized/img6.mobile.jpg",
+      "thumb_webp": "/stylesoptimized/img6.thumb.webp",
+      "thumb_jpg": "/stylesoptimized/img6.thumb.jpg"
+    },
+    {
+      "name": "img7",
+      "original": "/styles/img7.jpg",
+      "desktop_webp": "/stylesoptimized/img7.desktop.webp",
+      "desktop_jpg": "/stylesoptimized/img7.desktop.jpg",
+      "mobile_webp": "/stylesoptimized/img7.mobile.webp",
+      "mobile_jpg": "/stylesoptimized/img7.mobile.jpg",
+      "thumb_webp": "/stylesoptimized/img7.thumb.webp",
+      "thumb_jpg": "/stylesoptimized/img7.thumb.jpg"
+    },
+    {
+      "name": "img8",
+      "original": "/styles/img8.jpg",
+      "desktop_webp": "/stylesoptimized/img8.desktop.webp",
+      "desktop_jpg": "/stylesoptimized/img8.desktop.jpg",
+      "mobile_webp": "/stylesoptimized/img8.mobile.webp",
+      "mobile_jpg": "/stylesoptimized/img8.mobile.jpg",
+      "thumb_webp": "/stylesoptimized/img8.thumb.webp",
+      "thumb_jpg": "/stylesoptimized/img8.thumb.jpg"
+    },
+    {
+      "name": "img9",
+      "original": "/styles/img9.jpg",
+      "desktop_webp": "/stylesoptimized/img9.desktop.webp",
+      "desktop_jpg": "/stylesoptimized/img9.desktop.jpg",
+      "mobile_webp": "/stylesoptimized/img9.mobile.webp",
+      "mobile_jpg": "/stylesoptimized/img9.mobile.jpg",
+      "thumb_webp": "/stylesoptimized/img9.thumb.webp",
+      "thumb_jpg": "/stylesoptimized/img9.thumb.jpg"
+    },
+    {
+      "name": "img10",
+      "original": "/styles/img10.jpg",
+      "desktop_webp": "/stylesoptimized/img10.desktop.webp",
+      "desktop_jpg": "/stylesoptimized/img10.desktop.jpg",
+      "mobile_webp": "/stylesoptimized/img10.mobile.webp",
+      "mobile_jpg": "/stylesoptimized/img10.mobile.jpg",
+      "thumb_webp": "/stylesoptimized/img10.thumb.webp",
+      "thumb_jpg": "/stylesoptimized/img10.thumb.jpg"
+    },
+    {
+      "name": "img11",
+      "original": "/styles/img11.jpg",
+      "desktop_webp": "/stylesoptimized/img11.desktop.webp",
+      "desktop_jpg": "/stylesoptimized/img11.desktop.jpg",
+      "mobile_webp": "/stylesoptimized/img11.mobile.webp",
+      "mobile_jpg": "/stylesoptimized/img11.mobile.jpg",
+      "thumb_webp": "/stylesoptimized/img11.thumb.webp",
+      "thumb_jpg": "/stylesoptimized/img11.thumb.jpg"
+    },
+    {
+      "name": "img12",
+      "original": "/styles/img12.jpg",
+      "desktop_webp": "/stylesoptimized/img12.desktop.webp",
+      "desktop_jpg": "/stylesoptimized/img12.desktop.jpg",
+      "mobile_webp": "/stylesoptimized/img12.mobile.webp",
+      "mobile_jpg": "/stylesoptimized/img12.mobile.jpg",
+      "thumb_webp": "/stylesoptimized/img12.thumb.webp",
+      "thumb_jpg": "/stylesoptimized/img12.thumb.jpg"
+    },
+    {
+      "name": "img13",
+      "original": "/styles/img13.jpg",
+      "desktop_webp": "/stylesoptimized/img13.desktop.webp",
+      "desktop_jpg": "/stylesoptimized/img13.desktop.jpg",
+      "mobile_webp": "/stylesoptimized/img13.mobile.webp",
+      "mobile_jpg": "/stylesoptimized/img13.mobile.jpg",
+      "thumb_webp": "/stylesoptimized/img13.thumb.webp",
+      "thumb_jpg": "/stylesoptimized/img13.thumb.jpg"
+    },
+    {
+      "name": "img14",
+      "original": "/styles/img14.jpg",
+      "desktop_webp": "/stylesoptimized/img14.desktop.webp",
+      "desktop_jpg": "/stylesoptimized/img14.desktop.jpg",
+      "mobile_webp": "/stylesoptimized/img14.mobile.webp",
+      "mobile_jpg": "/stylesoptimized/img14.mobile.jpg",
+      "thumb_webp": "/stylesoptimized/img14.thumb.webp",
+      "thumb_jpg": "/stylesoptimized/img14.thumb.jpg"
+    },
+    {
+      "name": "img15",
+      "original": "/styles/img15.jpg",
+      "desktop_webp": "/stylesoptimized/img15.desktop.webp",
+      "desktop_jpg": "/stylesoptimized/img15.desktop.jpg",
+      "mobile_webp": "/stylesoptimized/img15.mobile.webp",
+      "mobile_jpg": "/stylesoptimized/img15.mobile.jpg",
+      "thumb_webp": "/stylesoptimized/img15.thumb.webp",
+      "thumb_jpg": "/stylesoptimized/img15.thumb.jpg"
+    },
+    {
+      "name": "img16",
+      "original": "/styles/img16.jpg",
+      "desktop_webp": "/stylesoptimized/img16.desktop.webp",
+      "desktop_jpg": "/stylesoptimized/img16.desktop.jpg",
+      "mobile_webp": "/stylesoptimized/img16.mobile.webp",
+      "mobile_jpg": "/stylesoptimized/img16.mobile.jpg",
+      "thumb_webp": "/stylesoptimized/img16.thumb.webp",
+      "thumb_jpg": "/stylesoptimized/img16.thumb.jpg"
+    }
+  ]
+}

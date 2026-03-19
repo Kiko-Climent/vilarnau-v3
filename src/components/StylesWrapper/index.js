@@ -6,6 +6,8 @@ import { useMediaQuery } from "react-responsive";
 import StyleSliderMobile3 from "../Styles/index12";
 import StyleSlider9 from "../Styles/index13";
 import StyleSliderMobile3New from "../Styles/index14";
+import StylesSliderDesktop from "../Styles/StylesSliderDesktop";
+import StylesSliderMobile from "../Styles/StylesSliderMobile";
 
 const StylesWrapper = ({ready}) => {
   const [mounted, setMounted] = useState(false);
@@ -20,7 +22,7 @@ const StylesWrapper = ({ready}) => {
     return null;
   }
 
-  return isDesktop ? <StyleSlider9 ready={ready} /> : <StyleSliderMobile3New ready={ready} />;
+  return isDesktop ? <StylesSliderDesktop ready={ready} /> : <StylesSliderMobile ready={ready} />;
 }
 
 export default StylesWrapper;
