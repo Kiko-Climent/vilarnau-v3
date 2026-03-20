@@ -4,42 +4,40 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import GridRevealImage from '../Tools/GridRevealAnimation';
 import usePreloadImage from "../Tools/usePreloadImage";
-import { useOptimizedMedia } from "../../hooks/useOptimizedMedia";
+import { useOptimizedMedia } from "@/hooks/useOptimizedMedia";
+import { usePreloadSliderImages } from "@/hooks/usePreloadSliderImages";
 
 export default function StylesSliderDesktop({ ready }) {
-  const sliderRef = useRef(null);
-  const counterRef = useRef(null);
-  const previewsRef = useRef(null);
+  const sliderRef       = useRef(null);
+  const counterRef      = useRef(null);
+  const previewsRef     = useRef(null);
   const sliderImagesRef = useRef(null);
-  const textRef = useRef(null);
+  const textRef         = useRef(null);
 
-  // ── Hook de imágenes optimizadas ─────────────────────────────────────────
+  // ── Imágenes optimizadas ──────────────────────────────────────────────────
   const { getImage, isLoaded } = useOptimizedMedia();
 
-  // Ref para que animateSlide() (dentro del useEffect GSAP) acceda
-  // siempre a la versión actualizada de getImage sin stale closure
   const getImageRef = useRef(getImage);
-  useEffect(() => {
-    getImageRef.current = getImage;
-  }, [getImage]);
+  useEffect(() => { getImageRef.current = getImage; }, [getImage]);
 
-  // ── Primera imagen: src optimizado según dispositivo ─────────────────────
+  // ── Precarga inteligente — activa solo cuando el manifest está listo ──────
+  const { preloadAround } = usePreloadSliderImages(isLoaded ? getImage : null, 16);
+  const preloadAroundRef = useRef(preloadAround);
+  useEffect(() => { preloadAroundRef.current = preloadAround; }, [preloadAround]);
+
+  // ── Primera imagen ────────────────────────────────────────────────────────
   const firstSlide = getImage("img1", "auto");
-
   const [firstSlideSrc, FirstSlidePreload] = usePreloadImage(
     firstSlide.src,
     { width: 1200, height: 1600, priority: true }
   );
 
-  // ── Animación de texto SplitText ─────────────────────────────────────────
+  // ── Animación de texto SplitText ──────────────────────────────────────────
   const animateIn = async (target, onComplete) => {
     const { default: SplitText } = await import("gsap/SplitText");
     gsap.registerPlugin(SplitText);
-
     gsap.set(target, { opacity: 1 });
-
     const split = new SplitText(target, { type: "chars" });
-
     gsap.fromTo(
       split.chars,
       { yPercent: "random([-100,100])", opacity: 0 },
@@ -67,24 +65,24 @@ export default function StylesSliderDesktop({ ready }) {
         CustomEase.create('hop', 'M0,0 C0.071,0.505 0.192,0.726 0.318,0.852 0.45,0.984 0.504,1 1,1');
 
         const sliderImages = sliderImagesRef.current;
-        const counter = counterRef.current;
-        const prevSlides = previewsRef.current.querySelectorAll('.preview');
+        const counter      = counterRef.current;
+        const prevSlides   = previewsRef.current.querySelectorAll('.preview');
 
-        let currentImg = 1;
+        let currentImg    = 1;
         const totalSlides = 16;
 
         prevSlides.forEach(prev => {
           const img = prev.querySelector('img');
           gsap.set(prev, { opacity: 0 });
-          img.style.willChange = 'transform, clip-path';
-          img.style.transform = 'translateZ(0)';
+          img.style.willChange         = 'transform, clip-path';
+          img.style.transform          = 'translateZ(0)';
           img.style.backfaceVisibility = 'hidden';
         });
 
         const headerContent = textRef.current.querySelector('.header-content');
         gsap.set(headerContent, { opacity: 0 });
-        headerContent.style.willChange = 'transform, opacity';
-        headerContent.style.transform = 'translateZ(0)';
+        headerContent.style.willChange         = 'transform, opacity';
+        headerContent.style.transform          = 'translateZ(0)';
         headerContent.style.backfaceVisibility = 'hidden';
 
         function updateCounterAndTitlePosition() {
@@ -97,46 +95,38 @@ export default function StylesSliderDesktop({ ready }) {
         }
 
         function animateSlide(direction) {
-          const slideImg = document.createElement('div');
+          const slideImg     = document.createElement('div');
           slideImg.classList.add('img-slider-new');
 
           const slideImgElem = document.createElement('img');
-          // ✅ Usa getImageRef para evitar stale closure — variante auto (desktop/mobile según dispositivo)
-          slideImgElem.src = getImageRef.current(`img${currentImg}`, "auto").src;
+          slideImgElem.src   = getImageRef.current(`img${currentImg}`, "auto").src;
 
           gsap.set(slideImgElem, { x: direction === 'left' ? -500 : 500 });
-
           slideImg.appendChild(slideImgElem);
           sliderImages.appendChild(slideImg);
 
           gsap.fromTo(
             slideImg,
             {
-              clipPath:
-                direction === 'left'
-                  ? 'polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)'
-                  : 'polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%)',
+              clipPath: direction === 'left'
+                ? 'polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)'
+                : 'polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%)',
             },
-            {
-              clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
-              duration: 1.5,
-              ease: 'hop',
-            }
+            { clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)', duration: 1.5, ease: 'hop' }
           );
 
-          gsap.to(slideImgElem, {
-            x: 0,
-            duration: 1.5,
-            ease: 'hop',
-          });
+          gsap.to(slideImgElem, { x: 0, duration: 1.5, ease: 'hop' });
 
           const imgElements = sliderImages.querySelectorAll('.img-slider-new');
           if (imgElements.length > totalSlides) imgElements[0].remove();
+
+          // ✅ Precarga siguiente y anterior tras cada cambio
+          preloadAroundRef.current(currentImg);
         }
 
         function handleClick(event) {
           if (!sliderRef.current) return;
-          const sliderWidth = sliderRef.current.clientWidth;
+          const sliderWidth   = sliderRef.current.clientWidth;
           const clickPosition = event.clientX;
 
           if (previewsRef.current.contains(event.target)) {
@@ -180,13 +170,11 @@ export default function StylesSliderDesktop({ ready }) {
     return () => ctx.revert();
   }, [ready]);
 
-  // ── Espera a que el manifest esté listo antes de renderizar ──────────────
   if (!isLoaded) return null;
 
   return (
     <div className='container-styles-2 font-myfont2 text-xl tracking-wider'>
 
-      {/* Preload primera imagen */}
       {FirstSlidePreload}
 
       <div className="slider" ref={sliderRef}>
@@ -227,13 +215,11 @@ export default function StylesSliderDesktop({ ready }) {
             <a href='tel:+493061202363'>T : (030) 61202363</a>
             <a href='mailto:hello@vilarnau.com'>E : hello@vilarnau.de</a>
           </div>
-
           <div className="slider-counter">
             <p ref={counterRef}>1 / 16</p>
           </div>
         </div>
 
-        {/* ✅ Previews — siempre variante thumb (300px) */}
         <div className="slider-preview" ref={previewsRef}>
           {Array.from({ length: 16 }, (_, i) => (
             <div key={i} className={`preview ${i === 0 ? 'active' : ''}`}>

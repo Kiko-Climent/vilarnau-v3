@@ -4,7 +4,8 @@ import { useEffect, useRef, useState, useCallback } from 'react';
 import gsap from 'gsap';
 import GridRevealImage from '../Tools/GridRevealAnimation';
 import { useNavbar } from '../Layout/Context/NavbarProvider';
-import { useOptimizedMedia } from '../../hooks/useOptimizedMedia';
+import { useOptimizedMedia } from '@/hooks/useOptimizedMedia';
+import { usePreloadSliderImages } from '@/hooks/usePreloadSliderImages';
 
 export default function StylesSliderMobile({ ready }) {
   const sliderRef       = useRef(null);
@@ -14,18 +15,25 @@ export default function StylesSliderMobile({ ready }) {
   const textRef         = useRef(null);
   const innerRef        = useRef(null);
 
-  // ── Hook de imágenes optimizadas ─────────────────────────────────────────
+  // ── Imágenes optimizadas ──────────────────────────────────────────────────
   const { getImage, isLoaded } = useOptimizedMedia();
 
-  // Ref para que animateSlide() acceda siempre a getImage actualizado
   const getImageRef = useRef(getImage);
-  useEffect(() => {
-    getImageRef.current = getImage;
-  }, [getImage]);
+  useEffect(() => { getImageRef.current = getImage; }, [getImage]);
+
+  // ── Precarga inteligente — variante mobile forzada ────────────────────────
+  // Creamos un getImage que siempre devuelve 'mobile' para este componente
+  const getImageMobile = useCallback(
+    (name) => (isLoaded ? getImage(name, 'mobile') : { src: '', fallback: '' }),
+    [getImage, isLoaded]
+  );
+  const { preloadAround } = usePreloadSliderImages(isLoaded ? getImageMobile : null, 16);
+  const preloadAroundRef = useRef(preloadAround);
+  useEffect(() => { preloadAroundRef.current = preloadAround; }, [preloadAround]);
 
   // ── Medidas del navbar ────────────────────────────────────────────────────
   const { measures } = useNavbar();
-  const { aboutX } = measures;
+  const { aboutX }   = measures;
 
   const [containerLeft, setContainerLeft] = useState(0);
 
@@ -45,13 +53,10 @@ export default function StylesSliderMobile({ ready }) {
     updateContainerLeft();
   }, [measures, updateContainerLeft]);
 
-  const sliderWidth = aboutX > 0 && containerLeft >= 0
-    ? aboutX - containerLeft
-    : null;
+  const sliderWidth = aboutX > 0 && containerLeft >= 0 ? aboutX - containerLeft : null;
+  const widthStyle  = sliderWidth ? { width: `${sliderWidth}px` } : { width: '100%' };
 
-  const widthStyle = sliderWidth ? { width: `${sliderWidth}px` } : { width: '100%' };
-
-  // ── Animación de texto SplitText ─────────────────────────────────────────
+  // ── Animación de texto SplitText ──────────────────────────────────────────
   const animateIn = async (target, onComplete) => {
     const { default: SplitText } = await import('gsap/SplitText');
     gsap.registerPlugin(SplitText);
@@ -89,9 +94,7 @@ export default function StylesSliderMobile({ ready }) {
   useEffect(() => {
     const originalStyle = window.getComputedStyle(document.body).overflow;
     document.body.style.overflow = 'hidden';
-    return () => {
-      document.body.style.overflow = originalStyle;
-    };
+    return () => { document.body.style.overflow = originalStyle; };
   }, []);
 
   // ── Lógica GSAP principal ─────────────────────────────────────────────────
@@ -101,10 +104,7 @@ export default function StylesSliderMobile({ ready }) {
     let ctx = gsap.context(() => {
       import('gsap/CustomEase').then(({ CustomEase }) => {
         gsap.registerPlugin(CustomEase);
-        CustomEase.create(
-          'hop',
-          'M0,0 C0.071,0.505 0.192,0.726 0.318,0.852 0.45,0.984 0.504,1 1,1'
-        );
+        CustomEase.create('hop', 'M0,0 C0.071,0.505 0.192,0.726 0.318,0.852 0.45,0.984 0.504,1 1,1');
 
         const sliderImages = sliderImagesRef.current;
         const counter      = counterRef.current;
@@ -140,7 +140,7 @@ export default function StylesSliderMobile({ ready }) {
           slideImg.classList.add('img-slider-new', 'absolute', 'w-full', 'h-full');
 
           const slideImgElem = document.createElement('img');
-          // ✅ Variante mobile forzada — este componente es siempre móvil
+          // ✅ Siempre variante mobile en este componente
           slideImgElem.src = getImageRef.current(`img${currentImg}`, 'mobile').src;
           slideImgElem.classList.add('w-full', 'h-full', 'object-cover', 'object-top');
           slideImgElem.style.willChange         = 'transform, clip-path';
@@ -154,10 +154,9 @@ export default function StylesSliderMobile({ ready }) {
           gsap.fromTo(
             slideImg,
             {
-              clipPath:
-                direction === 'left'
-                  ? 'polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)'
-                  : 'polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%)',
+              clipPath: direction === 'left'
+                ? 'polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)'
+                : 'polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%)',
             },
             { clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)', duration: 1.5, ease: 'hop' }
           );
@@ -166,6 +165,9 @@ export default function StylesSliderMobile({ ready }) {
 
           const imgElements = sliderImages.querySelectorAll('.img-slider-new');
           if (imgElements.length > totalSlides) imgElements[0].remove();
+
+          // ✅ Precarga siguiente y anterior tras cada cambio
+          preloadAroundRef.current(currentImg);
         }
 
         gsap.to(prevSlides, {
@@ -218,7 +220,6 @@ export default function StylesSliderMobile({ ready }) {
     return () => ctx.revert();
   }, [ready]);
 
-  // ── Espera al manifest antes de renderizar ────────────────────────────────
   if (!isLoaded) return null;
 
   return (
@@ -241,7 +242,7 @@ export default function StylesSliderMobile({ ready }) {
         >
           <div className="slider-images w-full h-full relative" ref={sliderImagesRef}>
             <div className="img-slider-new absolute w-full h-full">
-              {/* ✅ Primera imagen — variante mobile forzada */}
+              {/* ✅ Primera imagen — variante mobile */}
               <GridRevealImage
                 src={getImage('img1', 'mobile').src}
                 alt="img1"
@@ -270,7 +271,7 @@ export default function StylesSliderMobile({ ready }) {
               key={index + 1}
               className={`preview cursor-pointer relative overflow-hidden ${index === 0 ? 'active' : ''}`}
             >
-              {/* ✅ Previews — siempre thumb (300px) */}
+              {/* ✅ Previews — siempre thumb */}
               <img
                 src={getImage(`img${index + 1}`, 'thumb').src}
                 alt={`img${index + 1}`}
