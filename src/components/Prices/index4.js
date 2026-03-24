@@ -142,28 +142,36 @@ export default function PriceList4({ isOpen, onClose }) {
                     </TextAnimation2>
                   )}
 
-                  {section.rows.map((row, j) => (
-                    <div
-                      key={j}
-                      className={`group grid grid-cols-[2fr_1fr_1fr_1fr] text-right items-center py-[0.15em] md:py-[0.15em] transition-all duration-300 md:hover:bg-black md:hover:text-white ${
-                        row.indent ? "pl-6" : ""
-                      }`}
-                    >
-                      <LocalizedText text={row.service} className="font-medium" />
+                  {section.rows.map((row, j) => {
+                    if (!row) return null; // hay un `,,` en tus datos, esto lo protege
 
-                      {row.type === "grid" ? (
-                        <>
-                          <p>{row.prices[0]}</p>
-                          <p>{row.prices[1]}</p>
-                          <p>{row.prices[2]}</p>
-                        </>
-                      ) : (
-                        <p className="text-right opacity-50">
-                          {row.prices[0]}
-                        </p>
-                      )}
-                    </div>
-                  ))}
+                    return (
+                      <div
+                        key={j}
+                        className={`group grid ${
+                          row.type === "grid"
+                            ? "grid-cols-[2fr_1fr_1fr_1fr]"
+                            : "grid-cols-[2fr_3fr]"   // service + span completo
+                        } text-right items-center py-[0.15em] transition-all duration-300 md:hover:bg-black md:hover:text-white`}
+                      >
+                        <LocalizedText text={row.service} className="font-medium" />
+
+                        {row.type === "grid" ? (
+                          <>
+                            <p>{row.prices[0]}</p>
+                            <p>{row.prices[1]}</p>
+                            <p>{row.prices[2]}</p>
+                          </>
+                        ) : (
+                          <div className="flex items-center">
+                            <div className="flex-1 h-[0.5px] bg-current opacity-20" />
+                            <span className="px-3">{row.prices[0]}</span>
+                            <div className="flex-1 h-[0.5px] bg-current opacity-20" />
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
 
                   {/* Línea final de cada sección */}
                   <div
